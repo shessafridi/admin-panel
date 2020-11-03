@@ -7,6 +7,7 @@ import { apiUrl } from './config';
 import StarIcon from '@material-ui/icons/Star';
 import theme from './theme/theme';
 import CreateHeader from './fields/headers/HeaderCreate';
+import EditHeader from './fields/headers/HeaderEdit';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         name={'header'}
         list={HeadersList}
         create={CreateHeader}
+        edit={EditHeader}
       ></Resource>
     </Admin>
   );

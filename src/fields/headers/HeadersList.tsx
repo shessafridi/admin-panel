@@ -15,8 +15,8 @@ const HeadersList: React.FC<HeadersListProps> = props => {
         <TextField source='id' sortable={false} />
         <TextField source='title' sortable={false} />
         <TextField source='text' sortable={false} />
-        <EditButton basePath='id' />
-        <DeleteButton basePath='id' />
+        <EditButton />
+        <DeleteButton />
       </Datagrid>
     </List>
   );

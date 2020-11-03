@@ -13,8 +13,6 @@ export default (
   httpClient = fetchUtils.fetchJson
 ): DataProvider => ({
   getList: async (resource, params) => {
-    console.log(params, 'UPDATE');
-
     await segmentService.getSegments();
     return { total: 10, data: segmentService.getSliceData(resource) };
   },
@@ -53,12 +51,11 @@ export default (
   create: (resource, params) => {
     console.log(params, 'CREATE');
     return segmentService.create(params.data, resource).then(({ json }) => ({
-      data: json,
+      data: { ...json, id: json.id },
     }));
   },
 
   delete: (resource, params) => {
-    console.log(params);
     return segmentService
       .delete(parseInt(params.id as string), resource)
       .then(({ json }) => ({
@@ -70,9 +67,7 @@ export default (
   deleteMany: (resource, params) =>
     Promise.all(
       params.ids.map(id =>
-        httpClient(`${apiUrl}/${resource}/${id}`, {
-          method: 'DELETE',
-        })
+        segmentService.delete(parseInt(id as string), resource)
       )
     ).then(responses => ({ data: responses.map(({ json }) => json.id) })),
 });
