@@ -25,7 +25,8 @@ class SegmentService {
     });
 
   updateDb = (slice: ResourceSlice) => {
-    return fetchUtils.fetchJson(apiUrl, {
+    return fetchUtils.fetchJson(`${apiUrl}/${slice.id}`, {
+      method: 'PUT',
       body: this.getSegmentBody(slice),
     });
   };

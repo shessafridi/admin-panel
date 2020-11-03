@@ -57,9 +57,11 @@ export default (
 
   delete: (resource, params) => {
     console.log(params);
-    return httpClient(`${apiUrl}/${resource}/${params.id}`, {
-      method: 'DELETE',
-    }).then(({ json }) => ({ data: json }));
+    return segmentService
+      .delete(parseInt(params.id as string), resource)
+      .then(({ json }) => ({
+        data: json,
+      }));
   },
 
   // simple-rest doesn't handle filters on DELETE route, so we fallback to calling DELETE n times instead
