@@ -21,10 +21,15 @@ class SegmentService {
     JSON.stringify({
       SegmentDetailID: slice.id,
       SegmentID: slice.id,
-      Title: JSON.stringify(slice.data),
+      Title: slice.title,
+      Details: JSON.stringify(slice.data),
     });
 
-  updateDb = (slice: ResourceSlice) => {
+  private arrangeId = (slice: ResourceSlice) =>
+    slice.data.forEach((val, i) => (val.id = i + 1));
+
+  private updateDb = (slice: ResourceSlice) => {
+    this.arrangeId(slice);
     return fetchUtils.fetchJson(`${apiUrl}/${slice.id}`, {
       method: 'PUT',
       body: this.getSegmentBody(slice),

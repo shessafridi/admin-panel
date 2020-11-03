@@ -10,11 +10,11 @@ import {
 export interface HeadersListProps {}
 const HeadersList: React.FC<HeadersListProps> = props => {
   return (
-    <List {...props}>
+    <List pagination={false} {...props}>
       <Datagrid>
-        <TextField source='id' />
-        <TextField source='title' />
-        <TextField source='text' />
+        <TextField source='id' sortable={false} />
+        <TextField source='title' sortable={false} />
+        <TextField source='text' sortable={false} />
         <EditButton basePath='id' />
         <DeleteButton basePath='id' />
       </Datagrid>
