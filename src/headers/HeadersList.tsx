@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { Datagrid, List, TextField } from 'react-admin';
+import {
+  Datagrid,
+  DeleteButton,
+  EditButton,
+  List,
+  TextField,
+} from 'react-admin';
+
 export interface HeadersListProps {}
 const HeadersList: React.FC<HeadersListProps> = props => {
   return (
@@ -8,6 +15,8 @@ const HeadersList: React.FC<HeadersListProps> = props => {
         <TextField source='id' />
         <TextField source='title' />
         <TextField source='text' />
+        <EditButton basePath='id' />
+        <DeleteButton basePath='id' />
       </Datagrid>
     </List>
   );

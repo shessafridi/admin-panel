@@ -14,7 +14,7 @@ export default (
 ): DataProvider => ({
   getList: async (resource, params) => {
     await segmentService.getSegments();
-    return { total: 10, data: JSON.parse(segmentService.getSlice(resource)) };
+    return { total: 10, data: segmentService.getSlice(resource) };
   },
 
   getOne: (resource, params) =>
@@ -22,14 +22,12 @@ export default (
 
   getMany: async (resource, params) => {
     await segmentService.getSegments();
-    const res = getById(parseInt(resource), resource);
-    return { data: JSON.parse(res.Details) };
+    return { data: segmentService.getSlice(resource) };
   },
 
   getManyReference: async (resource, params) => {
     await segmentService.getSegments();
-    const res = getById(parseInt(resource), resource);
-    return { total: 10, data: JSON.parse(res.Details) };
+    return { total: 10, data: segmentService.getSlice(resource) };
   },
 
   update: (resource, params) =>
