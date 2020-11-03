@@ -1,12 +1,34 @@
 import { fetchUtils } from 'ra-core';
 import { apiUrl } from '../config';
+import { ResourceSlice } from '../models/Slice';
 
 class SegmentService {
   segmentsObj: any = {};
 
-  getSlice = (searchQuery: string) => this.segmentsObj[searchQuery].data;
+  getSlice = (resource: string): any[] => this.segmentsObj[resource].data;
+  getSliceResource = (resource: string): ResourceSlice =>
+    this.segmentsObj[resource];
 
-  delete = (id: number, resource: string) => {};
+  delete = (id: number, resource: string) => {
+    const slice = this.getSliceResource(resource);
+    const index = slice.data.findIndex(val => val.id === id);
+    slice.data.splice(index, 1);
+
+    return this.updateDb(slice);
+  };
+
+  getSegmentBody = (slice: ResourceSlice) =>
+    JSON.stringify({
+      SegmentDetailID: slice.id,
+      SegmentID: slice.id,
+      Title: JSON.stringify(slice.data),
+    });
+
+  updateDb = (slice: ResourceSlice) => {
+    return fetchUtils.fetchJson(apiUrl, {
+      body: this.getSegmentBody(slice),
+    });
+  };
 
   getSegments = async () => {
     if (Object.keys(this.segmentsObj).length === 0) {
@@ -17,6 +39,7 @@ class SegmentService {
           const title: string = val.Title.toLowerCase().replace(' ', '');
           this.segmentsObj[title] = {
             id: val.SegmentDetailID,
+            title: val.Title,
             data: JSON.parse(val.Details),
           };
         });
