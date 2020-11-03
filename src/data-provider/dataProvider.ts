@@ -17,8 +17,10 @@ export default (
     return { total: 10, data: segmentService.getSliceData(resource) };
   },
 
-  getOne: (resource, params) =>
-    getById(parseInt(params.id.toString()), resource),
+  getOne: async (resource, params) => {
+    await segmentService.getSegments();
+    return { data: { ...getById(parseInt(params.id.toString()), resource) } };
+  },
 
   getMany: async (resource, params) => {
     console.log(params, 'UPDATE');
@@ -31,11 +33,16 @@ export default (
     return { total: 10, data: segmentService.getSliceData(resource) };
   },
 
-  update: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json })),
+  update: (resource, params) => {
+    console.log(params, 'UPDATE');
+    return segmentService
+      .update(params.data, resource)
+      .then(({ json }) => ({ data: { id: json.id, ...json } }));
+  },
+  // httpClient(`${apiUrl}/${resource}/${params.id}`, {
+  //   method: 'PUT',
+  //   body: JSON.stringify(params.data),
+  // }).then(({ json }) => ({ data: json })),
 
   // simple-rest doesn't handle provide an updateMany route, so we fallback to calling update n times instead
   updateMany: (resource, params) =>
