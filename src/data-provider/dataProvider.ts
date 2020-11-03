@@ -4,7 +4,7 @@ import { fetchUtils, DataProvider } from 'ra-core';
 import segmentService from './segmentService';
 
 const getById = (id: number, res: string) => {
-  const slice = segmentService.getSlice(res);
+  const slice = segmentService.getSliceData(res);
   return slice.find(val => val.id === id);
 };
 
@@ -13,21 +13,24 @@ export default (
   httpClient = fetchUtils.fetchJson
 ): DataProvider => ({
   getList: async (resource, params) => {
+    console.log(params, 'UPDATE');
+
     await segmentService.getSegments();
-    return { total: 10, data: segmentService.getSlice(resource) };
+    return { total: 10, data: segmentService.getSliceData(resource) };
   },
 
   getOne: (resource, params) =>
     getById(parseInt(params.id.toString()), resource),
 
   getMany: async (resource, params) => {
+    console.log(params, 'UPDATE');
     await segmentService.getSegments();
-    return { data: segmentService.getSlice(resource) };
+    return { data: segmentService.getSliceData(resource) };
   },
 
   getManyReference: async (resource, params) => {
     await segmentService.getSegments();
-    return { total: 10, data: segmentService.getSlice(resource) };
+    return { total: 10, data: segmentService.getSliceData(resource) };
   },
 
   update: (resource, params) =>
@@ -47,13 +50,12 @@ export default (
       )
     ).then(responses => ({ data: responses.map(({ json }) => json.id) })),
 
-  create: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}`, {
-      method: 'POST',
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({
-      data: { ...params.data, id: json.id },
-    })),
+  create: (resource, params) => {
+    console.log(params, 'CREATE');
+    return segmentService.create(params.data, resource).then(({ json }) => ({
+      data: json,
+    }));
+  },
 
   delete: (resource, params) => {
     console.log(params);
