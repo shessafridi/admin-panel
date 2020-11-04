@@ -16,7 +16,7 @@ const EditHeader: React.FC<EditHeaderProps> = props => {
         <SimpleForm redirect='list'>
           <TextInput disabled source='id' />
           <TextInput required={true} source='title' />
-          <TextInput required={true} multiline={true} source='text' />
+          <TextInput rows={8} required={true} multiline={true} source='text' />
         </SimpleForm>
       </Edit>
     </PaddedContainer>

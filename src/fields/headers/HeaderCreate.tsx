@@ -15,7 +15,7 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
       <Create title='Add a new header' {...props}>
         <SimpleForm redirect='list'>
           <TextInput required={true} source='title' />
-          <TextInput required={true} multiline={true} source='text' />
+          <TextInput rows={8} required={true} multiline={true} source='text' />
           <TextInput disabled source='imageUrl' />
         </SimpleForm>
       </Create>
