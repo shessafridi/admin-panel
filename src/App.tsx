@@ -8,12 +8,14 @@ import StarIcon from '@material-ui/icons/Star';
 import theme from './theme/theme';
 import CreateHeader from './fields/headers/HeaderCreate';
 import EditHeader from './fields/headers/HeaderEdit';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <Admin
       theme={theme}
       title='Admin Panel'
+      dashboard={Dashboard}
       dataProvider={dataProvider(apiUrl)}
     >
       <Resource
