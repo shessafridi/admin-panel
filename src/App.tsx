@@ -9,6 +9,7 @@ import theme from './theme/theme';
 import CreateHeader from './fields/headers/HeaderCreate';
 import EditHeader from './fields/headers/HeaderEdit';
 import Dashboard from './components/Dashboard';
+import authProvider from './auth-provider/authProvider';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       theme={theme}
       title='Admin Panel'
       dashboard={Dashboard}
+      authProvider={authProvider}
       dataProvider={dataProvider(apiUrl)}
     >
       <Resource

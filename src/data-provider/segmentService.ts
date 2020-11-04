@@ -12,9 +12,23 @@ class SegmentService {
     this._arrangeId(slice);
     return fetchUtils.fetchJson(`${apiUrl}/${slice.id}`, {
       method: 'PUT',
+      headers: this.getHttpHeaders(),
       body: this._getSegmentBody(slice),
     });
   };
+
+  private getHttpHeaders() {
+    const token = localStorage.getItem('auth');
+    if (!!token) {
+      return new Headers({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      });
+    }
+    return new Headers({
+      'Content-Type': 'application/json',
+    });
+  }
 
   private _getSegmentBody = (slice: ResourceSlice) =>
     JSON.stringify({

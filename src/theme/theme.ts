@@ -22,10 +22,10 @@ const theme = createMuiTheme({
       },
     },
     MuiMenuItem: {
-      selected: {
-        color: deepPurple[500],
-      },
       root: {
+        '&$selected': {
+          color: deepPurple[500],
+        },
         textTransform: 'uppercase',
         fontSize: '14px',
         fontWeight: 'bold',
