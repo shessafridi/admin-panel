@@ -56,18 +56,12 @@ export default (
     ).then(responses => ({ data: responses.map(({ json }) => json.id) })),
 
   create: (resource, params) => {
-    console.log(params, 'CREATE');
-    return segmentService.create(params.data, resource).then(({ json }) => ({
-      data: { ...json, id: json.id },
-    }));
+    console.log(params, 'RES');
+    return segmentService.create(params.data, resource);
   },
 
   delete: (resource, params) => {
-    return segmentService
-      .delete(parseInt(params.id as string), resource)
-      .then(({ json }) => ({
-        data: json,
-      }));
+    return segmentService.delete(parseInt(params.id as string), resource);
   },
 
   // simple-rest doesn't handle filters on DELETE route, so we fallback to calling DELETE n times instead
@@ -76,5 +70,5 @@ export default (
       params.ids.map(id =>
         segmentService.delete(parseInt(id as string), resource)
       )
-    ).then(responses => ({ data: responses.map(({ json }) => json.id) })),
+    ).then(responses => ({ data: responses.map(res => res.data) })),
 });

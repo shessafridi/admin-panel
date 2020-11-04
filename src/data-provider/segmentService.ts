@@ -46,7 +46,9 @@ class SegmentService {
     data.id = slice.data.length + 1;
     slice.data.push(data);
 
-    return this._updateDb(slice);
+    return this._updateDb(slice).then(() => ({
+      data: { ...data, id: data.id },
+    }));
   };
 
   // Read
@@ -66,9 +68,11 @@ class SegmentService {
   delete = (id: number, resource: string) => {
     const slice = this.getSlice(resource);
     const index = slice.data.findIndex(val => val.id === id);
-    slice.data.splice(index, 1);
+    const rem = slice.data.splice(index, 1);
 
-    return this._updateDb(slice);
+    return this._updateDb(slice).then(() => ({
+      data: rem[0],
+    }));
   };
 
   // Loading data from the server

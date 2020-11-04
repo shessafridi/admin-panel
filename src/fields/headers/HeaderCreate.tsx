@@ -16,6 +16,7 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
         <SimpleForm redirect='list'>
           <TextInput required={true} source='title' />
           <TextInput required={true} multiline={true} source='text' />
+          <TextInput disabled source='imageUrl' />
         </SimpleForm>
       </Create>
     </PaddedContainer>
