@@ -13,12 +13,12 @@ class SegmentService {
     this._arrangeId(slice);
     return fetchUtils.fetchJson(`${apiUrl}/${slice.id}`, {
       method: 'PUT',
-      headers: this.getHttpHeaders(),
+      headers: this._getHttpHeaders(),
       body: this._getSegmentBody(slice),
     });
   };
 
-  private getHttpHeaders() {
+  private _getHttpHeaders() {
     const token = localStorage.getItem('auth');
     if (!!token) {
       return new Headers({
@@ -39,7 +39,7 @@ class SegmentService {
       Details: JSON.stringify(slice.data),
     });
 
-  private uploadImagesIfExist = async (data: any) => {
+  private _uploadImagesIfExist = async (data: any) => {
     if (data.imageUpload && Array.isArray(data.imageUpload)) {
       await imageUploadService
         .uploadAllFiles(data.imageUpload.map((raw: any) => raw.rawFile))
@@ -58,7 +58,7 @@ class SegmentService {
     data.id = slice.data.length + 1;
     slice.data.push(data);
 
-    await this.uploadImagesIfExist(data);
+    await this._uploadImagesIfExist(data);
 
     return this._updateDb(slice).then(() => ({
       data: { ...data, id: data.id },
@@ -75,10 +75,10 @@ class SegmentService {
     const index = slice.data.findIndex(val => val.id === data.id);
     slice.data[index] = data;
 
-    await this.uploadImagesIfExist(data);
+    await this._uploadImagesIfExist(data);
 
-    return this._updateDb(slice).then(({ json }) => ({
-      data: { id: json.id, ...json },
+    return this._updateDb(slice).then(() => ({
+      data: { ...data, id: data.id },
     }));
   };
 
