@@ -2,6 +2,7 @@
 
 import { fetchUtils, DataProvider } from 'ra-core';
 import segmentService from './segmentService';
+// import imageService from '../common/imageUploadService';
 
 const getById = (id: number, res: string) => {
   const slice = segmentService.getSliceData(res);

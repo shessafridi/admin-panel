@@ -1,4 +1,5 @@
 import { fetchUtils } from 'ra-core';
+import imageUploadService from '../common/imageUploadService';
 import { apiUrl } from '../config';
 import { ResourceSlice } from '../models/Slice';
 
@@ -41,10 +42,17 @@ class SegmentService {
   // CRUD
 
   // Create
-  create = (data: any, resource: string) => {
+  create = async (data: any, resource: string) => {
     const slice = this.getSlice(resource);
     data.id = slice.data.length + 1;
     slice.data.push(data);
+
+    console.log(data, 'Create Data');
+    if (Array.isArray(data.imageUrl)) {
+      await imageUploadService
+        .uploadAllFiles(data.imageUrl.map((raw: any) => raw.rawFile))
+        .then(res => (data.imageUrl = res[0]));
+    }
 
     return this._updateDb(slice).then(() => ({
       data: { ...data, id: data.id },

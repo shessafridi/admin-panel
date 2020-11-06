@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Edit, SimpleForm, TextInput } from 'react-admin';
+import { Edit, FileInput, SimpleForm, TextInput } from 'react-admin';
 import BackButton from '../../common/BackButton';
 import PaddedContainer from '../../common/PaddedContainer';
 
@@ -16,7 +16,9 @@ const EditHeader: React.FC<EditHeaderProps> = props => {
         <SimpleForm redirect='list'>
           <TextInput disabled source='id' />
           <TextInput required={true} source='title' />
-          <TextInput rows={8} required={true} multiline={true} source='text' />
+          <FileInput source='imageUrl' />
+          <TextInput disabled source='imageUrl' />
+          <TextInput rows={6} required={true} multiline={true} source='text' />
         </SimpleForm>
       </Edit>
     </PaddedContainer>

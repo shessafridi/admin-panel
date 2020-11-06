@@ -3,3 +3,7 @@ export const apiUrl =
 
 export const authUrl =
   process.env.REACT_APP_AUTH_URL || 'https://api.alhamdian.pk/api/login';
+
+export const fileUploadUrl =
+  process.env.REACT_APP_FILE_UPLOAD_URL ||
+  'https://api.nisafoundation.org/api/SegmentDetail/UploadFile';
