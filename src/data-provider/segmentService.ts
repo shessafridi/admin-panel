@@ -39,6 +39,17 @@ class SegmentService {
       Details: JSON.stringify(slice.data),
     });
 
+  private uploadImagesIfExist = async (data: any) => {
+    if (data.imageUpload && Array.isArray(data.imageUpload)) {
+      await imageUploadService
+        .uploadAllFiles(data.imageUpload.map((raw: any) => raw.rawFile))
+        .then(res => {
+          delete data.imageUpload;
+          return (data.imageUrl = res[0].replace(/"/g, ''));
+        });
+    }
+  };
+
   // CRUD
 
   // Create
@@ -47,12 +58,7 @@ class SegmentService {
     data.id = slice.data.length + 1;
     slice.data.push(data);
 
-    console.log(data, 'Create Data');
-    if (Array.isArray(data.imageUrl)) {
-      await imageUploadService
-        .uploadAllFiles(data.imageUrl.map((raw: any) => raw.rawFile))
-        .then(res => (data.imageUrl = res[0]));
-    }
+    await this.uploadImagesIfExist(data);
 
     return this._updateDb(slice).then(() => ({
       data: { ...data, id: data.id },
@@ -64,12 +70,16 @@ class SegmentService {
   getSlice = (resource: string): ResourceSlice => this.segmentsObj[resource];
 
   // Update
-  update = (data: any, resource: string) => {
+  update = async (data: any, resource: string) => {
     const slice = this.getSlice(resource);
     const index = slice.data.findIndex(val => val.id === data.id);
     slice.data[index] = data;
 
-    return this._updateDb(slice);
+    await this.uploadImagesIfExist(data);
+
+    return this._updateDb(slice).then(({ json }) => ({
+      data: { id: json.id, ...json },
+    }));
   };
 
   // Delete

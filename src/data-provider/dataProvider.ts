@@ -36,9 +36,7 @@ export default (
 
   update: (resource, params) => {
     console.log(params, 'UPDATE');
-    return segmentService
-      .update(params.data, resource)
-      .then(({ json }) => ({ data: { id: json.id, ...json } }));
+    return segmentService.update(params.data, resource);
   },
   // httpClient(`${apiUrl}/${resource}/${params.id}`, {
   //   method: 'PUT',

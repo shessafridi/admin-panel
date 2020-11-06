@@ -21,7 +21,7 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
       <Create title='Add a new header' {...props}>
         <SimpleForm redirect='list'>
           <TextInput required={true} source='title' />
-          <FileInput multiple={true} accept='image/*' source='imageUrl'>
+          <FileInput multiple={true} accept='image/*' source='imageUpload'>
             <ImageField source='src' title='title' />
           </FileInput>
           <TextInput rows={6} required={true} multiline={true} source='text' />
