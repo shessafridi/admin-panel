@@ -24,7 +24,6 @@ export default (
   },
 
   getMany: async (resource, params) => {
-    console.log(params, 'UPDATE');
     await segmentService.getSegments();
     return { data: segmentService.getSliceData(resource) };
   },
@@ -35,7 +34,6 @@ export default (
   },
 
   update: (resource, params) => {
-    console.log(params, 'UPDATE');
     return segmentService.update(params.data, resource);
   },
   // httpClient(`${apiUrl}/${resource}/${params.id}`, {
@@ -55,7 +53,6 @@ export default (
     ).then(responses => ({ data: responses.map(({ json }) => json.id) })),
 
   create: (resource, params) => {
-    console.log(params, 'RES');
     return segmentService.create(params.data, resource);
   },
 
