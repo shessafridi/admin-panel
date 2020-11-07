@@ -12,7 +12,12 @@ const getById = (id: number, res: string) => {
 export default (): DataProvider => ({
   getList: async (resource, params) => {
     await segmentService.getSegments();
-    return { total: 10, data: segmentService.getSliceData(resource) };
+    const returnValue = {
+      total: 10,
+      data: segmentService.getSliceData(resource),
+    };
+    console.log(returnValue);
+    return returnValue;
   },
 
   getOne: async (resource, params) => {

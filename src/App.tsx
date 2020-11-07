@@ -3,12 +3,15 @@ import './App.css';
 import { Admin, Resource } from 'react-admin';
 import dataProvider from './data-provider/dataProvider';
 import HeadersList from './fields/headers/HeadersList';
-import StarIcon from '@material-ui/icons/Star';
 import theme from './theme/theme';
 import CreateHeader from './fields/headers/HeaderCreate';
 import EditHeader from './fields/headers/HeaderEdit';
 import Dashboard from './components/Dashboard';
 import authProvider from './auth-provider/authProvider';
+import EditFooter from './fields/footer/FooterEdit';
+import SingleResource from './common/SingleResource';
+import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 
 function App() {
   return (
@@ -20,12 +23,19 @@ function App() {
       dataProvider={dataProvider()}
     >
       <Resource
-        icon={StarIcon}
+        icon={StarsOutlinedIcon}
         options={{ label: 'Headers' }}
         name={'header'}
         list={HeadersList}
         create={CreateHeader}
         edit={EditHeader}
+      ></Resource>
+      <Resource
+        icon={ListAltIcon}
+        options={{ label: 'Footer' }}
+        name={'footer'}
+        list={SingleResource}
+        edit={EditFooter}
       ></Resource>
     </Admin>
   );
