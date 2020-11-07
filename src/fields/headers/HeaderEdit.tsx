@@ -14,10 +14,12 @@ const EditHeader: React.FC = (props: any) => {
     <PaddedContainer padding='10px'>
       <div>
         <BackButton />
-        <h2 style={{ marginLeft: '18px' }}>Edit Header</h2>
+        <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>
+          Edit Header
+        </h2>
       </div>
       <Edit {...props}>
-        <SimpleForm redirect='list'>
+        <SimpleForm margin='normal' redirect='list'>
           <TextInput disabled source='id' />
           <TextInput required={true} source='title' />
           <ImageField source='imageUrl' label='Image' />

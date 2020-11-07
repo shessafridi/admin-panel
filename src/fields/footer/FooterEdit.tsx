@@ -4,6 +4,7 @@ import {
   FormTab,
   SaveButton,
   TabbedForm,
+  TabbedFormTabs,
   TextInput,
   Toolbar,
 } from 'react-admin';
@@ -12,21 +13,28 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import { Redirect } from 'react-router';
 
 const FooterditToolbar = (props: any) => (
   <Toolbar {...props}>
-    <SaveButton />
+    <SaveButton disabled={props.saving && props.invalid} />
   </Toolbar>
 );
 
 const EditFooter: React.FC = (props: any) => {
+  if (props.id !== '1') return <Redirect to='1' />;
   return (
     <PaddedContainer padding='10px'>
       <div>
-        <h2 style={{ marginLeft: '18px' }}>Footer</h2>
+        <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>Footer</h2>
       </div>
       <Edit {...props}>
-        <TabbedForm toolbar={<FooterditToolbar />}>
+        <TabbedForm
+          margin='normal'
+          tabs={<TabbedFormTabs centered={true} />}
+          redirect={false}
+          toolbar={<FooterditToolbar />}
+        >
           <FormTab icon={<AccountBoxOutlinedIcon />} label='About'>
             <TextInput
               multiline={true}
