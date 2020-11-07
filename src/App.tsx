@@ -12,6 +12,7 @@ import EditFooter from './fields/footer/FooterEdit';
 import SingleResource from './common/SingleResource';
 import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import Menu from './components/Menu';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       dashboard={Dashboard}
       authProvider={authProvider}
       dataProvider={dataProvider()}
+      menu={Menu}
     >
       <Resource
         icon={StarsOutlinedIcon}

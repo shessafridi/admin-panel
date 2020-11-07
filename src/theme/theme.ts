@@ -23,7 +23,7 @@ const theme = createMuiTheme({
     },
     MuiMenuItem: {
       root: {
-        '&$selected': {
+        '&$active': {
           color: deepPurple[500],
         },
         textTransform: 'uppercase',
