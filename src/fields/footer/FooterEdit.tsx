@@ -14,6 +14,8 @@ import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import { Redirect } from 'react-router';
+import { TabsActions } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const FooterditToolbar = (props: any) => (
   <Toolbar {...props}>
@@ -22,7 +24,15 @@ const FooterditToolbar = (props: any) => (
 );
 
 const EditFooter: React.FC = (props: any) => {
-  if (props.id !== '1') return <Redirect to='1' />;
+  const tabsActions = React.useRef<any | TabsActions>();
+  const open = useSelector((state: any) => state.admin.ui.sidebarOpen);
+
+  React.useEffect(() => {
+    setTimeout(() => tabsActions.current?.updateIndicator(), 220);
+  }, [open]);
+
+  if (props.id !== '1') return <Redirect to={`/${props.resource}/1`} />;
+
   return (
     <PaddedContainer padding='10px'>
       <div>
@@ -31,7 +41,7 @@ const EditFooter: React.FC = (props: any) => {
       <Edit {...props}>
         <TabbedForm
           margin='normal'
-          tabs={<TabbedFormTabs centered={true} />}
+          tabs={<TabbedFormTabs action={tabsActions} centered={true} />}
           redirect={false}
           toolbar={<FooterditToolbar />}
         >
