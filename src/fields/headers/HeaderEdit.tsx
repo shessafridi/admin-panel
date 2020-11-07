@@ -14,7 +14,7 @@ const EditHeader: React.FC = (props: any) => {
     <PaddedContainer padding='10px'>
       <div>
         <BackButton />
-        <h3 style={{ marginLeft: '18px' }}>Edit Header</h3>
+        <h2 style={{ marginLeft: '18px' }}>Edit Header</h2>
       </div>
       <Edit {...props}>
         <SimpleForm redirect='list'>

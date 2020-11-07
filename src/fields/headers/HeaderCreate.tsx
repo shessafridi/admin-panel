@@ -16,7 +16,7 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
     <PaddedContainer padding='10px'>
       <div>
         <BackButton />
-        <h3 style={{ marginLeft: '18px' }}>Add a new Header</h3>
+        <h2 style={{ marginLeft: '18px' }}>Add a new Header</h2>
       </div>
       <Create title='Add a new header' {...props}>
         <SimpleForm redirect='list'>

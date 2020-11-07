@@ -7,7 +7,6 @@ import {
   TextInput,
   Toolbar,
 } from 'react-admin';
-import BackButton from '../../common/BackButton';
 import PaddedContainer from '../../common/PaddedContainer';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
@@ -24,8 +23,7 @@ const EditFooter: React.FC = (props: any) => {
   return (
     <PaddedContainer padding='10px'>
       <div>
-        <BackButton />
-        <h3 style={{ marginLeft: '18px' }}>Footer</h3>
+        <h2 style={{ marginLeft: '18px' }}>Footer</h2>
       </div>
       <Edit {...props}>
         <TabbedForm toolbar={<FooterditToolbar />}>
