@@ -27,6 +27,7 @@ const EditFooter: React.FC = (props: any) => {
   const tabsActions = React.useRef<any | TabsActions>();
   const open = useSelector((state: any) => state.admin.ui.sidebarOpen);
 
+  // Recalculating tab indicator position due to a bug in MUI
   React.useEffect(() => {
     setTimeout(() => tabsActions.current?.updateIndicator(), 220);
   }, [open]);
