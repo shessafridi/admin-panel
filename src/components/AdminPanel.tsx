@@ -12,6 +12,9 @@ import SingleResource from '../common/SingleResource';
 import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import Menu from '../components/Menu';
+import NoticeList from '../fields/notice-board/NoticeList';
+import CreateNotice from '../fields/notice-board/NoticeCreate';
+import EditNotice from '../fields/notice-board/NoticeEdit';
 
 function AdminPanel() {
   return (
@@ -31,6 +34,16 @@ function AdminPanel() {
         create={CreateHeader}
         edit={EditHeader}
       ></Resource>
+
+      <Resource
+        icon={ListAltIcon}
+        options={{ label: 'Notice Board' }}
+        name={'noticeboard'}
+        list={NoticeList}
+        edit={EditNotice}
+        create={CreateNotice}
+      ></Resource>
+
       <Resource
         icon={ListAltIcon}
         options={{ label: 'Footer' }}
