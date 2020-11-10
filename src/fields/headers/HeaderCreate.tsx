@@ -7,7 +7,6 @@ import {
   TextInput,
 } from 'react-admin';
 import BackButton from '../../common/BackButton';
-import CustomUrlField from '../../common/CustomUrlField';
 import PaddedContainer from '../../common/PaddedContainer';
 
 export interface CreateHeaderProps {}
