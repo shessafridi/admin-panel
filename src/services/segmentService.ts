@@ -58,6 +58,7 @@ class SegmentService {
     if (data.imageUpload.rawFile) {
       await this._uploadSingleImage(data);
     }
+
     if (data.imageUpload && Array.isArray(data.imageUpload)) {
       await this._uploadMultipleImages(data);
     }
