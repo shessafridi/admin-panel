@@ -33,7 +33,7 @@ export default (): DataProvider => ({
     return { total: 10, data: segmentService.getSliceData(resource) };
   },
 
-  update: (resource, params) => {
+  update: (resource, params): Promise<any> => {
     return segmentService.update(params.data, resource);
   },
 
@@ -43,7 +43,7 @@ export default (): DataProvider => ({
       params.ids.map(id =>
         segmentService.update(parseInt(id as string), resource)
       )
-    ).then(responses => ({ data: responses.map(res => res.data) })),
+    ).then(responses => ({ data: responses.map(res => res?.data) })),
 
   create: (resource, params) => {
     return segmentService.create(params.data, resource);

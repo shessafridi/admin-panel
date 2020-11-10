@@ -39,28 +39,13 @@ class SegmentService {
       Details: JSON.stringify(slice.data),
     });
 
-  private _uploadSingleImage = async (data: any) =>
-    await imageUploadService.uploadFile(data.imageUpload.rawFile).then(res => {
-      delete data.imageUpload;
-      return (data.imageUrl = res.body.replace(/"/g, ''));
-    });
-
-  private _uploadMultipleImages = async (data: any) =>
-    await imageUploadService
-      .uploadAllFiles(data.imageUpload.map((raw: any) => raw.rawFile))
-      .then(res => {
-        delete data.imageUpload;
-        console.log(res);
-        return (data.imageUrl = res.map(link => link.replace(/"/g, '')));
-      });
-
   private _uploadImagesIfExist = async (data: any) => {
     if (data.imageUpload.rawFile) {
-      await this._uploadSingleImage(data);
+      await imageUploadService.uploadSingleImage(data);
     }
 
     if (data.imageUpload && Array.isArray(data.imageUpload)) {
-      await this._uploadMultipleImages(data);
+      await imageUploadService.uploadMultipleImages(data);
     }
   };
 
@@ -70,13 +55,16 @@ class SegmentService {
   create = async (data: any, resource: string) => {
     const slice = this.getSlice(resource);
     data.id = slice.data.length + 1;
-    slice.data.push(data);
 
-    await this._uploadImagesIfExist(data);
-
-    return this._updateDb(slice).then(() => ({
-      data: { ...data, id: data.id },
-    }));
+    try {
+      await this._uploadImagesIfExist(data);
+      slice.data.push(data);
+      return this._updateDb(slice).then(() => ({
+        data: { ...data, id: data.id },
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
   };
 
   // Read
@@ -86,14 +74,16 @@ class SegmentService {
   // Update
   update = async (data: any, resource: string) => {
     const slice = this.getSlice(resource);
-    const index = slice.data.findIndex(val => val.id === data.id);
-    slice.data[index] = data;
-
-    await this._uploadImagesIfExist(data);
-
-    return this._updateDb(slice).then(() => ({
-      data: { ...data, id: data.id },
-    }));
+    try {
+      await this._uploadImagesIfExist(data);
+      const index = slice.data.findIndex(val => val.id === data.id);
+      slice.data[index] = data;
+      return this._updateDb(slice).then(() => ({
+        data: { ...data, id: data.id },
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
   };
 
   // Delete

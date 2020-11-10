@@ -7,6 +7,7 @@ import {
   TextInput,
 } from 'react-admin';
 import BackButton from '../../common/BackButton';
+import CustomUrlField from '../../common/CustomUrlField';
 import PaddedContainer from '../../common/PaddedContainer';
 
 export interface CreateHeaderProps {}
@@ -25,7 +26,7 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
             <ImageField source='src' title='title' />
           </FileInput>
           <TextInput rows={6} required={true} multiline={true} source='text' />
-          {/* <TextInput disabled source='imageUrl' /> */}
+          <CustomUrlField path='images.imageUrl' />
         </SimpleForm>
       </Create>
     </PaddedContainer>
