@@ -7,3 +7,5 @@ export const authUrl =
 export const fileUploadUrl =
   process.env.REACT_APP_FILE_UPLOAD_URL ||
   'https://api.nisafoundation.org/api/SegmentDetail/UploadFile';
+
+export const DEFAULT_PATH = 'imageUrl';

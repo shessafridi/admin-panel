@@ -1,5 +1,5 @@
 import { fetchUtils } from 'ra-core';
-import { fileUploadUrl } from '../config';
+import { DEFAULT_PATH, fileUploadUrl } from '../config';
 import objectPath from 'object-path';
 class ImageService {
   private _uploadAllFiles = (files: File[]) => {
@@ -18,8 +18,6 @@ class ImageService {
     });
   };
 
-  private DEFAULT_PATH = 'imageUrl';
-
   private _setCustomProperty = (data: any, value: any) => {
     const fieldName: string = data.customUrlField;
     delete data.customUrlField;
@@ -31,20 +29,20 @@ class ImageService {
     imageUrl: link.replace(/"/g, ''),
   });
 
-  uploadSingleImage = async (data: any, path: string = this.DEFAULT_PATH) =>
+  uploadSingleImage = async (data: any, path: string = DEFAULT_PATH) =>
     await this._uploadFile(data[path].rawFile).then(res => {
       delete data[path];
-      if (data.customUrlField && path !== this.DEFAULT_PATH)
+      if (data.customUrlField && path !== DEFAULT_PATH)
         return this._setCustomProperty(data, res.body.replace(/"/g, ''));
 
       return (data.imageUrl = res.body.replace(/"/g, ''));
     });
 
-  uploadMultipleImages = async (data: any, path: string = this.DEFAULT_PATH) =>
+  uploadMultipleImages = async (data: any, path: string = DEFAULT_PATH) =>
     await this._uploadAllFiles(data[path].map((raw: any) => raw.rawFile)).then(
       res => {
         delete data[path];
-        if (data.customUrlField && path !== this.DEFAULT_PATH) {
+        if (data.customUrlField && path !== DEFAULT_PATH) {
           let gallery: any[] = objectPath.get(data, data.customUrlField) || [];
           gallery = [...gallery, ...res.map(this._mapToGallery)];
           gallery.forEach((val, i) => (val.id = i + 1));

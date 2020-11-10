@@ -1,6 +1,6 @@
 import { fetchUtils } from 'ra-core';
 import imageUploadService from './imageUploadService';
-import { apiUrl } from '../config';
+import { apiUrl, DEFAULT_PATH } from '../config';
 import { ResourceSlice } from '../models/Slice';
 
 class SegmentService {
@@ -40,8 +40,9 @@ class SegmentService {
     });
 
   private _uploadImagesIfExist = async (data: any) => {
-    if (data.imageUrl && data.imageUrl.rawFile)
+    if (data[DEFAULT_PATH] && data[DEFAULT_PATH].rawFile)
       await imageUploadService.uploadSingleImage(data);
+
     if (data.imageUpload && data.imageUpload.rawFile)
       await imageUploadService.uploadSingleImage(data, 'imageUpload');
     else if (Array.isArray(data.imageUpload))
