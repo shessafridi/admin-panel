@@ -5,15 +5,16 @@ import { makeStyles, Theme, useMediaQuery } from '@material-ui/core';
 import { MenuItemLink, getResources } from 'react-admin';
 import { withRouter } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import { drawerActive } from '../theme/theme';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   active: {
-    color: theme.palette.primary.dark,
+    color: drawerActive.textColor,
     '& .MuiListItemIcon-root': {
-      color: theme.palette.primary.dark,
+      color: drawerActive.iconColor,
     },
   },
-}));
+});
 
 const Menu = ({ onMenuClick, logout }: any) => {
   const isXSmall = useMediaQuery((theme: Theme) =>

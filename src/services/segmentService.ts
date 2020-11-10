@@ -1,5 +1,5 @@
 import { fetchUtils } from 'ra-core';
-import imageUploadService from '../common/imageUploadService';
+import imageUploadService from './imageUploadService';
 import { apiUrl } from '../config';
 import { ResourceSlice } from '../models/Slice';
 

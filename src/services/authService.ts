@@ -1,6 +1,6 @@
 import { fetchUtils } from 'ra-core';
 import { authUrl } from '../config';
-import { AuthBody } from './../models/AuthBody';
+import { AuthBody } from '../models/AuthBody';
 
 class AuthService {
   currentUser = null;

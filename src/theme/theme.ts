@@ -1,6 +1,11 @@
 import { createMuiTheme } from '@material-ui/core';
 import { amber, deepPurple } from '@material-ui/core/colors';
 
+export const drawerActive = {
+  iconColor: deepPurple.A700,
+  textColor: deepPurple.A700,
+};
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -23,9 +28,6 @@ const theme = createMuiTheme({
     },
     MuiMenuItem: {
       root: {
-        '&$active': {
-          color: deepPurple[500],
-        },
         textTransform: 'uppercase',
         fontSize: '14px',
         fontWeight: 'bold',

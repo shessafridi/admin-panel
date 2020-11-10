@@ -1,5 +1,5 @@
 import { AuthProvider } from 'react-admin';
-import authService from './authService';
+import authService from '../../services/authService';
 
 const authProvider: AuthProvider = {
   login: async ({ username, password }) => {
