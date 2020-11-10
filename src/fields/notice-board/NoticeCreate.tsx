@@ -29,6 +29,12 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
             label='Enable Video'
             source='videoOptions.enabled'
           />
+          {isVideo && (
+            <TextInput
+              label='YouTube embed link'
+              source='videoOptions.ytLink'
+            />
+          )}
           {!isVideo && (
             <FileInput accept='image/*' source='imageUpload'>
               <ImageField source='src' title='title' />
