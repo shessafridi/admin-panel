@@ -16,6 +16,7 @@ import Menu from '../components/Menu';
 import NoticeList from '../fields/notice-board/NoticeList';
 import CreateNotice from '../fields/notice-board/NoticeCreate';
 import EditNotice from '../fields/notice-board/NoticeEdit';
+import AdminLayout from '../common/AdminLayout';
 
 function AdminPanel() {
   return (
@@ -26,6 +27,7 @@ function AdminPanel() {
       authProvider={authProvider}
       dataProvider={dataProvider()}
       menu={Menu}
+      layout={AdminLayout}
     >
       <Resource
         icon={StarsOutlinedIcon}
