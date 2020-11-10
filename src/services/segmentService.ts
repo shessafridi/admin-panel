@@ -40,12 +40,20 @@ class SegmentService {
     });
 
   private _uploadImagesIfExist = async (data: any) => {
+    if (data.imageUpload.rawFile) {
+      await imageUploadService
+        .uploadFile(data.imageUpload.rawFile)
+        .then(res => {
+          delete data.imageUpload;
+          return (data.imageUrl = res.body.replace(/"/g, ''));
+        });
+    }
     if (data.imageUpload && Array.isArray(data.imageUpload)) {
       await imageUploadService
         .uploadAllFiles(data.imageUpload.map((raw: any) => raw.rawFile))
         .then(res => {
           delete data.imageUpload;
-          return (data.imageUrl = res[0].replace(/"/g, ''));
+          return (data.imageUrl = res.map(link => link.replace(/"/g, '')));
         });
     }
   };
