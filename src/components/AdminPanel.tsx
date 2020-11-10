@@ -9,14 +9,16 @@ import Dashboard from '../components/Dashboard';
 import authProvider from '../providers/auth-provider/authProvider';
 import EditFooter from '../fields/footer/FooterEdit';
 import SingleResource from '../common/SingleResource';
-import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import ViewAgendaOutlinedIcon from '@material-ui/icons/ViewAgendaOutlined';
 import Menu from '../components/Menu';
 import NoticeList from '../fields/notice-board/NoticeList';
 import CreateNotice from '../fields/notice-board/NoticeCreate';
 import EditNotice from '../fields/notice-board/NoticeEdit';
 import AdminLayout from '../common/AdminLayout';
+import EditAbout from '../fields/about/AboutEdit';
+import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
+import ViewAgendaOutlinedIcon from '@material-ui/icons/ViewAgendaOutlined';
 
 function AdminPanel() {
   return (
@@ -45,6 +47,14 @@ function AdminPanel() {
         list={NoticeList}
         edit={EditNotice}
         create={CreateNotice}
+      ></Resource>
+
+      <Resource
+        icon={AccountBoxOutlinedIcon}
+        options={{ label: 'About' }}
+        name={'about'}
+        list={SingleResource}
+        edit={EditAbout}
       ></Resource>
 
       <Resource

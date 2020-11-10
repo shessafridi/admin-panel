@@ -17,7 +17,7 @@ import { Redirect } from 'react-router';
 import { TabsActions } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
-const FooterditToolbar = (props: any) => (
+const FooterEditToolbar = (props: any) => (
   <Toolbar {...props}>
     <SaveButton disabled={props.saving && props.invalid} />
   </Toolbar>
@@ -44,7 +44,7 @@ const EditFooter: React.FC = (props: any) => {
           margin='normal'
           tabs={<TabbedFormTabs action={tabsActions} centered={true} />}
           redirect={false}
-          toolbar={<FooterditToolbar />}
+          toolbar={<FooterEditToolbar />}
         >
           <FormTab icon={<AccountBoxOutlinedIcon />} label='About'>
             <TextInput
