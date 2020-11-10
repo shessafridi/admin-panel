@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "https://shessafridi.github.io/admin-panel/static/css/main.8e02c525.chunk.css",
-    "main.js": "https://shessafridi.github.io/admin-panel/static/js/main.95804cc5.chunk.js",
-    "main.js.map": "https://shessafridi.github.io/admin-panel/static/js/main.95804cc5.chunk.js.map",
+    "main.js": "https://shessafridi.github.io/admin-panel/static/js/main.822267f8.chunk.js",
+    "main.js.map": "https://shessafridi.github.io/admin-panel/static/js/main.822267f8.chunk.js.map",
     "runtime-main.js": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.8cc25dc4.js",
     "runtime-main.js.map": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.8cc25dc4.js.map",
-    "static/js/2.52de00b2.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/2.52de00b2.chunk.js",
-    "static/js/2.52de00b2.chunk.js.map": "https://shessafridi.github.io/admin-panel/static/js/2.52de00b2.chunk.js.map",
+    "static/js/2.b18ef26a.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/2.b18ef26a.chunk.js",
+    "static/js/2.b18ef26a.chunk.js.map": "https://shessafridi.github.io/admin-panel/static/js/2.b18ef26a.chunk.js.map",
     "static/js/3.4f3683ef.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/3.4f3683ef.chunk.js",
     "static/js/3.4f3683ef.chunk.js.map": "https://shessafridi.github.io/admin-panel/static/js/3.4f3683ef.chunk.js.map",
     "index.html": "https://shessafridi.github.io/admin-panel/index.html",
     "static/css/main.8e02c525.chunk.css.map": "https://shessafridi.github.io/admin-panel/static/css/main.8e02c525.chunk.css.map",
-    "static/js/2.52de00b2.chunk.js.LICENSE.txt": "https://shessafridi.github.io/admin-panel/static/js/2.52de00b2.chunk.js.LICENSE.txt"
+    "static/js/2.b18ef26a.chunk.js.LICENSE.txt": "https://shessafridi.github.io/admin-panel/static/js/2.b18ef26a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8cc25dc4.js",
-    "static/js/2.52de00b2.chunk.js",
+    "static/js/2.b18ef26a.chunk.js",
     "static/css/main.8e02c525.chunk.css",
-    "static/js/main.95804cc5.chunk.js"
+    "static/js/main.822267f8.chunk.js"
   ]
 }
