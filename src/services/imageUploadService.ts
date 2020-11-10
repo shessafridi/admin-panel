@@ -18,6 +18,8 @@ class ImageService {
     });
   };
 
+  private DEFAULT_PATH = 'imageUrl';
+
   private _setCustomProperty = (data: any, value: any) => {
     const fieldName: string = data.customUrlField;
     delete data.customUrlField;
@@ -29,29 +31,29 @@ class ImageService {
     imageUrl: link.replace(/"/g, ''),
   });
 
-  uploadSingleImage = async (data: any) =>
-    await this._uploadFile(data.imageUpload.rawFile).then(res => {
-      delete data.imageUpload;
-      if (data.customUrlField)
+  uploadSingleImage = async (data: any, path: string = this.DEFAULT_PATH) =>
+    await this._uploadFile(data[path].rawFile).then(res => {
+      delete data[path];
+      if (data.customUrlField && path !== this.DEFAULT_PATH)
         return this._setCustomProperty(data, res.body.replace(/"/g, ''));
 
       return (data.imageUrl = res.body.replace(/"/g, ''));
     });
 
-  uploadMultipleImages = async (data: any) =>
-    await this._uploadAllFiles(
-      data.imageUpload.map((raw: any) => raw.rawFile)
-    ).then(res => {
-      delete data.imageUpload;
-      if (data.customUrlField) {
-        let gallery: any[] = objectPath.get(data, data.customUrlField) || [];
-        gallery = [...gallery, ...res.map(this._mapToGallery)];
-        gallery.forEach((val, i) => (val.id = i + 1));
-        return this._setCustomProperty(data, gallery);
-      }
+  uploadMultipleImages = async (data: any, path: string = this.DEFAULT_PATH) =>
+    await this._uploadAllFiles(data[path].map((raw: any) => raw.rawFile)).then(
+      res => {
+        delete data[path];
+        if (data.customUrlField && path !== this.DEFAULT_PATH) {
+          let gallery: any[] = objectPath.get(data, data.customUrlField) || [];
+          gallery = [...gallery, ...res.map(this._mapToGallery)];
+          gallery.forEach((val, i) => (val.id = i + 1));
+          return this._setCustomProperty(data, gallery);
+        }
 
-      return (data.imageUrl = res.map(this._mapToGallery));
-    });
+        return (data.imageUrl = res.map(this._mapToGallery));
+      }
+    );
 }
 
 export default new ImageService();
