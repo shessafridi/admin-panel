@@ -40,13 +40,10 @@ class SegmentService {
     });
 
   private _uploadImagesIfExist = async (data: any) => {
-    if (data.imageUpload.rawFile) {
+    if (data.imageUpload && data.imageUpload.rawFile)
       await imageUploadService.uploadSingleImage(data);
-    }
-
-    if (data.imageUpload && Array.isArray(data.imageUpload)) {
+    else if (Array.isArray(data.imageUpload))
       await imageUploadService.uploadMultipleImages(data);
-    }
   };
 
   // CRUD

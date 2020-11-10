@@ -44,11 +44,10 @@ class ImageService {
     ).then(res => {
       delete data.imageUpload;
       if (data.customUrlField) {
-        let gallrey = objectPath.get(data, data.customUrlField);
-        gallrey = [...res.map(this._mapToGallery)].forEach(
-          (val, i) => (val.id = i + 1)
-        );
-        return this._setCustomProperty(data, gallrey);
+        let gallery: any[] = objectPath.get(data, data.customUrlField) || [];
+        gallery = [...gallery, ...res.map(this._mapToGallery)];
+        gallery.forEach((val, i) => (val.id = i + 1));
+        return this._setCustomProperty(data, gallery);
       }
 
       return (data.imageUrl = res.map(this._mapToGallery));
