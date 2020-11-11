@@ -26,14 +26,18 @@ const theme = createMuiTheme({
         color: deepPurple[300],
       },
     },
+    MuiDrawer: {
+      paper: {
+        marginTop: '10px',
+      },
+    },
     MuiMenuItem: {
       root: {
         textTransform: 'uppercase',
         fontSize: '14px',
         fontWeight: 'bold',
-        marginTop: '8px',
-        paddingTop: '14px',
-        paddingBottom: '14px',
+        paddingTop: '17px',
+        paddingBottom: '17px',
       },
     },
     MuiAppBar: {

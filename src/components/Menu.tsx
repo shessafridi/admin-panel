@@ -10,6 +10,7 @@ import { drawerActive } from '../theme/theme';
 const useStyles = makeStyles({
   active: {
     color: drawerActive.textColor,
+    background: '#eae6f0',
     '& .MuiListItemIcon-root': {
       color: drawerActive.iconColor,
     },
