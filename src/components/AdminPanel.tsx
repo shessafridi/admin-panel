@@ -13,7 +13,7 @@ import Menu from '../components/Menu';
 import NoticeList from '../fields/notice-board/NoticeList';
 import CreateNotice from '../fields/notice-board/NoticeCreate';
 import EditNotice from '../fields/notice-board/NoticeEdit';
-import AdminLayout from '../common/AdminLayout';
+import AdminLayout from './AdminLayout';
 import EditAbout from '../fields/about/AboutEdit';
 import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
 import ListAltIcon from '@material-ui/icons/ListAlt';

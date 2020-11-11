@@ -26,7 +26,7 @@ const HeadersList: React.FC<HeadersListProps> = props => {
           <TextField source='title' sortable={false} />
           {!isSmall && <TextField source='text' sortable={false} />}
           <EditButton />
-          <DeleteButton />
+          {!isSmall && <DeleteButton />}
         </Datagrid>
       </List>
     </PaddedContainer>

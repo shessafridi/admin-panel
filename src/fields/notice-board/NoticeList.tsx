@@ -26,7 +26,7 @@ const NoticeList: React.FC<NoticeListProps> = props => {
           <TextField source='title' sortable={false} />
           {!isSmall && <TextField source='text' sortable={false} />}
           <EditButton />
-          <DeleteButton />
+          {!isSmall && <DeleteButton />}
         </Datagrid>
       </List>
     </PaddedContainer>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AppBar } from 'react-admin';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useMediaQuery, useTheme } from '@material-ui/core';
 
 const useStyles = makeStyles({
   title: {
@@ -17,12 +18,15 @@ const useStyles = makeStyles({
 
 const AdminAppBar = (props: any) => {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <AppBar {...props}>
       <Typography variant='h6' color='inherit' className={classes.title}>
         Admin Panel
       </Typography>
-      <span className={classes.spacer} />
+      {!isSmall && <span className={classes.spacer} />}
     </AppBar>
   );
 };
