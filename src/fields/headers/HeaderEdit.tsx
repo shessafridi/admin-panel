@@ -8,6 +8,7 @@ import {
 } from 'react-admin';
 import BackButton from '../../common/BackButton';
 import PaddedContainer from '../../common/PaddedContainer';
+// import IterableImageField from '../../common/IterableImageField';
 
 const EditHeader: React.FC = (props: any) => {
   return (
@@ -23,10 +24,20 @@ const EditHeader: React.FC = (props: any) => {
           <TextInput disabled source='id' />
           <TextInput required={true} source='title' />
           <ImageField source='imageUrl' label='Image' />
-          <FileInput accept='image/*' source='imageUploaders.imageUrl'>
+          <FileInput
+            accept='image/*'
+            label='Image Upload'
+            source='imageUploaders.imageUrl'
+          >
             <ImageField source='src' title='title' />
           </FileInput>
           <TextInput rows={6} required={true} multiline={true} source='text' />
+
+          {/* <ArrayInput label='Gallery' source='images.imageUrl'>
+            <SimpleFormIterator className='myCustomForm' disableAdd={true}>
+              <IterableImageField />
+            </SimpleFormIterator>
+          </ArrayInput> */}
         </SimpleForm>
       </Edit>
     </PaddedContainer>
