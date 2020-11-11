@@ -37,6 +37,9 @@ import NewsList from '../fields/news/NewsList';
 import EditNews from '../fields/news/NewsEdit';
 import CreateNews from '../fields/news/NewsCreate';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
+// Featured
+import EditFeatured from '../fields/featured/FeaturedEdit';
+import FeaturedPlayListOutlinedIcon from '@material-ui/icons/FeaturedPlayListOutlined';
 
 function AdminPanel() {
   return (
@@ -83,6 +86,14 @@ function AdminPanel() {
         list={NoticeList}
         edit={EditNotice}
         create={CreateNotice}
+      ></Resource>
+
+      <Resource
+        icon={FeaturedPlayListOutlinedIcon}
+        options={{ label: 'Featured' }}
+        name={'featured'}
+        list={SingleResource}
+        edit={EditFeatured}
       ></Resource>
 
       <Resource

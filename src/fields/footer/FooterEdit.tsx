@@ -2,11 +2,9 @@ import * as React from 'react';
 import {
   Edit,
   FormTab,
-  SaveButton,
   TabbedForm,
   TabbedFormTabs,
   TextInput,
-  Toolbar,
 } from 'react-admin';
 import PaddedContainer from '../../common/PaddedContainer';
 import StorefrontIcon from '@material-ui/icons/Storefront';
@@ -16,12 +14,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import { Redirect } from 'react-router';
 import { TabsActions } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-
-const FooterEditToolbar = (props: any) => (
-  <Toolbar {...props}>
-    <SaveButton disabled={props.saving && props.invalid} />
-  </Toolbar>
-);
+import SaveToolbar from '../../common/SaveToolbar';
 
 const EditFooter: React.FC = (props: any) => {
   const tabsActions = React.useRef<any | TabsActions>();
@@ -44,7 +37,7 @@ const EditFooter: React.FC = (props: any) => {
           margin='normal'
           tabs={<TabbedFormTabs action={tabsActions} centered={true} />}
           redirect={false}
-          toolbar={<FooterEditToolbar />}
+          toolbar={<SaveToolbar />}
         >
           <FormTab icon={<AccountBoxOutlinedIcon />} label='About'>
             <TextInput

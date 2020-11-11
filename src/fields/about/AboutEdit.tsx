@@ -3,19 +3,12 @@ import {
   Edit,
   FileInput,
   ImageField,
-  SaveButton,
   SimpleForm,
   TextInput,
-  Toolbar,
 } from 'react-admin';
 import PaddedContainer from '../../common/PaddedContainer';
 import { Redirect } from 'react-router';
-
-const AboutEditToolbar = (props: any) => (
-  <Toolbar {...props}>
-    <SaveButton disabled={props.saving && props.invalid} />
-  </Toolbar>
-);
+import SaveToolbar from '../../common/SaveToolbar';
 
 const EditAbout: React.FC = (props: any) => {
   if (props.id !== '1') return <Redirect to={`/${props.resource}/1`} />;
@@ -26,11 +19,7 @@ const EditAbout: React.FC = (props: any) => {
         <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>About</h2>
       </div>
       <Edit {...props}>
-        <SimpleForm
-          toolbar={<AboutEditToolbar />}
-          margin='normal'
-          redirect={false}
-        >
+        <SimpleForm toolbar={<SaveToolbar />} margin='normal' redirect={false}>
           <TextInput fullWidth={true} required={true} source='title' />
           <ImageField source='imageUrl' label='Image' />
           <FileInput
