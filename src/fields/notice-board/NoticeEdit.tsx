@@ -46,7 +46,7 @@ const EditNotice: React.FC<EditProps> = props => {
           )}
 
           {!isVideo && (
-            <FileInput accept='image/*' source='imageUpload'>
+            <FileInput accept='image/*' source='imageUploaders.imageUrl'>
               <ImageField source='src' title='title' />
             </FileInput>
           )}

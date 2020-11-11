@@ -1,7 +1,8 @@
 import { fetchUtils } from 'ra-core';
 import imageUploadService from './imageUploadService';
-import { apiUrl, DEFAULT_PATH } from '../config';
+import { apiUrl } from '../config';
 import { ResourceSlice } from '../models/Slice';
+import { ResourceData } from '../models/ResourceData';
 
 class SegmentService {
   segmentsObj: any = {};
@@ -39,14 +40,34 @@ class SegmentService {
       Details: JSON.stringify(slice.data),
     });
 
-  private _uploadImagesIfExist = async (data: any) => {
-    if (data[DEFAULT_PATH] && data[DEFAULT_PATH].rawFile)
-      await imageUploadService.uploadSingleImage(data);
+  private _uploadImagesIfExist = async (data: ResourceData) => {
+    if (data.imageUploaders) {
+      const images = Object.entries(data.imageUploaders).map(
+        ([path, files]) => {
+          return {
+            path: path.replace(/_/g, '.'),
+            files,
+          };
+        }
+      );
+      await Promise.all(
+        images.map(image => {
+          if (Array.isArray(image.files))
+            return imageUploadService.uploadMultipleImages(
+              data,
+              image.files,
+              image.path
+            );
+          return imageUploadService.uploadSingleImage(
+            data,
+            image.files,
+            image.path
+          );
+        })
+      );
+    }
 
-    if (data.imageUpload && data.imageUpload.rawFile)
-      await imageUploadService.uploadSingleImage(data, 'imageUpload');
-    else if (Array.isArray(data.imageUpload))
-      await imageUploadService.uploadMultipleImages(data, 'imageUpload');
+    delete data.imageUploaders;
   };
 
   // CRUD

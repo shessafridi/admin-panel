@@ -1,5 +1,5 @@
 import { fetchUtils } from 'ra-core';
-import { DEFAULT_PATH, fileUploadUrl } from '../config';
+import { fileUploadUrl } from '../config';
 import objectPath from 'object-path';
 class ImageService {
   private _uploadAllFiles = (files: File[]) => {
@@ -18,9 +18,7 @@ class ImageService {
     });
   };
 
-  private _setCustomProperty = (data: any, value: any) => {
-    const fieldName: string = data.customUrlField;
-    delete data.customUrlField;
+  private _setCustomProperty = (data: any, fieldName: string, value: any) => {
     return objectPath.set(data, fieldName, value);
   };
 
@@ -29,27 +27,18 @@ class ImageService {
     imageUrl: link.replace(/"/g, ''),
   });
 
-  uploadSingleImage = async (data: any, path: string = DEFAULT_PATH) =>
-    await this._uploadFile(data[path].rawFile).then(res => {
-      delete data[path];
-      if (data.customUrlField && path !== DEFAULT_PATH)
-        return this._setCustomProperty(data, res.body.replace(/"/g, ''));
-
-      return (data.imageUrl = res.body.replace(/"/g, ''));
+  uploadSingleImage = async (data: any, file: any, path: string) =>
+    await this._uploadFile(file.rawFile).then(res => {
+      return this._setCustomProperty(data, path, res.body.replace(/"/g, ''));
     });
 
-  uploadMultipleImages = async (data: any, path: string = DEFAULT_PATH) =>
-    await this._uploadAllFiles(data[path].map((raw: any) => raw.rawFile)).then(
+  uploadMultipleImages = async (data: any, files: any, path: string) =>
+    await this._uploadAllFiles(files.map((file: any) => file.rawFile)).then(
       res => {
-        delete data[path];
-        if (data.customUrlField && path !== DEFAULT_PATH) {
-          let gallery: any[] = objectPath.get(data, data.customUrlField) || [];
-          gallery = [...gallery, ...res.map(this._mapToGallery)];
-          gallery.forEach((val, i) => (val.id = i + 1));
-          return this._setCustomProperty(data, gallery);
-        }
-
-        return (data.imageUrl = res.map(this._mapToGallery));
+        let gallery: any[] = objectPath.get(data, path) || [];
+        gallery = [...gallery, ...res.map(this._mapToGallery)];
+        gallery.forEach((val, i) => (val.id = i + 1));
+        return this._setCustomProperty(data, path, gallery);
       }
     );
 }

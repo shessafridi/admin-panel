@@ -33,7 +33,7 @@ const EditAbout: React.FC = (props: any) => {
         >
           <TextInput fullWidth={true} required={true} source='title' />
           <ImageField source='imageUrl' label='Image' />
-          <FileInput accept='image/*' source='imageUpload'>
+          <FileInput accept='image/*' source='imageUploaders.imageUrl'>
             <ImageField source='src' title='title' />
           </FileInput>
           <TextInput
