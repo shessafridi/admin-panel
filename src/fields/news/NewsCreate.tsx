@@ -11,21 +11,19 @@ import BackButton from '../../common/BackButton';
 // import CustomUrlField from '../../common/CustomUrlField';
 import PaddedContainer from '../../common/PaddedContainer';
 
-export interface CreateBirthdayProps {}
+export interface CreateNewsProps {}
 
-const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
+const CreateNews: React.FC<CreateNewsProps> = props => {
   return (
     <PaddedContainer padding='10px'>
       <div>
         <BackButton />
-        <h2 style={{ marginLeft: '18px' }}>Add a new Birthday</h2>
+        <h2 style={{ marginLeft: '18px' }}>Add a new News</h2>
       </div>
-      <Create title='Add a new birthday' {...props}>
+      <Create title='Add another News' {...props}>
         <SimpleForm margin='normal' redirect='list'>
-          <TextInput required={true} source='name' />
-          <TextInput required={true} source='reg' />
+          <TextInput required={true} source='title' />
           <DateInput source='date' />
-
           <FileInput
             accept='image/*'
             label='Image Upload'
@@ -33,6 +31,7 @@ const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
           >
             <ImageField source='src' title='title' />
           </FileInput>
+          <TextInput rows={6} required={true} multiline={true} source='text' />
           {/* <CustomUrlField path='images.imageUrl' /> */}
         </SimpleForm>
       </Create>
@@ -40,4 +39,4 @@ const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
   );
 };
 
-export default CreateBirthday;
+export default CreateNews;

@@ -31,7 +31,12 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import BirthdayList from '../fields/birthday/BirthdayList';
 import CreateBirthday from '../fields/birthday/BirthdayCreate';
 import EditBirthday from '../fields/birthday/BirthdayEdit';
-import CakeIcon from '@material-ui/icons/Cake';
+import CakeOutlinedIcon from '@material-ui/icons/CakeOutlined';
+//News
+import NewsList from '../fields/news/NewsList';
+import EditNews from '../fields/news/NewsEdit';
+import CreateNews from '../fields/news/NewsCreate';
+import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 
 function AdminPanel() {
   return (
@@ -54,7 +59,16 @@ function AdminPanel() {
       ></Resource>
 
       <Resource
-        icon={CakeIcon}
+        icon={EventNoteOutlinedIcon}
+        options={{ label: 'News' }}
+        name={'news'}
+        list={NewsList}
+        edit={EditNews}
+        create={CreateNews}
+      ></Resource>
+
+      <Resource
+        icon={CakeOutlinedIcon}
         options={{ label: 'Birthday' }}
         name={'birthday'}
         list={BirthdayList}
