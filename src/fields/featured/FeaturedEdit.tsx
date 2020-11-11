@@ -32,6 +32,8 @@ const useStyles = makeStyles({
     },
   },
   small: {
+    padding: '0',
+    paddingBottom: '0 !important',
     gridTemplateColumns: '1fr',
   },
 });
