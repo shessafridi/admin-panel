@@ -22,9 +22,9 @@ const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
       </div>
       <Create title='Add a new birthday' {...props}>
         <SimpleForm margin='normal' redirect='list'>
-          <TextInput required={true} source='name' />
-          <TextInput required={true} source='reg' />
-          <DateInput source='date' />
+          <TextInput label='Name' source='name' />
+          <TextInput label='Regestration' source='reg' />
+          <DateInput label='Date' source='date' />
 
           <FileInput
             accept='image/*'

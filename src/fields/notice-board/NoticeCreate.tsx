@@ -23,9 +23,10 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
       </div>
       <Create title='Add a new header' {...props}>
         <SimpleForm margin='normal' redirect='list'>
-          <TextInput required={true} source='title' />
+          <TextInput label='Title' source='title' />
           <BooleanInput
             onChange={e => setIsVideo(e)}
+            defaultValue={isVideo}
             label='Enable Video'
             source='videoOptions.enabled'
           />
@@ -44,7 +45,13 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
               <ImageField source='src' title='title' />
             </FileInput>
           )}
-          <TextInput rows={6} required={true} multiline={true} source='text' />
+          <TextInput
+            rows={6}
+            label='Text'
+            defaultValue={''}
+            multiline={true}
+            source='text'
+          />
           {/* <TextInput disabled source='imageUrl' /> */}
         </SimpleForm>
       </Create>

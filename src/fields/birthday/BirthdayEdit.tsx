@@ -22,10 +22,10 @@ const EditBirthday: React.FC = (props: any) => {
       </div>
       <Edit {...props}>
         <SimpleForm margin='normal' redirect='list'>
-          <TextInput disabled source='id' />
-          <TextInput required={true} source='name' />
-          <TextInput required={true} source='reg' />
-          <DateInput source='date' />
+          <TextInput disabled label='Id' source='id' />
+          <TextInput label='Name' source='name' />
+          <TextInput label='Regestration' source='reg' />
+          <DateInput label='Date' source='date' />
 
           <ImageField source='imageUrl' label='Image' />
           <FileInput

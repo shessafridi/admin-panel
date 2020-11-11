@@ -22,8 +22,8 @@ const CreateNews: React.FC<CreateNewsProps> = props => {
       </div>
       <Create title='Add another News' {...props}>
         <SimpleForm margin='normal' redirect='list'>
-          <TextInput required={true} source='title' />
-          <DateInput source='date' />
+          <TextInput label='Title' source='title' />
+          <DateInput label='Date' defaultValue={Date.now()} source='date' />
           <FileInput
             accept='image/*'
             label='Image Upload'
@@ -31,7 +31,14 @@ const CreateNews: React.FC<CreateNewsProps> = props => {
           >
             <ImageField source='src' title='title' />
           </FileInput>
-          <TextInput rows={6} required={true} multiline={true} source='text' />
+          <TextInput
+            rows={6}
+            defaultValue={''}
+            multiline={true}
+            label='Text'
+            source='text'
+          />
+
           {/* <CustomUrlField path='images.imageUrl' /> */}
         </SimpleForm>
       </Create>

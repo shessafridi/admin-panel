@@ -20,8 +20,8 @@ const EditNews: React.FC = (props: any) => {
       </div>
       <Edit {...props}>
         <SimpleForm margin='normal' redirect='list'>
-          <TextInput disabled source='id' />
-          <TextInput required={true} source='title' />
+          <TextInput label='Id' disabled source='id' />
+          <TextInput label='Title' source='title' />
           <DateInput source='date' />
           <ImageField source='imageUrl' label='Image' />
 
@@ -32,7 +32,7 @@ const EditNews: React.FC = (props: any) => {
           >
             <ImageField source='src' title='title' />
           </FileInput>
-          <TextInput rows={6} required={true} multiline={true} source='text' />
+          <TextInput rows={6} label='Text' multiline={true} source='text' />
 
           {/* <ArrayInput label='Gallery' source='images.imageUrl'>
             <SimpleFormIterator className='myCustomForm' disableAdd={true}>
