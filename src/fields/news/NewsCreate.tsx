@@ -23,7 +23,11 @@ const CreateNews: React.FC<CreateNewsProps> = props => {
       <Create title='Add another News' {...props}>
         <SimpleForm margin='normal' redirect='list'>
           <TextInput label='Title' source='title' />
-          <DateInput label='Date' defaultValue={Date.now()} source='date' />
+          <DateInput
+            label='Date'
+            defaultValue={new Date().toLocaleDateString()}
+            source='date'
+          />
           <FileInput
             accept='image/*'
             label='Image Upload'

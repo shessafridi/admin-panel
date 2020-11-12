@@ -24,7 +24,11 @@ const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
         <SimpleForm margin='normal' redirect='list'>
           <TextInput label='Name' source='name' />
           <TextInput label='Regestration' source='reg' />
-          <DateInput label='Date' source='date' />
+          <DateInput
+            defaultValue={new Date().toLocaleDateString()}
+            label='Date'
+            source='date'
+          />
 
           <FileInput
             accept='image/*'
