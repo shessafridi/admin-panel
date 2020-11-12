@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
 import {
   ArrayInput,
+  DateInput,
   Edit,
   FileInput,
   FormDataConsumer,
@@ -57,6 +58,7 @@ const EditMedia: React.FC = (props: any) => {
       <Edit {...props}>
         <SimpleForm margin='normal' redirect='list'>
           <TextInput label='Title' fullWidth={true} source='title' />
+          <DateInput label='Date' source='date' />
           <SimpleShowLayout
             className={
               isSmall ? `${classes.root} ${classes.small}` : classes.root

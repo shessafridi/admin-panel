@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Create,
+  DateInput,
   FileInput,
   ImageField,
   SimpleForm,
@@ -24,6 +25,7 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
       <Create {...props}>
         <SimpleForm margin='normal' redirect='list'>
           <TextInput label='Title' fullWidth={true} source='title' />
+          <DateInput label='Date' defaultValue={Date.now()} source='date' />
           <FileInput
             accept='image/*'
             label='Upload Cover Image'
