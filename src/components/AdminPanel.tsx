@@ -40,6 +40,11 @@ import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 // Featured
 import EditFeatured from '../fields/featured/FeaturedEdit';
 import FeaturedPlayListOutlinedIcon from '@material-ui/icons/FeaturedPlayListOutlined';
+// Media Center
+import MediaList from '../fields/media-center/MediaList';
+import EditMedia from '../fields/media-center/MediaEdit';
+import CreateMedia from '../fields/media-center/MediaCreate';
+import PermMediaOutlinedIcon from '@material-ui/icons/PermMediaOutlined';
 
 function AdminPanel() {
   return (
@@ -77,6 +82,15 @@ function AdminPanel() {
         list={BirthdayList}
         edit={EditBirthday}
         create={CreateBirthday}
+      ></Resource>
+
+      <Resource
+        icon={PermMediaOutlinedIcon}
+        options={{ label: 'Media Center' }}
+        name={'mediacenter'}
+        list={MediaList}
+        edit={EditMedia}
+        create={CreateMedia}
       ></Resource>
 
       <Resource

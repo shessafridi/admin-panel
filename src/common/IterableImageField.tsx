@@ -1,17 +1,19 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
-import { ImageFieldProps } from 'react-admin';
 
 const useStyles = makeStyles({
   root: {
     maxHeight: '10rem',
-    margin: '0.5rem',
+    width: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center center',
   },
 });
 
-function IterableImageField(props: ImageFieldProps) {
+function IterableImageField(props: { src: any }) {
   const classes = useStyles();
-  return <img className={classes.root} src={props.record?.imageUrl} alt='' />;
+  console.log(props);
+  return <img className={classes.root} src={props.src} alt='' />;
 }
 
 export default IterableImageField;
