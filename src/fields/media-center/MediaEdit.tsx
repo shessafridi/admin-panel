@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  IconButton,
-  makeStyles,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
+import { Button, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
 import {
   ArrayInput,
   Edit,
@@ -27,7 +22,6 @@ const useStyles = makeStyles({
     width: '100%',
     gridTemplateColumns: '1fr 1fr',
     '& li': {
-      alignItems: 'flex-end',
       flexDirection: 'column-reverse',
       margin: '10px',
       borderRadius: '4px',
@@ -41,6 +35,9 @@ const useStyles = makeStyles({
     },
   },
   small: {
+    '& li': {
+      display: 'flex',
+    },
     padding: '0',
     paddingBottom: '0 !important',
     gridTemplateColumns: '1fr',
@@ -89,9 +86,12 @@ const EditMedia: React.FC = (props: any) => {
                 isSmall ? `${classes.root} ${classes.small}` : classes.root
               }
               removeButton={
-                <IconButton color='primary'>
-                  <DeleteIcon htmlColor='#f44336' />
-                </IconButton>
+                <Button
+                  style={{ marginLeft: '20px', color: '#f44336' }}
+                  startIcon={<DeleteIcon htmlColor='#f44336' />}
+                >
+                  Delete
+                </Button>
               }
               disableAdd={true}
             >

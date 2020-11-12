@@ -3,7 +3,7 @@ import React from 'react';
 
 const useStyles = makeStyles({
   root: {
-    maxHeight: '10rem',
+    maxHeight: '18rem',
     width: '100%',
     objectFit: 'cover',
     objectPosition: 'center center',
