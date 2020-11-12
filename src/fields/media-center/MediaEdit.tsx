@@ -99,7 +99,7 @@ const EditMedia: React.FC = (props: any) => {
             >
               <FormDataConsumer>
                 {({ scopedFormData }) => {
-                  return <IterableImageField src={scopedFormData.imageUrl} />;
+                  return <IterableImageField src={scopedFormData?.imageUrl} />;
                 }}
               </FormDataConsumer>
             </SimpleFormIterator>

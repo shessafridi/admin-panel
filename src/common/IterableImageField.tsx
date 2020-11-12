@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 
 function IterableImageField(props: { src: any }) {
   const classes = useStyles();
-  return <img className={classes.root} src={props.src} alt='' />;
+  return <img loading='lazy' className={classes.root} src={props.src} alt='' />;
 }
 
 export default IterableImageField;
