@@ -45,6 +45,7 @@ import MediaList from '../fields/media-center/MediaList';
 import EditMedia from '../fields/media-center/MediaEdit';
 import CreateMedia from '../fields/media-center/MediaCreate';
 import PermMediaOutlinedIcon from '@material-ui/icons/PermMediaOutlined';
+import LoginPage from './LoginPage';
 
 function AdminPanel() {
   return (
@@ -52,6 +53,7 @@ function AdminPanel() {
       theme={theme}
       title='Admin Panel'
       dashboard={Dashboard}
+      loginPage={LoginPage}
       authProvider={authProvider}
       dataProvider={dataProvider()}
       menu={Menu}

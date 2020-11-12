@@ -43,12 +43,10 @@ class SegmentService {
   private _uploadImagesIfExist = async (data: ResourceData) => {
     if (data.imageUploaders) {
       const images = Object.entries(data.imageUploaders).map(
-        ([path, files]) => {
-          return {
-            path: path.replace(/_/g, '.'),
-            files,
-          };
-        }
+        ([path, files]) => ({
+          path: path.replace(/_/g, '.'),
+          files,
+        })
       );
       await Promise.all(
         images.map(image => {
@@ -131,7 +129,7 @@ class SegmentService {
             data: JSON.parse(val.Details),
           };
         });
-        // console.log(this.segmentsObj);
+        console.log(this.segmentsObj);
       } catch (e) {
         console.error(e);
       }
