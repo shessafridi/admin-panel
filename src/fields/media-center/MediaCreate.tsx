@@ -6,6 +6,7 @@ import {
   SimpleForm,
   TextInput,
 } from 'react-admin';
+import BackButton from '../../common/BackButton';
 // import CustomUrlField from '../../common/CustomUrlField';
 import PaddedContainer from '../../common/PaddedContainer';
 
@@ -15,6 +16,7 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
   return (
     <PaddedContainer padding='10px'>
       <div>
+        <BackButton />
         <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>
           Create a new event
         </h2>

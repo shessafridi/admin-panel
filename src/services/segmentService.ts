@@ -131,7 +131,7 @@ class SegmentService {
             data: JSON.parse(val.Details),
           };
         });
-        console.log(this.segmentsObj);
+        // console.log(this.segmentsObj);
       } catch (e) {
         console.error(e);
       }

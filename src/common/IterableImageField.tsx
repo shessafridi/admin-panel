@@ -12,7 +12,6 @@ const useStyles = makeStyles({
 
 function IterableImageField(props: { src: any }) {
   const classes = useStyles();
-  console.log(props);
   return <img className={classes.root} src={props.src} alt='' />;
 }
 

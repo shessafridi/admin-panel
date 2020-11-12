@@ -3,7 +3,7 @@ import { fileUploadUrl } from '../config';
 import objectPath from 'object-path';
 class ImageService {
   private _uploadAllFiles = (files: File[]) => {
-    console.log(files);
+    // console.log(files);
     // const output: string[] = [];
     return Promise.all(
       files.map(file => this._uploadFile(file))
