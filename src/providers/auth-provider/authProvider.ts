@@ -3,16 +3,14 @@ import authService from '../../services/authService';
 
 const authProvider: AuthProvider = {
   login: async ({ username, password }) => {
-    return authService.login(username, password).then(auth => {
-      localStorage.setItem('auth', auth);
-    });
+    return await authService.login(username, password);
   },
   logout: params => {
-    localStorage.removeItem('auth');
+    authService.logout();
     return Promise.resolve();
   },
   checkAuth: params => {
-    if (!!localStorage.getItem('auth')) return Promise.resolve();
+    if (authService.isLoggedIn()) return Promise.resolve();
     return Promise.reject();
   },
   checkError: params => {

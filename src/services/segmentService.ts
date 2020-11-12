@@ -3,6 +3,7 @@ import imageUploadService from './imageUploadService';
 import { apiUrl } from '../config';
 import { ResourceSlice } from '../models/Slice';
 import { ResourceData } from '../models/ResourceData';
+import authService from './authService';
 
 class SegmentService {
   segmentsObj: any = {};
@@ -20,7 +21,7 @@ class SegmentService {
   };
 
   private _getHttpHeaders() {
-    const token = localStorage.getItem('auth');
+    const token = authService.getToken();
     if (!!token) {
       return new Headers({
         'Content-Type': 'application/json',
@@ -49,18 +50,10 @@ class SegmentService {
         })
       );
       await Promise.all(
-        images.map(image => {
-          if (Array.isArray(image.files))
-            return imageUploadService.uploadMultipleImages(
-              data,
-              image.files,
-              image.path
-            );
-          return imageUploadService.uploadSingleImage(
-            data,
-            image.files,
-            image.path
-          );
+        images.map(({ files, path }) => {
+          if (Array.isArray(files))
+            return imageUploadService.uploadMultipleImages(data, files, path);
+          return imageUploadService.uploadSingleImage(data, files, path);
         })
       );
     }
@@ -109,10 +102,10 @@ class SegmentService {
   delete = (id: number, resource: string) => {
     const slice = this.getSlice(resource);
     const index = slice.data.findIndex(val => val.id === id);
-    const rem = slice.data.splice(index, 1);
+    const removed = slice.data.splice(index, 1);
 
     return this._updateDb(slice).then(() => ({
-      data: rem[0],
+      data: removed[0],
     }));
   };
 
