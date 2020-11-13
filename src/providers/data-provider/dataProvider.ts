@@ -46,8 +46,7 @@ export default (): DataProvider => ({
     ).then(responses => ({ data: responses.map(res => res?.data) })),
 
   create: async (resource, params) => {
-    await segmentService.getSegments();
-    return segmentService.create(params.data, resource);
+    return await segmentService.create(params.data, resource);
   },
 
   delete: (resource, params) => {
