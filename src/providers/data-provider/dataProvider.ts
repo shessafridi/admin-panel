@@ -45,7 +45,8 @@ export default (): DataProvider => ({
       )
     ).then(responses => ({ data: responses.map(res => res?.data) })),
 
-  create: (resource, params) => {
+  create: async (resource, params) => {
+    await segmentService.getSegments();
     return segmentService.create(params.data, resource);
   },
 
