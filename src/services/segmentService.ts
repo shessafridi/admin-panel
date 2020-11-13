@@ -1,10 +1,10 @@
 import { fetchUtils } from 'ra-core';
-import imageUploadService from './imageUploadService';
 import { apiUrl } from '../config';
 import { ResourceSlice } from '../models/Slice';
 import { ResourceData } from '../models/ResourceData';
 import authService from './authService';
-import objectPath from 'object-path';
+import { uploadImagesIfExist } from '../middleware/uploadImages';
+import { addYouTubeUrlIfExist } from '../middleware/addYouTubeUrl';
 
 class SegmentService {
   segmentsObj: any = {};
@@ -44,60 +44,8 @@ class SegmentService {
 
   // Middleware
   private _callMiddleWare = async (data: ResourceData) => {
-    await this._uploadImagesIfExist(data);
-    this._mergeFieldsIfExist(data);
-  };
-  private _uploadImagesIfExist = async (data: ResourceData) => {
-    if (data.imageUploaders) {
-      const images = Object.entries(data.imageUploaders).map(
-        ([path, files]) => ({
-          path: path.replace(/_/g, '.'),
-          files,
-        })
-      );
-      await Promise.all(
-        images.map(({ files, path }) => {
-          if (Array.isArray(files))
-            return imageUploadService.uploadMultipleImages(data, files, path);
-          return imageUploadService.uploadSingleImage(data, files, path);
-        })
-      );
-    }
-
-    delete data.imageUploaders;
-  };
-
-  private _mergeFieldsIfExist = (data: ResourceData) => {
-    if (data.mergeFields) {
-      const recordToMerge = Object.entries(data.mergeFields).map(
-        ([path, record]) => ({
-          path: path.replace(/_/g, '.'),
-          record,
-        })
-      );
-      recordToMerge.forEach(({ path, record }) => {
-        let gallery: any[] = objectPath.get(data, path);
-        if (Array.isArray(gallery)) {
-          gallery = [
-            ...gallery,
-            ...(record as any[]).map((val: any) => ({
-              id: gallery.length + 1,
-              ...val,
-            })),
-          ];
-        } else {
-          gallery = [
-            ...(record as any[]).map((val: any, i) => ({
-              id: i + 1,
-              ...val,
-            })),
-          ];
-        }
-        objectPath.set(data, path, gallery);
-      });
-      console.log(recordToMerge);
-    }
-    delete data.mergeFields;
+    await uploadImagesIfExist(data);
+    addYouTubeUrlIfExist(data);
   };
 
   // CRUD
