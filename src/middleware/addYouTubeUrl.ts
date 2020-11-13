@@ -12,9 +12,8 @@ export const addYouTubeUrlIfExist = (data: ResourceData) => {
     );
     recordToMerge.forEach(({ path, record }) => {
       let gallery: any[] = objectPath.get(data, path);
-      const validated = validateYouTubeUrl(gallery, record);
 
-      gallery = [...gallery, ...validated];
+      gallery = validateYouTubeUrl(gallery, record);
 
       objectPath.set(data, path, gallery);
     });
@@ -23,9 +22,8 @@ export const addYouTubeUrlIfExist = (data: ResourceData) => {
 };
 
 const validateYouTubeUrl = (gallery: any[], record: any) => {
-  let validated;
   if (Array.isArray(gallery)) {
-    validated = (record as any[]).reduce((prev: any[], val) => {
+    const validated = (record as any[]).reduce((prev: any[], val) => {
       if (parseUrl(val.ytLink))
         prev.push({
           id: gallery.length + 1,
@@ -33,16 +31,17 @@ const validateYouTubeUrl = (gallery: any[], record: any) => {
         });
       return prev;
     }, []);
-  } else {
-    validated = (record as any[]).reduce((prev: any[], val, i) => {
-      if (parseUrl(val.ytLink))
-        prev.push({
-          id: i + 1,
-          ...val,
-        });
-      return prev;
-    }, []);
+    return [...gallery, ...validated];
   }
 
-  return validated;
+  const validated = (record as any[]).reduce((prev: any[], val, i) => {
+    if (parseUrl(val.ytLink))
+      prev.push({
+        id: i + 1,
+        ...val,
+      });
+    return prev;
+  }, []);
+
+  return [...validated];
 };
