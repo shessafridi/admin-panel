@@ -4,6 +4,7 @@ import { apiUrl } from '../config';
 import { ResourceSlice } from '../models/Slice';
 import { ResourceData } from '../models/ResourceData';
 import authService from './authService';
+import objectPath from 'object-path';
 
 class SegmentService {
   segmentsObj: any = {};
@@ -41,6 +42,11 @@ class SegmentService {
       Details: JSON.stringify(slice.data),
     });
 
+  // Middleware
+  private _callMiddleWare = async (data: ResourceData) => {
+    await this._uploadImagesIfExist(data);
+    this._mergeFieldsIfExist(data);
+  };
   private _uploadImagesIfExist = async (data: ResourceData) => {
     if (data.imageUploaders) {
       const images = Object.entries(data.imageUploaders).map(
@@ -61,6 +67,39 @@ class SegmentService {
     delete data.imageUploaders;
   };
 
+  private _mergeFieldsIfExist = (data: ResourceData) => {
+    if (data.mergeFields) {
+      const recordToMerge = Object.entries(data.mergeFields).map(
+        ([path, record]) => ({
+          path: path.replace(/_/g, '.'),
+          record,
+        })
+      );
+      recordToMerge.forEach(({ path, record }) => {
+        let gallery: any[] = objectPath.get(data, path);
+        if (Array.isArray(gallery)) {
+          gallery = [
+            ...gallery,
+            ...(record as any[]).map((val: any) => ({
+              id: gallery.length + 1,
+              ...val,
+            })),
+          ];
+        } else {
+          gallery = [
+            ...(record as any[]).map((val: any, i) => ({
+              id: i + 1,
+              ...val,
+            })),
+          ];
+        }
+        objectPath.set(data, path, gallery);
+      });
+      console.log(recordToMerge);
+    }
+    delete data.mergeFields;
+  };
+
   // CRUD
 
   // Create
@@ -69,7 +108,7 @@ class SegmentService {
     data.id = slice.data.length + 1;
 
     try {
-      await this._uploadImagesIfExist(data);
+      await this._callMiddleWare(data);
       slice.data.push(data);
       return this._updateDb(slice).then(() => ({
         data: { ...data, id: data.id },
@@ -87,7 +126,7 @@ class SegmentService {
   update = async (data: any, resource: string) => {
     const slice = this.getSlice(resource);
     try {
-      await this._uploadImagesIfExist(data);
+      await this._callMiddleWare(data);
       const index = slice.data.findIndex(val => val.id === data.id);
       slice.data[index] = data;
       return this._updateDb(slice).then(() => ({

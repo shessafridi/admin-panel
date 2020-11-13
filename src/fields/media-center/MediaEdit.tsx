@@ -16,6 +16,7 @@ import IterableImageField from '../../common/IterableImageField';
 import PaddedContainer from '../../common/PaddedContainer';
 import BackButton from '../../common/BackButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import YouTubePlayer from '../../common/YouTubePlayer';
 
 const useStyles = makeStyles({
   root: {
@@ -82,6 +83,12 @@ const EditMedia: React.FC = (props: any) => {
             <ImageField source='src' title='title' />
           </FileInput>
 
+          <ArrayInput label='Add YouTube Link' source='mergeFields.gallery'>
+            <SimpleFormIterator>
+              <TextInput label='YouTube Embed Link' source='ytLink' />
+            </SimpleFormIterator>
+          </ArrayInput>
+
           <ArrayInput source='gallery'>
             <SimpleFormIterator
               className={
@@ -98,8 +105,21 @@ const EditMedia: React.FC = (props: any) => {
               disableAdd={true}
             >
               <FormDataConsumer>
-                {({ scopedFormData }) => {
-                  return <IterableImageField src={scopedFormData?.imageUrl} />;
+                {({ scopedFormData, getSource }) => {
+                  if (scopedFormData?.imageUrl)
+                    return (
+                      <IterableImageField
+                        id={getSource!('imageUrl')}
+                        src={scopedFormData?.imageUrl}
+                      />
+                    );
+                  if (scopedFormData?.ytLink)
+                    return (
+                      <YouTubePlayer
+                        id={getSource!('ytLink')}
+                        link={scopedFormData?.ytLink}
+                      />
+                    );
                 }}
               </FormDataConsumer>
             </SimpleFormIterator>
