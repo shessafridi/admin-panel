@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://shessafridi.github.io/admin-panel/static/css/main.5e263eaf.chunk.css",
-    "main.js": "https://shessafridi.github.io/admin-panel/static/js/main.7869b1fc.chunk.js",
-    "main.js.map": "https://shessafridi.github.io/admin-panel/static/js/main.7869b1fc.chunk.js.map",
+    "main.js": "https://shessafridi.github.io/admin-panel/static/js/main.e5f00e27.chunk.js",
+    "main.js.map": "https://shessafridi.github.io/admin-panel/static/js/main.e5f00e27.chunk.js.map",
     "runtime-main.js": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.ecb6655a.js",
     "runtime-main.js.map": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.ecb6655a.js.map",
     "static/js/2.0fbc0879.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/2.0fbc0879.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.ecb6655a.js",
     "static/js/2.0fbc0879.chunk.js",
     "static/css/main.5e263eaf.chunk.css",
-    "static/js/main.7869b1fc.chunk.js"
+    "static/js/main.e5f00e27.chunk.js"
   ]
 }
