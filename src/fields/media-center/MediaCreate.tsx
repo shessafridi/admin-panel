@@ -10,8 +10,10 @@ import {
   TextInput,
 } from 'react-admin';
 import BackButton from '../../common/BackButton';
-// import CustomUrlField from '../../common/CustomUrlField';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 import PaddedContainer from '../../common/PaddedContainer';
+import { Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export interface CreateMediaProps {}
 
@@ -49,8 +51,22 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
           </FileInput>
 
           <ArrayInput label='Add YouTube Link' source='mergeFields.gallery'>
-            <SimpleFormIterator>
-              <TextInput label='YouTube Embed Link' source='ytLink' />
+            <SimpleFormIterator
+              removeButton={
+                <Button
+                  style={{ marginLeft: '20px', color: '#f44336' }}
+                  startIcon={<DeleteIcon htmlColor='#f44336' />}
+                >
+                  Delete
+                </Button>
+              }
+              addButton={
+                <Button color='primary' startIcon={<YouTubeIcon />}>
+                  Add YouTube Video
+                </Button>
+              }
+            >
+              <TextInput label='YouTube Video Link' source='ytLink' />
             </SimpleFormIterator>
           </ArrayInput>
         </SimpleForm>

@@ -13,8 +13,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = props => {
     <iframe
       title='YouTube Player'
       width='560'
-      height='315'
-      style={{ width: '100%' }}
+      style={{ width: '100%', height: '100%', minHeight: '300px' }}
       src={'https://www.youtube.com/embed/' + url}
       frameBorder='0'
       allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

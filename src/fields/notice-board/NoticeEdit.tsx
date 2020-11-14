@@ -40,7 +40,7 @@ const EditNotice: React.FC<EditProps> = props => {
 
           {isVideo && (
             <TextInput
-              label='YouTube embed link'
+              label='YouTube Video Link'
               source='videoOptions.ytLink'
             />
           )}

@@ -32,7 +32,7 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
           />
           {isVideo && (
             <TextInput
-              label='YouTube embed link'
+              label='YouTube Video Link'
               source='videoOptions.ytLink'
             />
           )}

@@ -17,6 +17,7 @@ import PaddedContainer from '../../common/PaddedContainer';
 import BackButton from '../../common/BackButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import YouTubePlayer from '../../common/YouTubePlayer';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 
 const useStyles = makeStyles({
   root: {
@@ -84,8 +85,22 @@ const EditMedia: React.FC = (props: any) => {
           </FileInput>
 
           <ArrayInput label='Add YouTube Link' source='mergeFields.gallery'>
-            <SimpleFormIterator>
-              <TextInput label='YouTube Embed Link' source='ytLink' />
+            <SimpleFormIterator
+              removeButton={
+                <Button
+                  style={{ marginLeft: '20px', color: '#f44336' }}
+                  startIcon={<DeleteIcon htmlColor='#f44336' />}
+                >
+                  Delete
+                </Button>
+              }
+              addButton={
+                <Button color='primary' startIcon={<YouTubeIcon />}>
+                  Add YouTube Video
+                </Button>
+              }
+            >
+              <TextInput label='YouTube Video Link' source='ytLink' />
             </SimpleFormIterator>
           </ArrayInput>
 

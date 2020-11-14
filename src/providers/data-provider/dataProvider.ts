@@ -2,7 +2,6 @@
 
 import { DataProvider } from 'ra-core';
 import segmentService from '../../services/segmentService';
-// import imageService from '../common/imageUploadService';
 
 const getById = (id: number, res: string) => {
   const slice = segmentService.getSliceData(res);
@@ -33,8 +32,8 @@ export default (): DataProvider => ({
     return { total: 10, data: segmentService.getSliceData(resource) };
   },
 
-  update: (resource, params): Promise<any> => {
-    return segmentService.update(params.data, resource);
+  update: async (resource, params): Promise<any> => {
+    return await segmentService.update(params.data, resource);
   },
 
   // simple-rest doesn't handle provide an updateMany route, so we fallback to calling update n times instead

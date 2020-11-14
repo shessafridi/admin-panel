@@ -1,4 +1,11 @@
-import { Button, makeStyles, TextField, Typography } from '@material-ui/core';
+import {
+  Button,
+  makeStyles,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core';
 import React, { FormEvent, useState } from 'react';
 import { useLogin } from 'react-admin';
 
@@ -30,6 +37,18 @@ const useStyles = makeStyles({
       marginBottom: '10px',
     },
   },
+  small: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    '& form': {
+      height: '55vh',
+      minHeight: '450px',
+      borderRadius: '10px',
+      '& div': {
+        marginBottom: '20px',
+      },
+    },
+  },
 });
 
 const LoginPage: React.FC<LoginPageProps> = props => {
@@ -39,6 +58,8 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,13 +76,14 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   };
 
   return (
-    <section className={classes.root}>
+    <section
+      className={!isSmall ? classes.root : `${classes.root} ${classes.small}`}
+    >
       <form onSubmit={e => handleSubmit(e)} className={classes.form}>
         <Typography style={{ marginBottom: '25px' }} variant='h6'>
           Welcome to the Admin Panel
         </Typography>
         <TextField
-          error={error}
           fullWidth={true}
           onChange={e => setUsername(e.target.value)}
           label='Enter your email'
@@ -75,9 +97,16 @@ const LoginPage: React.FC<LoginPageProps> = props => {
           type='password'
           variant='outlined'
         />
+        <Typography
+          className={error ? '' : 'd-none'}
+          style={{ color: '#f44336', marginBottom: '15px' }}
+        >
+          Invalid username or password.
+        </Typography>
         <Button
           disabled={loading}
           size='large'
+          fullWidth={isSmall}
           variant='contained'
           type='submit'
           color='primary'
