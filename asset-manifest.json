@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "https://shessafridi.github.io/admin-panel/static/css/main.5e263eaf.chunk.css",
-    "main.js": "https://shessafridi.github.io/admin-panel/static/js/main.951091cc.chunk.js",
-    "main.js.map": "https://shessafridi.github.io/admin-panel/static/js/main.951091cc.chunk.js.map",
-    "runtime-main.js": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.ecb6655a.js",
-    "runtime-main.js.map": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.ecb6655a.js.map",
-    "static/js/2.afc73b32.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/2.afc73b32.chunk.js",
-    "static/js/2.afc73b32.chunk.js.map": "https://shessafridi.github.io/admin-panel/static/js/2.afc73b32.chunk.js.map",
-    "static/js/3.deec6802.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/3.deec6802.chunk.js",
-    "static/js/3.deec6802.chunk.js.map": "https://shessafridi.github.io/admin-panel/static/js/3.deec6802.chunk.js.map",
+    "main.js": "https://shessafridi.github.io/admin-panel/static/js/main.cc4d9c9f.chunk.js",
+    "main.js.map": "https://shessafridi.github.io/admin-panel/static/js/main.cc4d9c9f.chunk.js.map",
+    "runtime-main.js": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.3fef85d3.js",
+    "runtime-main.js.map": "https://shessafridi.github.io/admin-panel/static/js/runtime-main.3fef85d3.js.map",
+    "static/js/2.2e0a0b43.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/2.2e0a0b43.chunk.js",
+    "static/js/2.2e0a0b43.chunk.js.map": "https://shessafridi.github.io/admin-panel/static/js/2.2e0a0b43.chunk.js.map",
+    "static/js/3.c010a9b5.chunk.js": "https://shessafridi.github.io/admin-panel/static/js/3.c010a9b5.chunk.js",
+    "static/js/3.c010a9b5.chunk.js.map": "https://shessafridi.github.io/admin-panel/static/js/3.c010a9b5.chunk.js.map",
     "index.html": "https://shessafridi.github.io/admin-panel/index.html",
     "static/css/main.5e263eaf.chunk.css.map": "https://shessafridi.github.io/admin-panel/static/css/main.5e263eaf.chunk.css.map",
-    "static/js/2.afc73b32.chunk.js.LICENSE.txt": "https://shessafridi.github.io/admin-panel/static/js/2.afc73b32.chunk.js.LICENSE.txt"
+    "static/js/2.2e0a0b43.chunk.js.LICENSE.txt": "https://shessafridi.github.io/admin-panel/static/js/2.2e0a0b43.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ecb6655a.js",
-    "static/js/2.afc73b32.chunk.js",
+    "static/js/runtime-main.3fef85d3.js",
+    "static/js/2.2e0a0b43.chunk.js",
     "static/css/main.5e263eaf.chunk.css",
-    "static/js/main.951091cc.chunk.js"
+    "static/js/main.cc4d9c9f.chunk.js"
   ]
 }
