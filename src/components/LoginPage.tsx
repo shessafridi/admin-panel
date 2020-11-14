@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   makeStyles,
   TextField,
   Typography,
@@ -41,6 +42,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     '& form': {
+      marginTop: '-50px',
       height: '55vh',
       minHeight: '450px',
       borderRadius: '10px',
@@ -111,6 +113,12 @@ const LoginPage: React.FC<LoginPageProps> = props => {
           type='submit'
           color='primary'
         >
+          <CircularProgress
+            size={20}
+            style={{ marginRight: '10px' }}
+            color='inherit'
+            className={loading ? '' : 'd-none'}
+          />
           Login
         </Button>
       </form>
