@@ -44,6 +44,7 @@ const HeadersList: React.FC<HeadersListProps> = props => {
       {showModal === 'edit' && (
         <EditDialog
           id={record!.id}
+          record={record!}
           renderChild={EditHeader}
           setVisable={setShowModal}
           {...props}
