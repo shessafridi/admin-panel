@@ -38,8 +38,8 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
           )}
           {!isVideo && (
             <FileInput
-              accept='image/*'
-              label='Image Upload'
+              accept='image/*, .pdf'
+              label='File Upload'
               source='imageUploaders.imageUrl'
             >
               <ImageField source='src' title='title' />

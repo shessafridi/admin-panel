@@ -11,6 +11,7 @@ import PaddedContainer from '../../common/PaddedContainer';
 // import IterableImageField from '../../common/IterableImageField';
 
 const EditHeader: React.FC = (props: any) => {
+  console.log(props);
   return (
     <PaddedContainer padding='10px'>
       <div>
