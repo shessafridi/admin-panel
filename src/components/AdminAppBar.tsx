@@ -3,6 +3,7 @@ import { AppBar } from 'react-admin';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery, useTheme } from '@material-ui/core';
+import { title } from '../config';
 
 const useStyles = makeStyles({
   title: {
@@ -24,7 +25,7 @@ const AdminAppBar = (props: any) => {
   return (
     <AppBar {...props}>
       <Typography variant='h6' color='inherit' className={classes.title}>
-        Admin Panel
+        {title}
       </Typography>
       {!isSmall && <span className={classes.spacer} />}
     </AppBar>

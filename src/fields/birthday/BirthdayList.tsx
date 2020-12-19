@@ -21,7 +21,10 @@ const BirthdayList: React.FC<BirthdayListProps> = props => {
       <h2>{title} List</h2>
 
       <List pagination={false} {...props}>
-        <Datagrid style={{ overflowY: 'hidden', overflowX: 'scroll' }}>
+        <Datagrid
+          size='medium'
+          style={{ overflowY: 'hidden', overflowX: 'scroll' }}
+        >
           <TextField source='reg' sortable={false} />
           <TextField source='name' sortable={false} />
           <EditButton />

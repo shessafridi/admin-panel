@@ -22,7 +22,10 @@ const MediaList: React.FC<MediaListProps> = props => {
       <h2>{title} List</h2>
 
       <List pagination={false} {...props}>
-        <Datagrid style={{ overflowY: 'hidden', overflowX: 'scroll' }}>
+        <Datagrid
+          size='medium'
+          style={{ overflowY: 'hidden', overflowX: 'scroll' }}
+        >
           <TextField source='id' sortable={false} />
           <TextField source='title' sortable={false} />
           <EditButton />

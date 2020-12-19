@@ -21,12 +21,26 @@ const theme = createMuiTheme({
         minHeight: '55px',
       },
     },
+    MuiTable: {
+      root: {
+        backgroundColor: 'white',
+      },
+    },
+    MuiTypography: {
+      body2: {
+        fontSize: '15px',
+      },
+    },
     MuiListItemIcon: {
       root: {
         color: deepPurple[300],
+        marginRight: '8px',
       },
     },
     MuiDrawer: {
+      root: {
+        backgroundColor: 'white',
+      },
       paper: {
         marginTop: '10px',
       },
@@ -34,7 +48,7 @@ const theme = createMuiTheme({
     MuiMenuItem: {
       root: {
         textTransform: 'uppercase',
-        fontSize: '14px',
+        fontSize: '13px',
         fontWeight: 'bold',
         paddingTop: '17px',
         paddingBottom: '17px',

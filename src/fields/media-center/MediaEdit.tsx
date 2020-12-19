@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   root: {
     display: 'grid',
     width: '100%',
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr 1fr 1fr',
     '& li': {
       flexDirection: 'column-reverse',
       margin: '10px',
@@ -44,7 +44,7 @@ const useStyles = makeStyles({
     },
     padding: '0',
     paddingBottom: '0 !important',
-    gridTemplateColumns: '1fr',
+    gridTemplateColumns: '1fr 1fr',
   },
 });
 

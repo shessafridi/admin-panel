@@ -11,8 +11,6 @@ interface GridViewButtonProps {
 
 const GridViewButton: React.FC<GridViewButtonProps> = ({
   showDialog,
-  buttonProps,
-  children,
   setRecord,
   record,
 }) => {
@@ -23,8 +21,8 @@ const GridViewButton: React.FC<GridViewButtonProps> = ({
 
   return (
     <>
-      <Button startIcon={<IconEdit />} onClick={handleClick} {...buttonProps}>
-        {children}
+      <Button color='primary' startIcon={<IconEdit />} onClick={handleClick}>
+        Edit
       </Button>
     </>
   );

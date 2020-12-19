@@ -2,11 +2,11 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import * as React from 'react';
 import { Datagrid, DeleteButton, List, TextField } from 'react-admin';
 import CreateDialog from '../../common/CreateDialog';
-import PaddedContainer from '../../common/PaddedContainer';
 import EditDialog from '../../common/EditDialog';
 import GridViewButton from '../../common/GridViewButton';
 import EditHeader from './HeaderEdit';
 import ListActions from '../../common/ListAction';
+import MainContainer from '../../common/MainContainer';
 
 export interface HeadersListProps {}
 const HeadersList: React.FC<HeadersListProps> = props => {
@@ -20,37 +20,41 @@ const HeadersList: React.FC<HeadersListProps> = props => {
   const [record, setRecord] = React.useState<any>();
 
   return (
-    <PaddedContainer padding='10px'>
-      <h2>{title} List</h2>
+    <MainContainer>
+      <h3>{title} List</h3>
+      <p>Customize the header section of the website.</p>
 
-      <List pagination={false} actions={<ListActions />} {...props}>
-        <Datagrid style={{ overflowY: 'hidden', overflowX: 'scroll' }}>
+      <List
+        pagination={false}
+        component='div'
+        actions={<ListActions />}
+        {...props}
+      >
+        <Datagrid
+          size='medium'
+          style={{ overflowY: 'hidden', overflowX: 'scroll' }}
+        >
           <TextField source='id' sortable={false} />
           <TextField source='title' sortable={false} />
           {!isSmall && <TextField source='text' sortable={false} />}
           <GridViewButton
             showDialog={() => setShowModal('edit')}
             setRecord={setRecord}
-            buttonProps={{ color: 'primary' }}
-          >
-            Edit
-          </GridViewButton>
+          />
           {!isSmall && <DeleteButton />}
         </Datagrid>
       </List>
-      {showModal === 'create' && (
-        <CreateDialog record={record} setVisable={setShowModal} {...props} />
-      )}
-      {showModal === 'edit' && (
+      <CreateDialog setVisable={setShowModal} {...props} />
+      {record && (
         <EditDialog
-          id={record!.id}
-          record={record!}
+          id={record.id}
           renderChild={EditHeader}
+          visable={showModal}
           setVisable={setShowModal}
           {...props}
         />
       )}
-    </PaddedContainer>
+    </MainContainer>
   );
 };
 

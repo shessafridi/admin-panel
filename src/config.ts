@@ -8,4 +8,5 @@ export const fileUploadUrl =
   process.env.REACT_APP_FILE_UPLOAD_URL ||
   'https://api.nisafoundation.org/api/SegmentDetail/UploadFile';
 
+export const title = process.env.REACT_APP_TITLE || 'Alhamdian Dashboard';
 export const DEFAULT_PATH = 'imageUrl';
