@@ -6,34 +6,39 @@ import {
   SimpleForm,
   TextInput,
 } from 'react-admin';
-import BackButton from '../../common/BackButton';
-// import CustomUrlField from '../../common/CustomUrlField';
-import PaddedContainer from '../../common/PaddedContainer';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
-export interface CreateHeaderProps {}
+interface CreateHeaderProps {}
 
 const CreateHeader: React.FC<CreateHeaderProps> = props => {
   return (
-    <PaddedContainer padding='10px'>
-      <div>
-        <BackButton />
-        <h2 style={{ marginLeft: '18px' }}>Add a new Header</h2>
-      </div>
-      <Create title='Add a new header' {...props}>
-        <SimpleForm margin='normal' redirect='list'>
-          <TextInput required={true} source='title' />
-          <FileInput
-            accept='image/*'
-            label='Image Upload'
-            source='imageUploaders.imageUrl'
-          >
-            <ImageField source='src' title='title' />
-          </FileInput>
-          <TextInput rows={6} required={true} multiline={true} source='text' />
-          {/* <CustomUrlField path='images.imageUrl' /> */}
-        </SimpleForm>
-      </Create>
-    </PaddedContainer>
+    <Create title='Add a new header' {...props}>
+      <SimpleForm margin='normal' redirect='list'>
+        <GridShowLayout className='gridShowLayout'>
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <TextInput fullWidth={true} required={true} source='title' />
+              <TextInput
+                rows={6}
+                required={true}
+                multiline={true}
+                fullWidth={true}
+                source='text'
+              />
+            </RaGrid>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <FileInput
+                accept='image/*'
+                label='Image Upload'
+                source='imageUploaders.imageUrl'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
+      </SimpleForm>
+    </Create>
   );
 };
 

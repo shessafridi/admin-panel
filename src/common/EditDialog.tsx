@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export interface EditDialogProps {
+interface EditDialogProps {
   id: number;
   setVisable: (arg: boolean | string) => any;
   visable: string | boolean;
@@ -50,7 +50,7 @@ const EditDialog: React.FC<EditDialogProps> = ({
 
   const classes = useStyles();
 
-  const handleClose = e => {
+  const handleClose = () => {
     setVisable(false);
   };
 

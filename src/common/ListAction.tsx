@@ -13,17 +13,13 @@ const ListActions = ({
   exporter,
   filters,
   maxResults,
+  createAction,
   ...rest
 }: any) => {
   const { currentSort, resource, filterValues, total } = useListContext();
   return (
     <TopToolbar className={className} {...sanitizeListRestProps(rest)}>
-      <Button
-        onClick={() => {
-          alert('Your custom action');
-        }}
-        label='Create'
-      >
+      <Button onClick={createAction} label='Create'>
         <IconAdd />
       </Button>
       <ExportButton

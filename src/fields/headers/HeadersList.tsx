@@ -7,6 +7,7 @@ import GridViewButton from '../../common/GridViewButton';
 import EditHeader from './HeaderEdit';
 import ListActions from '../../common/ListAction';
 import MainContainer from '../../common/MainContainer';
+import CreateHeader from './HeaderCreate';
 
 export interface HeadersListProps {}
 const HeadersList: React.FC<HeadersListProps> = props => {
@@ -27,7 +28,7 @@ const HeadersList: React.FC<HeadersListProps> = props => {
       <List
         pagination={false}
         component='div'
-        actions={<ListActions />}
+        actions={<ListActions createAction={() => setShowModal('create')} />}
         {...props}
       >
         <Datagrid
@@ -44,7 +45,12 @@ const HeadersList: React.FC<HeadersListProps> = props => {
           {!isSmall && <DeleteButton />}
         </Datagrid>
       </List>
-      <CreateDialog setVisable={setShowModal} {...props} />
+      <CreateDialog
+        visable={showModal}
+        setVisable={setShowModal}
+        renderChild={CreateHeader}
+        {...props}
+      />
       {record && (
         <EditDialog
           id={record.id}

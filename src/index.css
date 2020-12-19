@@ -13,7 +13,9 @@ body {
 :focus {
   outline: none;
 }
-
+main {
+  background-color: rgb(230, 230, 230);
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
