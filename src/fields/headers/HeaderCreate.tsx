@@ -6,8 +6,10 @@ import {
   SimpleForm,
   TextInput,
   Toolbar,
+  SelectInput,
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
+import { icons } from '../../common/icons';
 
 interface CreateHeaderProps {}
 
@@ -23,6 +25,19 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
               <TextInput fullWidth={true} required={true} source='title' />
+              <SelectInput
+                label='Navigation Icon'
+                translateChoice={false}
+                fullWidth={true}
+                source='nav.icon'
+                choices={icons}
+              />
+              <TextInput
+                label='Navigation Label'
+                fullWidth={true}
+                source='nav.text'
+              />
+
               <TextInput
                 rows={6}
                 required={true}

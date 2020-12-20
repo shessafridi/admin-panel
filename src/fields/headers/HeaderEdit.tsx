@@ -3,11 +3,13 @@ import {
   Edit,
   FileInput,
   ImageField,
+  SelectInput,
   SimpleForm,
   TextInput,
   Toolbar,
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
+import { icons } from '../../common/icons';
 
 const EditHeader: React.FC = (props: any) => {
   return (
@@ -21,8 +23,20 @@ const EditHeader: React.FC = (props: any) => {
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
               <TextInput fullWidth={true} required={true} source='title' />
+              <SelectInput
+                label='Navigation Icon'
+                translateChoice={false}
+                fullWidth={true}
+                source='nav.icon'
+                choices={icons}
+              />
               <TextInput
-                rows={6}
+                label='Navigation Label'
+                fullWidth={true}
+                source='nav.text'
+              />
+              <TextInput
+                rows={4}
                 required={true}
                 multiline={true}
                 fullWidth={true}
