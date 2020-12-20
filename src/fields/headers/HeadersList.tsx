@@ -1,13 +1,12 @@
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import * as React from 'react';
 import { Datagrid, DeleteButton, List, TextField } from 'react-admin';
-import CreateDialog from '../../common/CreateDialog';
-import EditDialog from '../../common/EditDialog';
 import GridViewButton from '../../common/GridViewButton';
 import EditHeader from './HeaderEdit';
 import ListActions from '../../common/ListAction';
 import MainContainer from '../../common/MainContainer';
 import CreateHeader from './HeaderCreate';
+import Dialog from './../../common/Dialog';
 
 export interface HeadersListProps {}
 const HeadersList: React.FC<HeadersListProps> = props => {
@@ -45,15 +44,17 @@ const HeadersList: React.FC<HeadersListProps> = props => {
           {!isSmall && <DeleteButton />}
         </Datagrid>
       </List>
-      <CreateDialog
+      <Dialog
+        type='create'
+        renderChild={CreateHeader}
         visable={showModal}
         setVisable={setShowModal}
-        renderChild={CreateHeader}
         {...props}
       />
       {record && (
-        <EditDialog
+        <Dialog
           id={record.id}
+          type='edit'
           renderChild={EditHeader}
           visable={showModal}
           setVisable={setShowModal}
