@@ -5,6 +5,7 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
+  Toolbar,
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
@@ -13,7 +14,11 @@ interface CreateHeaderProps {}
 const CreateHeader: React.FC<CreateHeaderProps> = props => {
   return (
     <Create title='Add a new header' {...props}>
-      <SimpleForm margin='normal' redirect='list'>
+      <SimpleForm
+        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        margin='normal'
+        redirect='list'
+      >
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
