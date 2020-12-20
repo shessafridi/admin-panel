@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     marginBottom: '30px',
     borderRadius: '10px',
     padding: '20px',
+    zIndex: -1,
   },
 });
 

@@ -31,3 +31,7 @@ code {
 .noSpacer {
   display: none;
 }
+.modalForm {
+  position: relative;
+  z-index: 4000;
+}

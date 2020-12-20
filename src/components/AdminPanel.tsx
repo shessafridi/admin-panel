@@ -46,8 +46,10 @@ import EditMedia from '../fields/media-center/MediaEdit';
 import CreateMedia from '../fields/media-center/MediaCreate';
 import PermMediaOutlinedIcon from '@material-ui/icons/PermMediaOutlined';
 import LoginPage from './LoginPage';
+import loadFa from '../services/loadFa';
 
 function AdminPanel() {
+  loadFa();
   return (
     <Admin
       theme={theme}
