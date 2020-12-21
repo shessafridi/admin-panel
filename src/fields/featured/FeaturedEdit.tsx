@@ -9,10 +9,10 @@ import {
   SimpleShowLayout,
   TextInput,
 } from 'react-admin';
-import PaddedContainer from '../../common/PaddedContainer';
 import { Redirect } from 'react-router';
 import SaveToolbar from '../../common/SaveToolbar';
 import { makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
+import MainContainer from '../../common/MainContainer';
 
 const useStyles = makeStyles({
   root: {
@@ -46,11 +46,11 @@ const EditFeatured: React.FC = (props: any) => {
   if (props.id !== '1') return <Redirect to={`/${props.resource}/1`} />;
 
   return (
-    <PaddedContainer padding='10px'>
-      <div>
-        <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>Featured</h2>
-      </div>
-      <Edit onSuccess={() => null} undoable={false} {...props}>
+    <MainContainer>
+      <h3>Featured</h3>
+      <p>Customized the featured section of the website.</p>
+
+      <Edit component='div' onSuccess={() => null} undoable={false} {...props}>
         <SimpleForm toolbar={<SaveToolbar />} margin='normal' redirect={false}>
           <SimpleShowLayout
             className={
@@ -87,7 +87,7 @@ const EditFeatured: React.FC = (props: any) => {
           </ArrayInput>
         </SimpleForm>
       </Edit>
-    </PaddedContainer>
+    </MainContainer>
   );
 };
 

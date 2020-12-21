@@ -1,21 +1,29 @@
 import { createMuiTheme } from '@material-ui/core';
-import { amber, deepPurple } from '@material-ui/core/colors';
+import { amber, orange } from '@material-ui/core/colors';
 
 export const drawerActive = {
-  iconColor: deepPurple.A700,
-  textColor: deepPurple.A700,
+  iconColor: orange[900],
+  textColor: orange[900],
 };
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: ['Open Sans', 'Helvetica', 'sans-serif'].join(','),
+  },
   palette: {
     primary: {
-      main: deepPurple[500],
+      main: orange[900],
     },
     secondary: {
       main: amber[600],
     },
   },
   overrides: {
+    MuiButton: {
+      root: {
+        fontWeight: 600,
+      },
+    },
     MuiToolbar: {
       dense: {
         minHeight: '55px',
@@ -33,7 +41,6 @@ const theme = createMuiTheme({
     },
     MuiListItemIcon: {
       root: {
-        color: deepPurple[300],
         marginRight: '8px',
       },
     },
@@ -56,8 +63,8 @@ const theme = createMuiTheme({
     },
     MuiAppBar: {
       colorSecondary: {
-        color: 'white',
-        backgroundColor: deepPurple[500],
+        boxShadow: '0px 3px 5px rgba(0,0,0,0.15)',
+        backgroundColor: '#f7f7f7',
       },
     },
   },

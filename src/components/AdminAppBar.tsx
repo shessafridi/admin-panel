@@ -24,6 +24,13 @@ const AdminAppBar = (props: any) => {
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <AppBar {...props}>
+      <img
+        style={{ marginRight: '10px', marginTop: '5px', marginBottom: '5px' }}
+        height={50}
+        width={50}
+        src={'/images/logo-min.png'}
+        alt='alhamdian logo'
+      />
       <Typography variant='h6' color='inherit' className={classes.title}>
         {title}
       </Typography>

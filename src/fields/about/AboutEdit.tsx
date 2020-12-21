@@ -6,19 +6,19 @@ import {
   SimpleForm,
   TextInput,
 } from 'react-admin';
-import PaddedContainer from '../../common/PaddedContainer';
 import { Redirect } from 'react-router';
 import SaveToolbar from '../../common/SaveToolbar';
+import MainContainer from '../../common/MainContainer';
 
 const EditAbout: React.FC = (props: any) => {
   if (props.id !== '1') return <Redirect to={`/${props.resource}/1`} />;
 
   return (
-    <PaddedContainer padding='10px'>
-      <div>
-        <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>About</h2>
-      </div>
-      <Edit onSuccess={() => null} undoable={false} {...props}>
+    <MainContainer>
+      <h3>About</h3>
+      <p>Customized the about section of the website.</p>
+
+      <Edit component='div' onSuccess={() => null} undoable={false} {...props}>
         <SimpleForm toolbar={<SaveToolbar />} margin='normal' redirect={false}>
           <TextInput fullWidth={true} required={true} source='title' />
           <ImageField source='imageUrl' label='Image' />
@@ -39,7 +39,7 @@ const EditAbout: React.FC = (props: any) => {
           {/* <CustomUrlField path='images.imageUrl' /> */}
         </SimpleForm>
       </Edit>
-    </PaddedContainer>
+    </MainContainer>
   );
 };
 

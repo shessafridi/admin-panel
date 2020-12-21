@@ -19,7 +19,7 @@ const ListActions = ({
   const { currentSort, resource, filterValues, total } = useListContext();
   return (
     <TopToolbar className={className} {...sanitizeListRestProps(rest)}>
-      <Button onClick={createAction} label='Create'>
+      <Button onClick={createAction} label='Add New'>
         <IconAdd />
       </Button>
       <ExportButton

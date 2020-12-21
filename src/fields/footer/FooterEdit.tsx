@@ -6,7 +6,6 @@ import {
   TabbedFormTabs,
   TextInput,
 } from 'react-admin';
-import PaddedContainer from '../../common/PaddedContainer';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
@@ -15,6 +14,7 @@ import { Redirect } from 'react-router';
 import { TabsActions } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import SaveToolbar from '../../common/SaveToolbar';
+import MainContainer from '../../common/MainContainer';
 
 const EditFooter: React.FC = (props: any) => {
   const tabsActions = React.useRef<any | TabsActions>();
@@ -28,11 +28,13 @@ const EditFooter: React.FC = (props: any) => {
   if (props.id !== '1') return <Redirect to={`/${props.resource}/1`} />;
 
   return (
-    <PaddedContainer padding='10px'>
-      <div>
-        <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>Footer</h2>
-      </div>
-      <Edit onSuccess={() => null} undoable={false} {...props}>
+    <MainContainer>
+      <h3>Footer</h3>
+      <p style={{ marginBottom: '50px' }}>
+        Customized the footer of the website.
+      </p>
+
+      <Edit component='div' onSuccess={() => null} undoable={false} {...props}>
         <TabbedForm
           margin='normal'
           tabs={<TabbedFormTabs action={tabsActions} centered={true} />}
@@ -93,7 +95,7 @@ const EditFooter: React.FC = (props: any) => {
           </FormTab>
         </TabbedForm>
       </Edit>
-    </PaddedContainer>
+    </MainContainer>
   );
 };
 
