@@ -1,24 +1,24 @@
-import { makeStyles, Paper } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import * as React from 'react';
-import PaddedContainer from '../common/PaddedContainer';
-
-const useStyles = makeStyles({
-  root: {
-    marginTop: '15px',
-    height: '100%',
-  },
-});
+import MainContainer from '../common/MainContainer';
 
 interface DashboardProps {}
 
 const Dashboard: React.FC<DashboardProps> = () => {
-  const classes = useStyles();
   return (
-    <Paper className={classes.root}>
-      <PaddedContainer padding='10px'>
-        <h1>Welcome to the dashboard</h1>
-      </PaddedContainer>
-    </Paper>
+    <MainContainer>
+      <h3>Welcome to the Dashboard</h3>
+      <p>Here you can customize the different parts of the website.</p>
+      <a
+        target='blank'
+        style={{ textDecoration: 'none', margin: '30px 0', display: 'block' }}
+        href='https://alhamdian.pk'
+      >
+        <Button color='primary' variant='outlined'>
+          Go to site.
+        </Button>
+      </a>
+    </MainContainer>
   );
 };
 

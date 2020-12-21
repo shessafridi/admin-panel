@@ -50,7 +50,7 @@ const EditFeatured: React.FC = (props: any) => {
       <div>
         <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>Featured</h2>
       </div>
-      <Edit {...props}>
+      <Edit onSuccess={() => null} undoable={false} {...props}>
         <SimpleForm toolbar={<SaveToolbar />} margin='normal' redirect={false}>
           <SimpleShowLayout
             className={

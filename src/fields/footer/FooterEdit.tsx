@@ -32,7 +32,7 @@ const EditFooter: React.FC = (props: any) => {
       <div>
         <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>Footer</h2>
       </div>
-      <Edit {...props}>
+      <Edit onSuccess={() => null} undoable={false} {...props}>
         <TabbedForm
           margin='normal'
           tabs={<TabbedFormTabs action={tabsActions} centered={true} />}
