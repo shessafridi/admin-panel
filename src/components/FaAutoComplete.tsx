@@ -12,7 +12,7 @@ function FaAutoComplete({ source, ...rest }) {
       source={source}
       suggestionLimit={40}
       matchSuggestion={(filter, choice) =>
-        choice.name.toLowerCase().startsWith(filter.toLowerCase())
+        !!filter && choice.name.toLowerCase().startsWith(filter.toLowerCase())
       }
       inputText={choice => `${choice.name}`}
       optionText={<FaListRenderer />}

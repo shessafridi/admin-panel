@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     flexBasis: 'auto',
     position: 'relative',
     backgroundColor: 'white',
-    maxWidth: '760px',
+    maxWidth: '780px',
     width: '100%',
     marginTop: '40px',
     marginBottom: '30px',

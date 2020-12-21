@@ -7,9 +7,8 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
+  Toolbar,
 } from 'react-admin';
-import BackButton from '../../common/BackButton';
-import PaddedContainer from '../../common/PaddedContainer';
 import { useVideoEnabled } from '../../common/useVideoEnabled';
 
 const EditNotice: React.FC<EditProps> = props => {
@@ -20,45 +19,38 @@ const EditNotice: React.FC<EditProps> = props => {
   }, [selected]);
 
   return (
-    <PaddedContainer padding='10px'>
-      <div>
-        <BackButton />
-        <h2 style={{ marginLeft: '18px', marginBottom: '30px' }}>
-          Edit Notice
-        </h2>
-      </div>
-      <Edit {...props}>
-        <SimpleForm margin='normal' redirect='list'>
-          <TextInput disabled source='id' />
-          <TextInput required={true} source='title' />
-          <ImageField source='imageUrl' label='Image' />
-          <BooleanInput
-            onChange={e => setIsVideo(e)}
-            label='Enable Video'
-            source='videoOptions.enabled'
-          />
+    <Edit {...props}>
+      <SimpleForm
+        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        margin='normal'
+        redirect='list'
+      >
+        <TextInput disabled source='id' />
+        <TextInput required={true} source='title' />
+        <ImageField source='imageUrl' label='Image' />
+        <BooleanInput
+          onChange={e => setIsVideo(e)}
+          label='Enable Video'
+          source='videoOptions.enabled'
+        />
 
-          {isVideo && (
-            <TextInput
-              label='YouTube Video Link'
-              source='videoOptions.ytLink'
-            />
-          )}
+        {isVideo && (
+          <TextInput label='YouTube Video Link' source='videoOptions.ytLink' />
+        )}
 
-          {!isVideo && (
-            <FileInput
-              accept='image/*'
-              label='Image Upload'
-              source='imageUploaders.imageUrl'
-            >
-              <ImageField source='src' title='title' />
-            </FileInput>
-          )}
+        {!isVideo && (
+          <FileInput
+            accept='image/*'
+            label='Image Upload'
+            source='imageUploaders.imageUrl'
+          >
+            <ImageField source='src' title='title' />
+          </FileInput>
+        )}
 
-          <TextInput rows={6} required={true} multiline={true} source='text' />
-        </SimpleForm>
-      </Edit>
-    </PaddedContainer>
+        <TextInput rows={6} required={true} multiline={true} source='text' />
+      </SimpleForm>
+    </Edit>
   );
 };
 

@@ -8,14 +8,14 @@ const Dashboard: React.FC<DashboardProps> = () => {
   return (
     <MainContainer>
       <h3>Welcome to the Dashboard</h3>
-      <p>Here you can customize the different parts of the website.</p>
+      <p>Here you can customize different parts of the website.</p>
       <a
         target='blank'
         style={{ textDecoration: 'none', margin: '30px 0', display: 'block' }}
         href='https://alhamdian.pk'
       >
         <Button color='primary' variant='outlined'>
-          Go to site.
+          Go to site
         </Button>
       </a>
     </MainContainer>

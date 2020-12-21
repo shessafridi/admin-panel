@@ -5,7 +5,7 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: '#bbb',
     width: '100%',
-    height: 'auto',
+    maxHeight: '200px',
     objectFit: 'cover',
     objectPosition: 'center center',
   },
