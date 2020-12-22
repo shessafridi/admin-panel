@@ -28,7 +28,7 @@ const AdminAppBar = (props: any) => {
         style={{ marginRight: '10px', marginTop: '5px', marginBottom: '5px' }}
         height={50}
         width={50}
-        src={'/images/logo-min.png'}
+        src={process.env.PUBLIC_URL + '/images/logo-min.png'}
         alt='alhamdian logo'
       />
       <Typography variant='h6' color='inherit' className={classes.title}>
