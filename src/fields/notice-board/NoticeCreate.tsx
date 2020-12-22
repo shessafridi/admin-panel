@@ -3,12 +3,14 @@ import {
   BooleanInput,
   Create,
   CreateProps,
+  DateInput,
   FileInput,
   ImageField,
   SimpleForm,
   TextInput,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 export interface CreateNoticeProps extends CreateProps {}
 
@@ -21,32 +23,48 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
         margin='normal'
         redirect='list'
       >
-        <TextInput label='Title' source='title' />
-        <BooleanInput
-          onChange={e => setIsVideo(e)}
-          defaultValue={isVideo}
-          label='Enable Video'
-          source='videoOptions.enabled'
-        />
-        {isVideo && (
-          <TextInput label='YouTube Video Link' source='videoOptions.ytLink' />
-        )}
-        {!isVideo && (
-          <FileInput
-            accept='image/*, .pdf'
-            label='File Upload'
-            source='imageUploaders.imageUrl'
-          >
-            <ImageField source='src' title='title' />
-          </FileInput>
-        )}
-        <TextInput
-          rows={6}
-          label='Text'
-          defaultValue={''}
-          multiline={true}
-          source='text'
-        />
+        <GridShowLayout className='gridShowLayout'>
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <TextInput fullWidth label='Title' source='title' />
+              <DateInput
+                label='Date'
+                fullWidth
+                defaultValue={new Date().toLocaleDateString()}
+                source='date'
+              />
+              <TextInput
+                fullWidth
+                rows={6}
+                label='Text'
+                multiline={true}
+                source='text'
+              />
+            </RaGrid>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <BooleanInput
+                onChange={e => setIsVideo(e)}
+                defaultValue={isVideo}
+                label='Enable Video'
+                source='videoOptions.enabled'
+              />
+              <TextInput
+                label='YouTube Video Link'
+                fullWidth
+                className={isVideo ? '' : 'd-none'}
+                source='videoOptions.ytLink'
+              />
+              <FileInput
+                accept='image/*, .pdf'
+                label='File Upload'
+                className={!isVideo ? '' : 'd-none'}
+                source='imageUploaders.imageUrl'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
       </SimpleForm>
     </Create>
   );

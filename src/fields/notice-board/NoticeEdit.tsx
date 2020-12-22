@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   BooleanInput,
+  DateInput,
   Edit,
   EditProps,
   FileInput,
@@ -10,6 +11,7 @@ import {
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
 import { useVideoEnabled } from '../../common/useVideoEnabled';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 const EditNotice: React.FC<EditProps> = props => {
   const selected = useVideoEnabled(props.resource!, props.id!);
@@ -25,30 +27,49 @@ const EditNotice: React.FC<EditProps> = props => {
         margin='normal'
         redirect='list'
       >
-        <TextInput disabled source='id' />
-        <TextInput required={true} source='title' />
-        <ImageField source='imageUrl' label='Image' />
-        <BooleanInput
-          onChange={e => setIsVideo(e)}
-          label='Enable Video'
-          source='videoOptions.enabled'
-        />
+        <GridShowLayout className='gridShowLayout'>
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <TextInput fullWidth label='Title' source='title' />
+              <DateInput label='Date' fullWidth source='date' />
+              <TextInput
+                fullWidth
+                rows={6}
+                label='Text'
+                multiline={true}
+                source='text'
+              />
+            </RaGrid>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <BooleanInput
+                onChange={e => setIsVideo(e)}
+                defaultValue={isVideo}
+                label='Enable Video'
+                source='videoOptions.enabled'
+              />
+              <TextInput
+                label='YouTube Video Link'
+                fullWidth
+                className={isVideo ? '' : 'd-none'}
+                source='videoOptions.ytLink'
+              />
+              <ImageField
+                className={!isVideo ? '' : 'd-none'}
+                source='imageUrl'
+                label='Image'
+              />
 
-        {isVideo && (
-          <TextInput label='YouTube Video Link' source='videoOptions.ytLink' />
-        )}
-
-        {!isVideo && (
-          <FileInput
-            accept='image/*'
-            label='Image Upload'
-            source='imageUploaders.imageUrl'
-          >
-            <ImageField source='src' title='title' />
-          </FileInput>
-        )}
-
-        <TextInput rows={6} required={true} multiline={true} source='text' />
+              <FileInput
+                accept='image/*, .pdf'
+                label='File Upload'
+                className={!isVideo ? '' : 'd-none'}
+                source='imageUploaders.imageUrl'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
       </SimpleForm>
     </Edit>
   );
