@@ -10,7 +10,6 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import { Redirect } from 'react-router';
 import { TabsActions } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import SaveToolbar from '../../common/SaveToolbar';
@@ -25,8 +24,6 @@ const EditFooter: React.FC = (props: any) => {
     setTimeout(() => tabsActions.current?.updateIndicator(), 220);
   }, [open]);
 
-  if (props.id !== '1') return <Redirect to={`/${props.resource}/1`} />;
-
   return (
     <MainContainer>
       <h3>Footer</h3>
@@ -34,7 +31,13 @@ const EditFooter: React.FC = (props: any) => {
         Customized the footer of the website.
       </p>
 
-      <Edit component='div' onSuccess={() => null} undoable={false} {...props}>
+      <Edit
+        id={1}
+        component='div'
+        onSuccess={() => null}
+        undoable={false}
+        {...props}
+      >
         <TabbedForm
           margin='normal'
           tabs={<TabbedFormTabs action={tabsActions} centered={true} />}

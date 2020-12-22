@@ -1,7 +1,6 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
 import theme from '../theme/theme';
-import SingleResource from '../common/SingleResource';
 import Menu from '../components/Menu';
 import AdminLayout from './AdminLayout';
 
@@ -110,24 +109,21 @@ function AdminPanel() {
         icon={FeaturedPlayListOutlinedIcon}
         options={{ label: 'Featured' }}
         name={'featured'}
-        list={SingleResource}
-        edit={EditFeatured}
+        list={EditFeatured}
       ></Resource>
 
       <Resource
         icon={AccountBoxOutlinedIcon}
         options={{ label: 'About' }}
         name={'about'}
-        list={SingleResource}
-        edit={EditAbout}
+        list={EditAbout}
       ></Resource>
 
       <Resource
         icon={ListAltIcon}
         options={{ label: 'Footer' }}
         name={'footer'}
-        list={SingleResource}
-        edit={EditFooter}
+        list={EditFooter}
       ></Resource>
     </Admin>
   );
