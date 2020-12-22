@@ -25,7 +25,7 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
         margin='normal'
         redirect='list'
       >
-        <TextInput label='Title' fullWidth={true} source='title' />
+        <TextInput label='Title' fullWidth source='title' />
         <DateInput
           label='Date'
           defaultValue={new Date().toLocaleDateString()}

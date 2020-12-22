@@ -20,7 +20,7 @@ const EditAbout: React.FC = (props: any) => {
 
       <Edit component='div' onSuccess={() => null} undoable={false} {...props}>
         <SimpleForm toolbar={<SaveToolbar />} margin='normal' redirect={false}>
-          <TextInput fullWidth={true} required={true} source='title' />
+          <TextInput fullWidth required={true} source='title' />
           <ImageField source='imageUrl' label='Image' />
           <FileInput
             accept='image/*'
@@ -30,7 +30,7 @@ const EditAbout: React.FC = (props: any) => {
             <ImageField source='src' title='title' />
           </FileInput>
           <TextInput
-            fullWidth={true}
+            fullWidth
             rows={8}
             required={true}
             multiline={true}

@@ -58,7 +58,7 @@ const EditMedia: React.FC = (props: any) => {
         margin='normal'
         redirect='list'
       >
-        <TextInput label='Title' fullWidth={true} source='title' />
+        <TextInput label='Title' fullWidth source='title' />
         <DateInput label='Date' source='date' />
         <SimpleShowLayout
           className={

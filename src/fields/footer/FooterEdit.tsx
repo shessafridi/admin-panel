@@ -46,52 +46,24 @@ const EditFooter: React.FC = (props: any) => {
               multiline={true}
               rows={8}
               label='About Text'
-              fullWidth={true}
+              fullWidth
               source='about.aboutUs'
             />
           </FormTab>
           <FormTab icon={<MailOutlinedIcon />} label='Contact'>
-            <TextInput
-              label='Address'
-              fullWidth={true}
-              source='contact.address'
-            />
-            <TextInput label='Phone' fullWidth={true} source='contact.phone' />
-            <TextInput label='Email' fullWidth={true} source='contact.email' />
+            <TextInput label='Address' fullWidth source='contact.address' />
+            <TextInput label='Phone' fullWidth source='contact.phone' />
+            <TextInput label='Email' fullWidth source='contact.email' />
           </FormTab>
           <FormTab icon={<InstagramIcon />} label='Social'>
-            <TextInput
-              label='Facebook'
-              fullWidth={true}
-              source='social.facebook'
-            />
-            <TextInput
-              label='Instagram'
-              fullWidth={true}
-              source='social.instagram'
-            />
-            <TextInput
-              label='Twitter'
-              fullWidth={true}
-              source='social.twitter'
-            />
-            <TextInput
-              label='YouTube'
-              fullWidth={true}
-              source='social.youtube'
-            />
+            <TextInput label='Facebook' fullWidth source='social.facebook' />
+            <TextInput label='Instagram' fullWidth source='social.instagram' />
+            <TextInput label='Twitter' fullWidth source='social.twitter' />
+            <TextInput label='YouTube' fullWidth source='social.youtube' />
           </FormTab>
           <FormTab icon={<StorefrontIcon />} label='Stores'>
-            <TextInput
-              label='App Store'
-              fullWidth={true}
-              source='stores.appStore'
-            />
-            <TextInput
-              label='Play Store'
-              fullWidth={true}
-              source='stores.playStore'
-            />
+            <TextInput label='App Store' fullWidth source='stores.appStore' />
+            <TextInput label='Play Store' fullWidth source='stores.playStore' />
           </FormTab>
         </TabbedForm>
       </Edit>

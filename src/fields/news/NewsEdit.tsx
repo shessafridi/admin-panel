@@ -8,7 +8,7 @@ import {
   TextInput,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
-// import IterableImageField from '../../common/IterableImageField';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 const EditNews: React.FC = (props: any) => {
   return (
@@ -18,18 +18,31 @@ const EditNews: React.FC = (props: any) => {
         margin='normal'
         redirect='list'
       >
-        <TextInput label='Title' source='title' />
-        <DateInput source='date' />
-        <ImageField source='imageUrl' label='Image' />
-
-        <FileInput
-          accept='image/*'
-          label='Image Upload'
-          source='imageUploaders.imageUrl'
-        >
-          <ImageField source='src' title='title' />
-        </FileInput>
-        <TextInput rows={6} label='Text' multiline={true} source='text' />
+        <GridShowLayout className='gridShowLayout'>
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <TextInput fullWidth label='Title' source='title' />
+              <DateInput fullWidth source='date' />
+              <TextInput
+                fullWidth
+                rows={6}
+                label='Text'
+                multiline={true}
+                source='text'
+              />
+            </RaGrid>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <ImageField source='imageUrl' label='Image' />
+              <FileInput
+                accept='image/*'
+                label='Image Upload'
+                source='imageUploaders.imageUrl'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
       </SimpleForm>
     </Edit>
   );

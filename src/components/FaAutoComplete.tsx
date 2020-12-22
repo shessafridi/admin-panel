@@ -8,7 +8,7 @@ function FaAutoComplete({ source, ...rest }) {
     <AutocompleteInputInDialog
       label='Navigation Icon'
       translateChoice={false}
-      fullWidth={true}
+      fullWidth
       source={source}
       suggestionLimit={40}
       matchSuggestion={(filter, choice) =>

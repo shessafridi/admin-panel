@@ -8,6 +8,7 @@ import {
   TextInput,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 interface CreateBirthdayProps {}
 
@@ -19,21 +20,29 @@ const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
         margin='normal'
         redirect='list'
       >
-        <TextInput label='Name' source='name' />
-        <TextInput label='Regestration' source='reg' />
-        <DateInput
-          defaultValue={new Date().toLocaleDateString()}
-          label='Date'
-          source='date'
-        />
-
-        <FileInput
-          accept='image/*'
-          label='Image Upload'
-          source='imageUploaders.imageUrl'
-        >
-          <ImageField source='src' title='title' />
-        </FileInput>
+        <GridShowLayout className='gridShowLayout'>
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <TextInput fullWidth label='Name' source='name' />
+              <TextInput fullWidth label='Regestration' source='reg' />
+              <DateInput
+                fullWidth
+                defaultValue={new Date().toLocaleDateString()}
+                label='Date'
+                source='date'
+              />
+            </RaGrid>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <FileInput
+                accept='image/*'
+                label='Image Upload'
+                source='imageUploaders.imageUrl'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
       </SimpleForm>
     </Create>
   );

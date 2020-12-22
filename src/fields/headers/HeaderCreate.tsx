@@ -22,19 +22,15 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
-              <TextInput fullWidth={true} required={true} source='title' />
+              <TextInput fullWidth required={true} source='title' />
               <FaAutoComplete source='nav.icon' />
-              <TextInput
-                label='Navigation Label'
-                fullWidth={true}
-                source='nav.text'
-              />
+              <TextInput label='Navigation Label' fullWidth source='nav.text' />
 
               <TextInput
                 rows={6}
                 required={true}
                 multiline={true}
-                fullWidth={true}
+                fullWidth
                 source='text'
               />
             </RaGrid>

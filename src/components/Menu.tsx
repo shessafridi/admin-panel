@@ -8,9 +8,15 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import { drawerActive } from '../theme/theme';
 
 const useStyles = makeStyles({
+  root: {
+    '&:hover': {
+      background: 'rgba(230,80,0,0.04)',
+    },
+    '& .MuiListItemIcon-root': {},
+  },
   active: {
     color: drawerActive.textColor,
-    background: '#eae6f0',
+    background: 'rgba(230,80,0,0.1)',
     '& .MuiListItemIcon-root': {
       color: drawerActive.iconColor,
     },
@@ -30,6 +36,7 @@ const Menu = ({ onMenuClick, logout }: any) => {
       <MenuItemLink
         key='dashboard'
         to='/'
+        className={classes.root}
         primaryText='Dashboard'
         activeClassName={classes.active}
         leftIcon={<DashboardIcon />}
@@ -41,6 +48,7 @@ const Menu = ({ onMenuClick, logout }: any) => {
         <MenuItemLink
           key={resource.name}
           to={`/${resource.name}`}
+          className={classes.root}
           primaryText={
             (resource.options && resource.options.label) || resource.name
           }

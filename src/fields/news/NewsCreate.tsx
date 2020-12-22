@@ -8,6 +8,7 @@ import {
   TextInput,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 export interface CreateNewsProps {}
 
@@ -19,26 +20,35 @@ const CreateNews: React.FC<CreateNewsProps> = props => {
         margin='normal'
         redirect='list'
       >
-        <TextInput label='Title' source='title' />
-        <DateInput
-          label='Date'
-          defaultValue={new Date().toLocaleDateString()}
-          source='date'
-        />
-        <FileInput
-          accept='image/*'
-          label='Image Upload'
-          source='imageUploaders.imageUrl'
-        >
-          <ImageField source='src' title='title' />
-        </FileInput>
-        <TextInput
-          rows={6}
-          defaultValue={''}
-          multiline={true}
-          label='Text'
-          source='text'
-        />
+        <GridShowLayout className='gridShowLayout'>
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <TextInput fullWidth label='Title' source='title' />
+              <DateInput
+                label='Date'
+                fullWidth
+                defaultValue={new Date().toLocaleDateString()}
+                source='date'
+              />
+              <TextInput
+                fullWidth
+                rows={6}
+                label='Text'
+                multiline={true}
+                source='text'
+              />
+            </RaGrid>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <FileInput
+                accept='image/*'
+                label='Image Upload'
+                source='imageUploaders.imageUrl'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
       </SimpleForm>
     </Create>
   );

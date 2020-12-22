@@ -75,12 +75,12 @@ const EditFeatured: React.FC = (props: any) => {
               disableAdd={true}
               disableRemove={true}
             >
-              <TextInput label='Card Title' fullWidth={true} source='title' />
+              <TextInput label='Card Title' fullWidth source='title' />
               <TextInput
                 label='Card Text'
                 rows={6}
                 multiline={true}
-                fullWidth={true}
+                fullWidth
                 source='text'
               />
             </SimpleFormIterator>

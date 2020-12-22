@@ -86,14 +86,14 @@ const LoginPage: React.FC<LoginPageProps> = props => {
           Welcome to the Admin Panel
         </Typography>
         <TextField
-          fullWidth={true}
+          fullWidth
           onChange={e => setUsername(e.target.value)}
           label='Enter your email'
           type='email'
           variant='outlined'
         />
         <TextField
-          fullWidth={true}
+          fullWidth
           onChange={e => setPassword(e.target.value)}
           label='Enter your password'
           type='password'

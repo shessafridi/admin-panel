@@ -40,7 +40,7 @@ const Dialog: React.FC<DialogProps> = ({
         }}
       >
         <Typography variant='h6'>
-          {type === 'create' ? 'Create a new record' : 'Edit Record'}
+          {type === 'create' ? 'Add a new record' : 'Edit Record'}
         </Typography>
         <Button style={{ color: '#f44336' }} onClick={() => setVisable(false)}>
           Close
