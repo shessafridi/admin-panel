@@ -9,7 +9,6 @@ import {
   ImageField,
   SimpleForm,
   SimpleFormIterator,
-  SimpleShowLayout,
   TextInput,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
@@ -18,6 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import YouTubePlayer from '../../common/YouTubePlayer';
 import IconButton from '@material-ui/core/IconButton';
 import YouTubeIcon from '@material-ui/icons/YouTube';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 const useStyles = makeStyles({
   root: {
@@ -58,47 +58,55 @@ const EditMedia: React.FC = (props: any) => {
         margin='normal'
         redirect='list'
       >
-        <TextInput label='Title' fullWidth source='title' />
-        <DateInput label='Date' source='date' />
-        <SimpleShowLayout
-          className={
-            isSmall ? `${classes.root} ${classes.small}` : classes.root
-          }
-        >
-          <ImageField source='imageUrl' label='Image' />
-          <FileInput
-            accept='image/*'
-            label='Upload Cover Image'
-            source='imageUploaders.imageUrl'
-          >
-            <ImageField source='src' title='title' />
-          </FileInput>
-        </SimpleShowLayout>
-        <FileInput
-          accept='image/*'
-          multiple={true}
-          label='Upload Event Images'
-          source='imageUploaders.gallery'
-        >
-          <ImageField source='src' title='title' />
-        </FileInput>
+        <GridShowLayout className='gridShowLayout'>
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <TextInput label='Title' fullWidth source='title' />
+              <DateInput label='Date' fullWidth source='date' />
+            </RaGrid>
 
-        <ArrayInput label='Add YouTube Link' source='mergeFields.gallery'>
-          <SimpleFormIterator
-            removeButton={
-              <IconButton style={{ marginLeft: '20px', color: '#f44336' }}>
-                <DeleteIcon htmlColor='#f44336' />
-              </IconButton>
-            }
-            addButton={
-              <Button color='primary' startIcon={<YouTubeIcon />}>
-                Add YouTube Video
-              </Button>
-            }
-          >
-            <TextInput label='YouTube Video Link' source='ytLink' />
-          </SimpleFormIterator>
-        </ArrayInput>
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <ImageField source='imageUrl' label='Image' />
+              <FileInput
+                accept='image/*'
+                label='Upload Cover Image'
+                source='imageUploaders.imageUrl'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <FileInput
+                accept='image/*'
+                multiple={true}
+                label='Upload Event Images'
+                source='imageUploaders.gallery'
+              >
+                <ImageField source='src' title='title' />
+              </FileInput>
+            </RaGrid>
+
+            <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+              <ArrayInput label='Add YouTube Link' source='mergeFields.gallery'>
+                <SimpleFormIterator
+                  removeButton={
+                    <IconButton style={{ marginLeft: '6px', color: '#f44336' }}>
+                      <DeleteIcon htmlColor='#f44336' />
+                    </IconButton>
+                  }
+                  addButton={
+                    <Button color='primary' startIcon={<YouTubeIcon />}>
+                      Add YouTube Video
+                    </Button>
+                  }
+                >
+                  <TextInput label='YouTube Video Link' source='ytLink' />
+                </SimpleFormIterator>
+              </ArrayInput>
+            </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
 
         <ArrayInput source='gallery'>
           <SimpleFormIterator
