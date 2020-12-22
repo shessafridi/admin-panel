@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import { useRefresh } from 'react-admin';
 import Typography from '@material-ui/core/Typography';
 import FadeModal from './FadeModal';
-
 interface DialogProps {
   id?: number;
   setVisable: (arg: boolean | string) => any;
@@ -11,6 +10,8 @@ interface DialogProps {
   visable: string | boolean;
   renderChild: any;
 }
+
+export const DialogContext = React.createContext({ closeDialog: () => {} });
 
 const Dialog: React.FC<DialogProps> = ({
   setVisable,
@@ -46,13 +47,15 @@ const Dialog: React.FC<DialogProps> = ({
           Close
         </Button>
       </div>
-      <RenderChild
-        undoable={type === 'edit' ? false : undefined}
-        onFailure={handleError}
-        component='div'
-        onSuccess={handleSave}
-        {...rest}
-      />
+      <DialogContext.Provider value={{ closeDialog: () => setVisable(false) }}>
+        <RenderChild
+          undoable={type === 'edit' ? false : undefined}
+          onFailure={handleError}
+          component='div'
+          onSuccess={handleSave}
+          {...rest}
+        />
+      </DialogContext.Provider>
     </FadeModal>
   );
 };

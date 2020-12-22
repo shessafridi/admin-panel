@@ -37,6 +37,7 @@ const ListView: React.FC<ListViewProps> = ({
       <List
         pagination={false}
         component='div'
+        bulkActionButtons={isSmall ? false : undefined}
         actions={<ListActions createAction={() => setShowModal('create')} />}
         {...rest}
       >

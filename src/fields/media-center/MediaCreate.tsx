@@ -9,23 +9,19 @@ import {
   SimpleFormIterator,
   TextInput,
 } from 'react-admin';
-import SaveToolbar from '../../common/SaveToolbar';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
+import DialogToolBar from '../../common/DialogToolbar';
 
 export interface CreateMediaProps {}
 
 const CreateMedia: React.FC<CreateMediaProps> = props => {
   return (
     <Create {...props}>
-      <SimpleForm
-        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
-        margin='normal'
-        redirect='list'
-      >
+      <SimpleForm toolbar={<DialogToolBar />} margin='normal' redirect='list'>
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>

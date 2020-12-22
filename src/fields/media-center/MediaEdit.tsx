@@ -11,13 +11,13 @@ import {
   SimpleFormIterator,
   TextInput,
 } from 'react-admin';
-import SaveToolbar from '../../common/SaveToolbar';
 import IterableImageField from '../../common/IterableImageField';
 import DeleteIcon from '@material-ui/icons/Delete';
 import YouTubePlayer from '../../common/YouTubePlayer';
 import IconButton from '@material-ui/core/IconButton';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
+import DialogToolBar from '../../common/DialogToolbar';
 
 const useStyles = makeStyles({
   root: {
@@ -53,11 +53,7 @@ const EditMedia: React.FC = (props: any) => {
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Edit {...props}>
-      <SimpleForm
-        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
-        margin='normal'
-        redirect='list'
-      >
+      <SimpleForm toolbar={<DialogToolBar />} margin='normal' redirect='list'>
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>

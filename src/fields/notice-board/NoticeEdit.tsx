@@ -9,9 +9,9 @@ import {
   SimpleForm,
   TextInput,
 } from 'react-admin';
-import SaveToolbar from '../../common/SaveToolbar';
 import { useVideoEnabled } from '../../common/useVideoEnabled';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
+import DialogToolBar from '../../common/DialogToolbar';
 
 const EditNotice: React.FC<EditProps> = props => {
   const selected = useVideoEnabled(props.resource!, props.id!);
@@ -22,11 +22,7 @@ const EditNotice: React.FC<EditProps> = props => {
 
   return (
     <Edit {...props}>
-      <SimpleForm
-        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
-        margin='normal'
-        redirect='list'
-      >
+      <SimpleForm toolbar={<DialogToolBar />} margin='normal' redirect='list'>
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
