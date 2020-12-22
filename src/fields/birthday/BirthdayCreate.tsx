@@ -6,8 +6,8 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 
 interface CreateBirthdayProps {}
 
@@ -15,7 +15,7 @@ const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
   return (
     <Create title='Add a new birthday' {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >

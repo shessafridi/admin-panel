@@ -7,8 +7,8 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 import { useVideoEnabled } from '../../common/useVideoEnabled';
 
 const EditNotice: React.FC<EditProps> = props => {
@@ -21,7 +21,7 @@ const EditNotice: React.FC<EditProps> = props => {
   return (
     <Edit {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >

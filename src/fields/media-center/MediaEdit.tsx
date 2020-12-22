@@ -11,8 +11,8 @@ import {
   SimpleFormIterator,
   SimpleShowLayout,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 import IterableImageField from '../../common/IterableImageField';
 import DeleteIcon from '@material-ui/icons/Delete';
 import YouTubePlayer from '../../common/YouTubePlayer';
@@ -54,7 +54,7 @@ const EditMedia: React.FC = (props: any) => {
   return (
     <Edit {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >

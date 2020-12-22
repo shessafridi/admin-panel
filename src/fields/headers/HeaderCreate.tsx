@@ -5,8 +5,8 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import FaAutoComplete from '../../components/FaAutoComplete';
 interface CreateHeaderProps {}
@@ -15,7 +15,7 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
   return (
     <Create title='Add a new header' {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >

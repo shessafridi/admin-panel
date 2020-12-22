@@ -6,8 +6,8 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 
 export interface CreateNewsProps {}
 
@@ -15,7 +15,7 @@ const CreateNews: React.FC<CreateNewsProps> = props => {
   return (
     <Create title='Add another News' {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >

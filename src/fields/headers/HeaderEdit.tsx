@@ -5,8 +5,8 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import FaAutoComplete from '../../components/FaAutoComplete';
 
@@ -14,7 +14,7 @@ const EditHeader: React.FC = (props: any) => {
   return (
     <Edit {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >

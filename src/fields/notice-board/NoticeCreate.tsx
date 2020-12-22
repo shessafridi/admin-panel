@@ -7,8 +7,8 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 
 export interface CreateNoticeProps extends CreateProps {}
 
@@ -17,7 +17,7 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
   return (
     <Create title='Add a new notice card' {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >

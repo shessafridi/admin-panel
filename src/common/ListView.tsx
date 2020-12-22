@@ -1,3 +1,4 @@
+import { useTheme, useMediaQuery } from '@material-ui/core';
 import React from 'react';
 import { Datagrid, List } from 'react-admin';
 import Dialog from './Dialog';
@@ -25,6 +26,8 @@ const ListView: React.FC<ListViewProps> = ({
   ...rest
 }) => {
   const title = rest.resource[0].toUpperCase() + rest.resource.slice(1);
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <MainContainer>
@@ -38,7 +41,7 @@ const ListView: React.FC<ListViewProps> = ({
         {...rest}
       >
         <Datagrid
-          size='medium'
+          size={isSmall ? 'small' : 'medium'}
           style={{ overflowY: 'hidden', overflowX: 'scroll' }}
         >
           {children}

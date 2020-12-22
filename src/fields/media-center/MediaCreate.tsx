@@ -8,8 +8,8 @@ import {
   SimpleForm,
   SimpleFormIterator,
   TextInput,
-  Toolbar,
 } from 'react-admin';
+import SaveToolbar from '../../common/SaveToolbar';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,7 +21,7 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
   return (
     <Create {...props}>
       <SimpleForm
-        toolbar={<Toolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
+        toolbar={<SaveToolbar classes={{ spacer: 'noSpacer' }} width={'lg'} />}
         margin='normal'
         redirect='list'
       >
