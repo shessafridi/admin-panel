@@ -9,9 +9,13 @@ interface DialogProps {
   type: 'edit' | 'create';
   visable: string | boolean;
   renderChild: any;
+  [x: string]: any;
 }
 
-export const DialogContext = React.createContext({ closeDialog: () => {} });
+export const DialogContext = React.createContext<any>({
+  closeDialog: () => {},
+  dialogRef: {},
+});
 
 const Dialog: React.FC<DialogProps> = ({
   setVisable,
@@ -21,6 +25,7 @@ const Dialog: React.FC<DialogProps> = ({
   ...rest
 }) => {
   const refresh = useRefresh();
+  const dialogRef = React.useRef();
 
   const handleSave = () => {
     refresh();
@@ -32,7 +37,11 @@ const Dialog: React.FC<DialogProps> = ({
   };
 
   return (
-    <FadeModal visable={visable === type} onClose={() => setVisable(false)}>
+    <FadeModal
+      modalRef={dialogRef}
+      visable={visable === type}
+      onClose={() => setVisable(false)}
+    >
       <div
         style={{
           display: 'flex',
@@ -47,15 +56,20 @@ const Dialog: React.FC<DialogProps> = ({
           Close
         </Button>
       </div>
-      <DialogContext.Provider value={{ closeDialog: () => setVisable(false) }}>
-        <RenderChild
-          undoable={type === 'edit' ? false : undefined}
-          onFailure={handleError}
-          component='div'
-          onSuccess={handleSave}
-          {...rest}
-        />
-      </DialogContext.Provider>
+      {((type === 'edit' && Number.isInteger(rest.id)) ||
+        (type = 'create')) && (
+        <DialogContext.Provider
+          value={{ closeDialog: () => setVisable(false), dialogRef }}
+        >
+          <RenderChild
+            undoable={type === 'edit' ? false : undefined}
+            onFailure={handleError}
+            component='div'
+            onSuccess={handleSave}
+            {...rest}
+          />
+        </DialogContext.Provider>
+      )}
     </FadeModal>
   );
 };

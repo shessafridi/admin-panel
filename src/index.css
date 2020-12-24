@@ -36,3 +36,8 @@ code {
   position: relative;
   z-index: 4000;
 }
+.fixedToolbar {
+  position: absolute;
+  bottom: 0;
+  top: auto;
+}

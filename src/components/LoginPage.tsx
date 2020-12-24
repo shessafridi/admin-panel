@@ -3,12 +3,14 @@ import {
   CircularProgress,
   makeStyles,
   TextField,
+  ThemeProvider,
   Typography,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
 import React, { FormEvent, useState } from 'react';
 import { useLogin } from 'react-admin';
+import theme from '../theme/theme';
 
 interface LoginPageProps {}
 
@@ -60,8 +62,7 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  const theme = useTheme();
-  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -78,51 +79,53 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   };
 
   return (
-    <section
-      className={!isSmall ? classes.root : `${classes.root} ${classes.small}`}
-    >
-      <form onSubmit={e => handleSubmit(e)} className={classes.form}>
-        <Typography style={{ marginBottom: '25px' }} variant='h6'>
-          Welcome to the Admin Panel
-        </Typography>
-        <TextField
-          fullWidth
-          onChange={e => setUsername(e.target.value)}
-          label='Enter your email'
-          type='email'
-          variant='outlined'
-        />
-        <TextField
-          fullWidth
-          onChange={e => setPassword(e.target.value)}
-          label='Enter your password'
-          type='password'
-          variant='outlined'
-        />
-        <Typography
-          className={error ? '' : 'd-none'}
-          style={{ color: '#f44336', marginBottom: '15px' }}
-        >
-          Invalid username or password.
-        </Typography>
-        <Button
-          disabled={loading}
-          size='large'
-          fullWidth={isSmall}
-          variant='contained'
-          type='submit'
-          color='primary'
-        >
-          <CircularProgress
-            size={20}
-            style={{ marginRight: '10px' }}
-            color='inherit'
-            className={loading ? '' : 'd-none'}
+    <ThemeProvider theme={theme}>
+      <section
+        className={!isSmall ? classes.root : `${classes.root} ${classes.small}`}
+      >
+        <form onSubmit={e => handleSubmit(e)} className={classes.form}>
+          <Typography style={{ marginBottom: '25px' }} variant='h6'>
+            Welcome to the Admin Panel
+          </Typography>
+          <TextField
+            fullWidth
+            onChange={e => setUsername(e.target.value)}
+            label='Enter your email'
+            type='email'
+            variant='outlined'
           />
-          Login
-        </Button>
-      </form>
-    </section>
+          <TextField
+            fullWidth
+            onChange={e => setPassword(e.target.value)}
+            label='Enter your password'
+            type='password'
+            variant='outlined'
+          />
+          <Typography
+            className={error ? '' : 'd-none'}
+            style={{ color: '#f44336', marginBottom: '15px' }}
+          >
+            Invalid username or password.
+          </Typography>
+          <Button
+            disabled={loading}
+            size='large'
+            fullWidth={isSmall}
+            variant='contained'
+            type='submit'
+            color='primary'
+          >
+            <CircularProgress
+              size={20}
+              style={{ marginRight: '10px' }}
+              color='inherit'
+              className={loading ? '' : 'd-none'}
+            />
+            Login
+          </Button>
+        </form>
+      </section>
+    </ThemeProvider>
   );
 };
 

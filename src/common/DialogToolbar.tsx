@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 export interface DialogToolBarProps extends ToolbarProps {}
 
 const DialogToolBar: React.FC<DialogToolBarProps> = (props: any) => {
-  const dialogContext = useContext(DialogContext);
+  const { closeDialog } = useContext(DialogContext);
   return (
     <Toolbar
       classes={{ spacer: 'noSpacer', toolbar: useStyles().toolbar }}
@@ -22,12 +22,9 @@ const DialogToolBar: React.FC<DialogToolBarProps> = (props: any) => {
     >
       <SaveButton disabled={props.saving && props.invalid} />
       <DeleteButton
-        undoable={true}
-        style={{}}
-        label=''
+        undoable={false}
         onClick={e => {
-          e.stopPropagation();
-          dialogContext.closeDialog();
+          closeDialog();
         }}
       />
     </Toolbar>

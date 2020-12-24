@@ -7,9 +7,11 @@ import {
   FileInput,
   FormDataConsumer,
   ImageField,
+  SaveButton,
   SimpleForm,
   SimpleFormIterator,
   TextInput,
+  Toolbar,
 } from 'react-admin';
 import IterableImageField from '../../common/IterableImageField';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -17,13 +19,16 @@ import YouTubePlayer from '../../common/YouTubePlayer';
 import IconButton from '@material-ui/core/IconButton';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
-import DialogToolBar from '../../common/DialogToolbar';
+// import DialogToolBar from '../../common/DialogToolbar';
 
 const useStyles = makeStyles({
   root: {
     display: 'grid',
     width: '100%',
-    gridTemplateColumns: '1fr 1fr 1fr',
+    height: '280px',
+    overflowY: 'scroll',
+    marginTop: '-40px',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr',
     '& li': {
       flexDirection: 'column-reverse',
       margin: '4px',
@@ -33,7 +38,7 @@ const useStyles = makeStyles({
         display: 'none',
       },
       '& section': {
-        padding: '4px 10px',
+        padding: '4px 0',
       },
     },
   },
@@ -47,14 +52,59 @@ const useStyles = makeStyles({
   },
 });
 
+const IgnoreButton = ({ onClick, label, className }) => {
+  return (
+    <Button
+      className={className}
+      color='primary'
+      style={{ marginRight: '8px' }}
+      onClick={onClick}
+    >
+      {label}
+    </Button>
+  );
+};
+
+const NextToolbar = ({ isOnNextPage, setPage, ...rest }) => {
+  return (
+    <Toolbar {...rest} classes={{ toolbar: 'fixedToolbar' }}>
+      <SaveButton
+        className={!isOnNextPage ? 'd-none' : ''}
+        disabled={rest.saving && rest.invalid}
+      />
+      <IgnoreButton
+        className={isOnNextPage ? 'd-none' : ''}
+        onClick={() => {
+          setPage('two');
+        }}
+        label='Next'
+      />
+      <IgnoreButton
+        className={!isOnNextPage ? 'd-none' : ''}
+        onClick={() => setPage('one')}
+        label='Back'
+      />
+    </Toolbar>
+  );
+};
+
 const EditMedia: React.FC = (props: any) => {
   const classes = useStyles();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+  const [page, setPage] = React.useState<'one' | 'two'>('one');
   return (
     <Edit {...props}>
-      <SimpleForm toolbar={<DialogToolBar />} margin='normal' redirect='list'>
-        <GridShowLayout className='gridShowLayout'>
+      <SimpleForm
+        toolbar={
+          <NextToolbar setPage={setPage} isOnNextPage={page === 'two'} />
+        }
+        margin='normal'
+        redirect='list'
+      >
+        <GridShowLayout
+          className={page === 'two' ? 'd-none' : 'gridShowLayout'}
+        >
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
               <TextInput label='Title' fullWidth source='title' />
@@ -71,7 +121,50 @@ const EditMedia: React.FC = (props: any) => {
                 <ImageField source='src' title='title' />
               </FileInput>
             </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
 
+        <GridShowLayout
+          className={page === 'one' ? 'd-none' : 'gridShowLayout'}
+        >
+          <RaGrid container direction='row'>
+            <RaGrid style={{ padding: '0 0' }} item sm={12}>
+              <ArrayInput label='' source='gallery'>
+                <SimpleFormIterator
+                  className={
+                    isSmall ? `${classes.root} ${classes.small}` : classes.root
+                  }
+                  removeButton={
+                    <Button
+                      style={{ marginLeft: '20px', color: '#f44336' }}
+                      startIcon={<DeleteIcon htmlColor='#f44336' />}
+                    >
+                      Delete
+                    </Button>
+                  }
+                  disableAdd={true}
+                >
+                  <FormDataConsumer>
+                    {({ scopedFormData, getSource }) => {
+                      if (scopedFormData?.imageUrl)
+                        return (
+                          <IterableImageField
+                            id={getSource!('imageUrl')}
+                            src={scopedFormData?.imageUrl}
+                          />
+                        );
+                      if (scopedFormData?.ytLink)
+                        return (
+                          <YouTubePlayer
+                            id={getSource!('ytLink')}
+                            link={scopedFormData?.ytLink}
+                          />
+                        );
+                    }}
+                  </FormDataConsumer>
+                </SimpleFormIterator>
+              </ArrayInput>
+            </RaGrid>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
               <FileInput
                 accept='image/*'
@@ -103,42 +196,6 @@ const EditMedia: React.FC = (props: any) => {
             </RaGrid>
           </RaGrid>
         </GridShowLayout>
-
-        <ArrayInput source='gallery'>
-          <SimpleFormIterator
-            className={
-              isSmall ? `${classes.root} ${classes.small}` : classes.root
-            }
-            removeButton={
-              <Button
-                style={{ marginLeft: '20px', color: '#f44336' }}
-                startIcon={<DeleteIcon htmlColor='#f44336' />}
-              >
-                Delete
-              </Button>
-            }
-            disableAdd={true}
-          >
-            <FormDataConsumer>
-              {({ scopedFormData, getSource }) => {
-                if (scopedFormData?.imageUrl)
-                  return (
-                    <IterableImageField
-                      id={getSource!('imageUrl')}
-                      src={scopedFormData?.imageUrl}
-                    />
-                  );
-                if (scopedFormData?.ytLink)
-                  return (
-                    <YouTubePlayer
-                      id={getSource!('ytLink')}
-                      link={scopedFormData?.ytLink}
-                    />
-                  );
-              }}
-            </FormDataConsumer>
-          </SimpleFormIterator>
-        </ArrayInput>
       </SimpleForm>
     </Edit>
   );

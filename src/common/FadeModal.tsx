@@ -13,9 +13,9 @@ const useStyles = makeStyles({
     flexBasis: 'auto',
     position: 'relative',
     backgroundColor: 'white',
-    maxWidth: '780px',
+    maxWidth: '840px',
     width: '100%',
-    marginTop: '40px',
+    marginTop: '30px',
     marginBottom: '30px',
     borderRadius: '10px',
     padding: '20px',
@@ -26,12 +26,14 @@ const useStyles = makeStyles({
 export interface FadeModalProps {
   visable: boolean;
   onClose: () => void;
+  modalRef;
 }
 
 const FadeModal: React.FC<FadeModalProps> = ({
   children,
   visable,
   onClose,
+  modalRef,
 }) => {
   const classes = useStyles();
   return (
@@ -40,6 +42,7 @@ const FadeModal: React.FC<FadeModalProps> = ({
       open={visable}
       closeAfterTransition
       onClose={onClose}
+      ref={modalRef}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
