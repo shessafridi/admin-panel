@@ -19,6 +19,7 @@ const MediaList: React.FC<MediaListProps> = props => {
       showModal={showModal}
       setShowModal={setShowModal}
       record={record}
+      title='Media Center'
       createDialogView={CreateMedia}
       editDialogView={EditMedia}
       desc='Customize the events inside the media center'

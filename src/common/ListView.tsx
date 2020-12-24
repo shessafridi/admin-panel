@@ -13,6 +13,7 @@ export interface ListViewProps {
   showModal: string | boolean;
   setShowModal: (arg: boolean | string) => void;
   record: any;
+  title?: string;
 }
 
 const ListView: React.FC<ListViewProps> = ({
@@ -23,15 +24,16 @@ const ListView: React.FC<ListViewProps> = ({
   desc,
   setShowModal,
   showModal,
+  title,
   ...rest
 }) => {
-  const title = rest.resource[0].toUpperCase() + rest.resource.slice(1);
+  const defaultTitle = rest.resource[0].toUpperCase() + rest.resource.slice(1);
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <MainContainer>
-      <h3>{title} List</h3>
+      <h3>{title || defaultTitle} List</h3>
       <p>{desc}</p>
 
       <List

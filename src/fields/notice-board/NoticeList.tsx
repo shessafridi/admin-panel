@@ -19,6 +19,7 @@ const NoticeList: React.FC<NoticeListProps> = props => {
       showModal={showModal}
       setShowModal={setShowModal}
       record={record}
+      title='Notice Board'
       createDialogView={CreateNotice}
       editDialogView={EditNotice}
       desc='Add or remove notice board cards.'
