@@ -24,7 +24,7 @@ export const addYouTubeUrlIfExist = (data: ResourceData) => {
 const validateYouTubeUrl = (gallery: any[], record: any) => {
   if (Array.isArray(gallery)) {
     const validated = (record as any[]).reduce((prev: any[], val) => {
-      if (parseUrl(val.ytLink))
+      if (parseUrl(val?.ytLink))
         prev.push({
           id: gallery.length + 1,
           ...val,

@@ -96,6 +96,7 @@ const EditMedia: React.FC = (props: any) => {
   return (
     <Edit {...props}>
       <SimpleForm
+        submitOnEnter={true}
         toolbar={
           <NextToolbar setPage={setPage} isOnNextPage={page === 'two'} />
         }
