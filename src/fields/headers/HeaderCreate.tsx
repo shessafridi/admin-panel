@@ -18,17 +18,11 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
-              <TextInput fullWidth required={true} source='title' />
+              <TextInput fullWidth source='title' />
               <FaAutoComplete source='nav.icon' />
-              <TextInput label='Navigation Label' fullWidth source='nav.text' />
+              <TextInput label='Button Label' fullWidth source='nav.text' />
 
-              <TextInput
-                rows={6}
-                required={true}
-                multiline={true}
-                fullWidth
-                source='text'
-              />
+              <TextInput rows={6} multiline={true} fullWidth source='text' />
             </RaGrid>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
               <FileInput

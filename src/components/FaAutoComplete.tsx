@@ -6,7 +6,7 @@ import { icons } from '../common/icons';
 function FaAutoComplete({ source, ...rest }) {
   return (
     <AutocompleteInputInDialog
-      label='Navigation Icon'
+      label='Button Icon'
       translateChoice={false}
       fullWidth
       source={source}

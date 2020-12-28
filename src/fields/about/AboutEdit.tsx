@@ -8,6 +8,7 @@ import {
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
 import MainContainer from '../../common/MainContainer';
+import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 const EditAbout: React.FC = (props: any) => {
   return (
@@ -22,24 +23,30 @@ const EditAbout: React.FC = (props: any) => {
         undoable={false}
         {...props}
       >
-        <SimpleForm toolbar={<SaveToolbar />} margin='normal' redirect={false}>
-          <TextInput fullWidth required={true} source='title' />
-          <ImageField source='imageUrl' label='Image' />
-          <FileInput
-            accept='image/*'
-            label='Image Upload'
-            source='imageUploaders.imageUrl'
-          >
-            <ImageField source='src' title='title' />
-          </FileInput>
-          <TextInput
-            fullWidth
-            rows={8}
-            required={true}
-            multiline={true}
-            source='text'
-          />
-          {/* <CustomUrlField path='images.imageUrl' /> */}
+        <SimpleForm
+          toolbar={<SaveToolbar />}
+          margin='normal'
+          submitOnEnter={false}
+          redirect={false}
+        >
+          <GridShowLayout className='gridShowLayout'>
+            <RaGrid container direction='row'>
+              <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+                <TextInput fullWidth source='title' />
+                <TextInput fullWidth source='text' rows={8} multiline />
+              </RaGrid>
+              <RaGrid style={{ padding: '0 10px' }} item sm={6}>
+                <ImageField source='imageUrl' label='Image' />
+                <FileInput
+                  accept='image/*'
+                  label='Image Upload'
+                  source='imageUploaders.imageUrl'
+                >
+                  <ImageField source='src' title='title' />
+                </FileInput>
+              </RaGrid>
+            </RaGrid>
+          </GridShowLayout>
         </SimpleForm>
       </Edit>
     </MainContainer>

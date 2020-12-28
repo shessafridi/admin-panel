@@ -24,7 +24,7 @@ const BirthdayList: React.FC<BirthdayListProps> = props => {
       desc='Add or remove birthdays.'
       {...props}
     >
-      <TextField source='reg' sortable={false} />
+      <TextField label='Reg #' source='reg' sortable={false} />
       <TextField source='name' sortable={false} />
       <GridViewButton
         showDialog={() => setShowModal('edit')}
