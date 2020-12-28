@@ -19,7 +19,6 @@ import YouTubePlayer from '../../common/YouTubePlayer';
 import IconButton from '@material-ui/core/IconButton';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
-// import DialogToolBar from '../../common/DialogToolbar';
 
 const useStyles = makeStyles({
   root: {
@@ -192,6 +191,20 @@ const EditMedia: React.FC = (props: any) => {
                   }
                 >
                   <TextInput label='YouTube Video Link' source='ytLink' />
+                  <FormDataConsumer>
+                    {({ scopedFormData, getSource }) => {
+                      console.log({ scopedFormData, getSource });
+                      if (scopedFormData?.ytLink) {
+                        return (
+                          <YouTubePlayer
+                            id={getSource!('ytLink')}
+                            link={scopedFormData?.ytLink}
+                          />
+                        );
+                      }
+                      return <></>;
+                    }}
+                  </FormDataConsumer>
                 </SimpleFormIterator>
               </ArrayInput>
             </RaGrid>

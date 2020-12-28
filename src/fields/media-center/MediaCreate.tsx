@@ -4,6 +4,7 @@ import {
   Create,
   DateInput,
   FileInput,
+  FormDataConsumer,
   ImageField,
   SimpleForm,
   SimpleFormIterator,
@@ -15,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import DialogToolBar from '../../common/DialogToolbar';
+import YouTubePlayer from '../../common/YouTubePlayer';
 
 export interface CreateMediaProps {}
 
@@ -70,6 +72,20 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
                   }
                 >
                   <TextInput label='YouTube Video Link' source='ytLink' />
+                  <FormDataConsumer>
+                    {({ scopedFormData, getSource }) => {
+                      console.log({ scopedFormData, getSource });
+                      if (scopedFormData?.ytLink) {
+                        return (
+                          <YouTubePlayer
+                            id={getSource!('ytLink')}
+                            link={scopedFormData?.ytLink}
+                          />
+                        );
+                      }
+                      return <></>;
+                    }}
+                  </FormDataConsumer>
                 </SimpleFormIterator>
               </ArrayInput>
             </RaGrid>
