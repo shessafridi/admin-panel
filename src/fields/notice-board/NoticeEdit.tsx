@@ -12,6 +12,7 @@ import {
 import { useVideoEnabled } from '../../common/useVideoEnabled';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import DialogToolBar from '../../common/DialogToolbar';
+import YouTubePlayerField from '../../components/YouTubePlayerField';
 
 const EditNotice: React.FC<EditProps> = props => {
   const selected = useVideoEnabled(props.resource!, props.id!);
@@ -53,6 +54,10 @@ const EditNotice: React.FC<EditProps> = props => {
                 className={!isVideo ? '' : 'd-none'}
                 source='imageUrl'
                 label='Image'
+              />
+              <YouTubePlayerField
+                className={isVideo ? '' : 'd-none'}
+                source='yt-player'
               />
 
               <FileInput

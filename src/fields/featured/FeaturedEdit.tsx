@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     width: '100%',
     gridTemplateColumns: '1fr 1fr',
     '& li': {
-      margin: '10px',
+      margin: '4px',
       borderRadius: '4px',
       border: '1px solid rgba(0,0,0,.1)',
       '& p': {
