@@ -74,7 +74,6 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
                   <TextInput label='YouTube Video Link' source='ytLink' />
                   <FormDataConsumer>
                     {({ scopedFormData, getSource }) => {
-                      console.log({ scopedFormData, getSource });
                       if (scopedFormData?.ytLink) {
                         return (
                           <YouTubePlayer

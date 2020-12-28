@@ -3,7 +3,6 @@ import { parseUrl } from '../common/YouTubeLinkParser';
 import YouTubePlayer from '../common/YouTubePlayer';
 
 function YouTubePlayerField(props) {
-  console.log(props);
   if (parseUrl(props.record.videoOptions.ytLink)) {
     return (
       <YouTubePlayer

@@ -66,7 +66,6 @@ const LoginPage: React.FC<LoginPageProps> = props => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(username, password);
     if (username.trim().length > 4 && password.trim().length > 5) {
       try {
         setLoading(true);

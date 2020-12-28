@@ -33,7 +33,6 @@ export default (): DataProvider => ({
   },
 
   update: async (resource, params): Promise<any> => {
-    console.log(params);
     return await segmentService.update(params.data, resource);
   },
 
@@ -46,7 +45,6 @@ export default (): DataProvider => ({
     ).then(responses => ({ data: responses.map(res => res?.data) })),
 
   create: async (resource, params) => {
-    console.log(params);
     return await segmentService.create(params.data, resource);
   },
 
