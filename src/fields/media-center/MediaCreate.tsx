@@ -17,13 +17,19 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import DialogToolBar from '../../common/DialogToolbar';
 import YouTubePlayer from '../../common/YouTubePlayer';
+import { validateTitle } from '../../common/validators';
 
 export interface CreateMediaProps {}
 
 const CreateMedia: React.FC<CreateMediaProps> = props => {
   return (
     <Create {...props}>
-      <SimpleForm toolbar={<DialogToolBar />} margin='normal' redirect='list'>
+      <SimpleForm
+        validate={validateTitle}
+        toolbar={<DialogToolBar />}
+        margin='normal'
+        redirect='list'
+      >
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>

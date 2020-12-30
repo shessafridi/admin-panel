@@ -11,6 +11,7 @@ import {
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import DialogToolBar from '../../common/DialogToolbar';
+import { validateTitle } from '../../common/validators';
 
 export interface CreateNoticeProps extends CreateProps {}
 
@@ -18,7 +19,12 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
   const [isVideo, setIsVideo] = React.useState(false);
   return (
     <Create title='Add a new notice card' {...props}>
-      <SimpleForm toolbar={<DialogToolBar />} margin='normal' redirect='list'>
+      <SimpleForm
+        validate={validateTitle}
+        toolbar={<DialogToolBar />}
+        margin='normal'
+        redirect='list'
+      >
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>

@@ -20,7 +20,7 @@ const DialogToolBar: React.FC<DialogToolBarProps> = (props: any) => {
       width={'lg'}
       {...props}
     >
-      <SaveButton disabled={props.saving && props.invalid} />
+      <SaveButton disabled={props.saving || props.invalid} />
       <DeleteButton
         undoable={false}
         onClick={e => {

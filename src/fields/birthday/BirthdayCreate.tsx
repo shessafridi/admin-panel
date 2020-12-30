@@ -9,13 +9,19 @@ import {
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import DialogToolBar from '../../common/DialogToolbar';
+import { validateTitle } from '../../common/validators';
 
 interface CreateBirthdayProps {}
 
 const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
   return (
     <Create title='Add a new birthday' {...props}>
-      <SimpleForm toolbar={<DialogToolBar />} margin='normal' redirect='list'>
+      <SimpleForm
+        validate={validateTitle}
+        toolbar={<DialogToolBar />}
+        margin='normal'
+        redirect='list'
+      >
         <GridShowLayout className='gridShowLayout'>
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
