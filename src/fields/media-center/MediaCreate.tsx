@@ -15,8 +15,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
-import DialogToolBar from '../../common/DialogToolbar';
-import YouTubePlayer from '../../common/YouTubePlayer';
+import DialogToolBar from '../../common/Dialog/DialogToolbar';
+import YouTubePlayer from '../../common/Video/YouTubePlayer';
 import { validateTitle } from '../../common/validators';
 
 export interface CreateMediaProps {}

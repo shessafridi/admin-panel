@@ -1,6 +1,6 @@
 import { ResourceData } from '../models/ResourceData';
 import objectPath from 'object-path';
-import { parseUrl } from '../common/YouTubeLinkParser';
+import { parseUrl } from '../common/Video/YouTubeLinkParser';
 
 export const addYouTubeUrlIfExist = (data: ResourceData) => {
   if (data.mergeFields) {

@@ -10,13 +10,16 @@ import {
   TextInput,
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
-import DialogToolBar from '../../common/DialogToolbar';
+import DialogToolBar from '../../common/Dialog/DialogToolbar';
 import { validateTitle } from '../../common/validators';
+import YouTubePlayerField from '../../components/YouTubePlayerField';
 
 export interface CreateNoticeProps extends CreateProps {}
 
 const CreateNotice: React.FC<CreateNoticeProps> = props => {
   const [isVideo, setIsVideo] = React.useState(false);
+  const [link, setLink] = React.useState('');
+
   return (
     <Create title='Add a new notice card' {...props}>
       <SimpleForm
@@ -53,9 +56,15 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
               />
               <TextInput
                 label='YouTube Video Link'
+                onChange={e => setLink(e.target.value)}
                 fullWidth
                 className={isVideo ? '' : 'd-none'}
                 source='videoOptions.ytLink'
+              />
+              <YouTubePlayerField
+                className={isVideo ? '' : 'd-none'}
+                link={link}
+                source='yt-player'
               />
               <FileInput
                 accept='image/*, .pdf'

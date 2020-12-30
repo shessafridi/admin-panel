@@ -1,7 +1,7 @@
 import { useTheme, useMediaQuery } from '@material-ui/core';
 import React from 'react';
 import { Datagrid, List } from 'react-admin';
-import Dialog from './Dialog';
+import Dialog from './Dialog/Dialog';
 import ListActions from './ListAction';
 import MainContainer from './MainContainer';
 

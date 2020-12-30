@@ -15,7 +15,7 @@ import {
 } from 'react-admin';
 import IterableImageField from '../../common/IterableImageField';
 import DeleteIcon from '@material-ui/icons/Delete';
-import YouTubePlayer from '../../common/YouTubePlayer';
+import YouTubePlayer from '../../common/Video/YouTubePlayer';
 import IconButton from '@material-ui/core/IconButton';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';

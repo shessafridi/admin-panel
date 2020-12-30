@@ -8,7 +8,7 @@ import {
   TextInput,
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
-import DialogToolBar from '../../common/DialogToolbar';
+import DialogToolBar from '../../common/Dialog/DialogToolbar';
 import { validateTitle } from '../../common/validators';
 
 export interface CreateNewsProps {}

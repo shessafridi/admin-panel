@@ -9,17 +9,23 @@ import {
   SimpleForm,
   TextInput,
 } from 'react-admin';
-import { useVideoEnabled } from '../../common/useVideoEnabled';
+import {
+  useVideoEnabled,
+  useYouTubeLink,
+} from '../../common/Video/useVideoEnabled';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
-import DialogToolBar from '../../common/DialogToolbar';
+import DialogToolBar from '../../common/Dialog/DialogToolbar';
 import YouTubePlayerField from '../../components/YouTubePlayerField';
 
 const EditNotice: React.FC<EditProps> = props => {
   const selected = useVideoEnabled(props.resource!, props.id!);
+  const selectedLink = useYouTubeLink(props.resource!, props.id!);
   const [isVideo, setIsVideo] = React.useState(selected);
+  const [link, setLink] = React.useState('');
   React.useEffect(() => {
     setIsVideo(selected);
-  }, [selected]);
+    setLink(selectedLink);
+  }, [selected, selectedLink]);
 
   return (
     <Edit {...props}>
@@ -47,6 +53,7 @@ const EditNotice: React.FC<EditProps> = props => {
               <TextInput
                 label='YouTube Video Link'
                 fullWidth
+                onChange={e => setLink(e.target.value)}
                 className={isVideo ? '' : 'd-none'}
                 source='videoOptions.ytLink'
               />
@@ -57,6 +64,7 @@ const EditNotice: React.FC<EditProps> = props => {
               />
               <YouTubePlayerField
                 className={isVideo ? '' : 'd-none'}
+                link={link}
                 source='yt-player'
               />
 

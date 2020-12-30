@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutocompleteInputInDialog } from '../common/AutoCompleteInDialog';
+import { AutocompleteInputInDialog } from '../common/Dialog/AutoCompleteInDialog';
 import FaListRenderer from '../common/FaListRenderer';
 import { icons } from '../common/icons';
 

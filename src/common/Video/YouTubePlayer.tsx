@@ -5,6 +5,7 @@ export interface YouTubePlayerProps {
   link: string;
   id?: string;
   className?: string;
+  [x: string]: any;
 }
 
 const YouTubePlayer: React.FC<YouTubePlayerProps> = props => {
