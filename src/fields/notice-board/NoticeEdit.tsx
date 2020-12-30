@@ -41,7 +41,7 @@ const EditNotice: React.FC<EditProps> = props => {
               <BooleanInput
                 onChange={e => setIsVideo(e)}
                 defaultValue={isVideo}
-                label='Enable Video'
+                label='Upload Video'
                 source='videoOptions.enabled'
               />
               <TextInput

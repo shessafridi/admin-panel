@@ -39,6 +39,7 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
                 fullWidth
                 rows={6}
                 label='Text'
+                defaultValue=''
                 multiline={true}
                 source='text'
               />
@@ -47,7 +48,7 @@ const CreateNotice: React.FC<CreateNoticeProps> = props => {
               <BooleanInput
                 onChange={e => setIsVideo(e)}
                 defaultValue={isVideo}
-                label='Enable Video'
+                label='Upload Video'
                 source='videoOptions.enabled'
               />
               <TextInput

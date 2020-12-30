@@ -28,7 +28,13 @@ const CreateHeader: React.FC<CreateHeaderProps> = props => {
               <FaAutoComplete source='nav.icon' />
               <TextInput label='Button Label' fullWidth source='nav.text' />
 
-              <TextInput rows={6} multiline={true} fullWidth source='text' />
+              <TextInput
+                rows={6}
+                defaultValue=''
+                multiline={true}
+                fullWidth
+                source='text'
+              />
             </RaGrid>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
               <FileInput

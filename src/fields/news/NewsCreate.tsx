@@ -35,6 +35,7 @@ const CreateNews: React.FC<CreateNewsProps> = props => {
               <TextInput
                 fullWidth
                 rows={6}
+                defaultValue=''
                 label='Text'
                 multiline={true}
                 source='text'
