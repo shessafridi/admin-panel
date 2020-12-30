@@ -15,28 +15,33 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
-import DialogToolBar from '../../common/Dialog/DialogToolbar';
 import YouTubePlayer from '../../common/Video/YouTubePlayer';
 import { validateTitle } from '../../common/validators';
+import { NextToolbar } from './MediaEdit';
 
 export interface CreateMediaProps {}
 
 const CreateMedia: React.FC<CreateMediaProps> = props => {
+  const [page, setPage] = React.useState<'one' | 'two'>('one');
   return (
     <Create {...props}>
       <SimpleForm
         validate={validateTitle}
-        toolbar={<DialogToolBar />}
+        toolbar={
+          <NextToolbar setPage={setPage} isOnNextPage={page === 'two'} />
+        }
         margin='normal'
         redirect='list'
       >
-        <GridShowLayout className='gridShowLayout'>
+        <GridShowLayout
+          className={page === 'two' ? 'd-none' : 'gridShowLayout'}
+        >
           <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
-              <TextInput fullWidth label='Title' source='title' />
+              <TextInput label='Title' fullWidth source='title' />
               <DateInput
-                fullWidth
                 label='Date'
+                fullWidth
                 defaultValue={new Date().toLocaleDateString()}
                 source='date'
               />
@@ -51,7 +56,13 @@ const CreateMedia: React.FC<CreateMediaProps> = props => {
                 <ImageField source='src' title='title' />
               </FileInput>
             </RaGrid>
+          </RaGrid>
+        </GridShowLayout>
 
+        <GridShowLayout
+          className={page === 'one' ? 'd-none' : 'gridShowLayout'}
+        >
+          <RaGrid container direction='row'>
             <RaGrid style={{ padding: '0 10px' }} item sm={6}>
               <FileInput
                 accept='image/*'

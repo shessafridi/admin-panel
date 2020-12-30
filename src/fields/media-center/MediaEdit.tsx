@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   },
 });
 
-const IgnoreButton = ({ onClick, label, className }) => {
+export const IgnoreButton = ({ onClick, label, className }) => {
   return (
     <Button
       className={className}
@@ -64,7 +64,7 @@ const IgnoreButton = ({ onClick, label, className }) => {
   );
 };
 
-const NextToolbar = ({ isOnNextPage, setPage, ...rest }) => {
+export const NextToolbar = ({ isOnNextPage, setPage, ...rest }) => {
   return (
     <Toolbar {...rest} classes={{ toolbar: 'fixedToolbar' }}>
       <SaveButton
