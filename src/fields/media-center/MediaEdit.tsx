@@ -66,7 +66,7 @@ export const IgnoreButton = ({ onClick, label, className }) => {
 
 export const NextToolbar = ({ isOnNextPage, setPage, ...rest }) => {
   return (
-    <Toolbar {...rest} classes={{ toolbar: 'fixedToolbar' }}>
+    <Toolbar {...rest} width={'lg'} classes={{ toolbar: 'fixedToolbar' }}>
       <SaveButton
         className={!isOnNextPage ? 'd-none' : ''}
         disabled={rest.saving || rest.invalid}
