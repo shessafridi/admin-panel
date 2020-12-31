@@ -11,7 +11,6 @@ const useStyles = makeStyles({
   },
   dialog: {
     flexBasis: 'auto',
-    overflowX: 'hidden',
     position: 'relative',
     backgroundColor: 'white',
     maxWidth: '840px',
