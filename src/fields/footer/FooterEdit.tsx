@@ -26,7 +26,7 @@ const EditFooter: React.FC = (props: any) => {
 
   return (
     <MainContainer>
-      <h3>Footer</h3>
+      <h3 className='listview-title'>Footer</h3>
       <p style={{ marginBottom: '50px' }}>
         Customized the footer of the website.
       </p>

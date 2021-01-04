@@ -41,6 +41,7 @@ const theme = createMuiTheme({
     },
     MuiListItemIcon: {
       root: {
+        transform: 'scale(0.9)',
         marginRight: '8px',
       },
     },
@@ -55,7 +56,7 @@ const theme = createMuiTheme({
     MuiMenuItem: {
       root: {
         textTransform: 'uppercase',
-        fontSize: '13px',
+        fontSize: '12px',
         fontWeight: 'bold',
         paddingTop: '17px',
         paddingBottom: '17px',

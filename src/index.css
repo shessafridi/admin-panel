@@ -41,3 +41,7 @@ code {
   bottom: 0;
   top: auto;
 }
+
+.listview-title {
+  font-size: 22px;
+}

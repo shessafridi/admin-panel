@@ -14,7 +14,7 @@ import Dashboard from '../components/Dashboard';
 import HeadersList from '../fields/headers/HeadersList';
 import CreateHeader from '../fields/headers/HeaderCreate';
 import EditHeader from '../fields/headers/HeaderEdit';
-import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
+import CallToActionOutlinedIcon from '@material-ui/icons/CallToActionOutlined';
 // Notice Board
 import NoticeList from '../fields/notice-board/NoticeList';
 import CreateNotice from '../fields/notice-board/NoticeCreate';
@@ -61,7 +61,7 @@ function AdminPanel() {
       layout={AdminLayout}
     >
       <Resource
-        icon={StarsOutlinedIcon}
+        icon={CallToActionOutlinedIcon}
         options={{ label: 'Headers' }}
         name={'header'}
         list={HeadersList}

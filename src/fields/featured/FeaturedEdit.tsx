@@ -44,7 +44,7 @@ const EditFeatured: React.FC = (props: any) => {
 
   return (
     <MainContainer>
-      <h3>Featured</h3>
+      <h3 className='listview-title'>Featured</h3>
       <p>Customized the featured section of the website.</p>
 
       <Edit

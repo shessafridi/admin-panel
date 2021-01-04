@@ -13,7 +13,7 @@ import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 const EditAbout: React.FC = (props: any) => {
   return (
     <MainContainer>
-      <h3>About</h3>
+      <h3 className='listview-title'>About</h3>
       <p>Customized the about section of the website.</p>
 
       <Edit
