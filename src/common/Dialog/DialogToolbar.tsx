@@ -31,4 +31,4 @@ const DialogToolBar: React.FC<DialogToolBarProps> = (props: any) => {
   );
 };
 
-export default DialogToolBar;
+export default React.memo(DialogToolBar);

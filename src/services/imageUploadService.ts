@@ -9,11 +9,16 @@ class ImageService {
   };
   private _uploadFile = (file: File) => {
     const form = new FormData();
-    form.append('formFile', file, file.name);
-    return fetchUtils.fetchJson(fileUploadUrl, {
-      method: 'POST',
-      body: form,
-    });
+    form.append('upload_preset', 'alhamd');
+    form.append('file', file);
+    return fetchUtils
+      .fetchJson(fileUploadUrl, {
+        method: 'POST',
+        body: form,
+      })
+      .then(res => ({
+        body: res.json.url,
+      }));
   };
 
   private _setCustomProperty = (data: any, fieldName: string, value: any) => {

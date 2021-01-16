@@ -57,7 +57,7 @@ const Dialog: React.FC<DialogProps> = ({
         </Button>
       </div>
       {((type === 'edit' && Number.isInteger(rest.id)) ||
-        (type = 'create')) && (
+        type === 'create') && (
         <DialogContext.Provider
           value={{ closeDialog: () => setVisable(false), dialogRef }}
         >
@@ -74,4 +74,4 @@ const Dialog: React.FC<DialogProps> = ({
   );
 };
 
-export default Dialog;
+export default React.memo(Dialog);

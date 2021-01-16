@@ -6,7 +6,7 @@ export const authUrl =
 
 export const fileUploadUrl =
   process.env.REACT_APP_FILE_UPLOAD_URL ||
-  'https://api.nisafoundation.org/api/SegmentDetail/UploadFile';
+  'https://api.cloudinary.com/v1_1/dney8huya/upload';
 
 export const title = process.env.REACT_APP_TITLE || 'Alhamdian Dashboard';
 export const DEFAULT_PATH = 'imageUrl';
