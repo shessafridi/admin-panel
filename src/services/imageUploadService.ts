@@ -27,12 +27,16 @@ class ImageService {
 
   private _mapToGallery = (link: string, index: number) => ({
     id: index + 1,
-    imageUrl: link.replace(/"/g, ''),
+    imageUrl: link.replace(/"/g, '').replace(/http/g, 'https'),
   });
 
   uploadSingleImage = async (data: any, file: any, path: string) =>
     await this._uploadFile(file.rawFile).then(res => {
-      return this._setCustomProperty(data, path, res.body.replace(/"/g, ''));
+      return this._setCustomProperty(
+        data,
+        path,
+        res.body.replace(/"/g, '').replace(/http/g, 'https')
+      );
     });
 
   uploadMultipleImages = async (data: any, files: any, path: string) =>
