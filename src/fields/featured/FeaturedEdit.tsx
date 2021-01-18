@@ -8,6 +8,7 @@ import {
   SimpleFormIterator,
   SimpleShowLayout,
   TextInput,
+  useRefresh,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
 import { makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
@@ -41,6 +42,7 @@ const EditFeatured: React.FC = (props: any) => {
   const classes = useStyles();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+  const refresh = useRefresh();
 
   return (
     <MainContainer>
@@ -50,7 +52,7 @@ const EditFeatured: React.FC = (props: any) => {
       <Edit
         id={1}
         component='div'
-        onSuccess={() => null}
+        onSuccess={() => refresh()}
         undoable={false}
         {...props}
       >

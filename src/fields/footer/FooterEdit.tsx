@@ -5,6 +5,7 @@ import {
   TabbedForm,
   TabbedFormTabs,
   TextInput,
+  useRefresh,
 } from 'react-admin';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
@@ -18,6 +19,7 @@ import MainContainer from '../../common/MainContainer';
 const EditFooter: React.FC = (props: any) => {
   const tabsActions = React.useRef<any | TabsActions>();
   const open = useSelector((state: any) => state.admin.ui.sidebarOpen);
+  const refresh = useRefresh();
 
   // Recalculating tab indicator position due to a bug in MUI
   React.useEffect(() => {
@@ -34,7 +36,7 @@ const EditFooter: React.FC = (props: any) => {
       <Edit
         id={1}
         component='div'
-        onSuccess={() => null}
+        onSuccess={() => refresh()}
         undoable={false}
         {...props}
       >

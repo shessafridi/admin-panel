@@ -5,12 +5,15 @@ import {
   ImageField,
   SimpleForm,
   TextInput,
+  useRefresh,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
 import MainContainer from '../../common/MainContainer';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 
 const EditAbout: React.FC = (props: any) => {
+  const refresh = useRefresh();
+
   return (
     <MainContainer>
       <h3 className='listview-title'>About</h3>
@@ -19,7 +22,7 @@ const EditAbout: React.FC = (props: any) => {
       <Edit
         id={1}
         component='div'
-        onSuccess={() => null}
+        onSuccess={() => refresh()}
         undoable={false}
         {...props}
       >
