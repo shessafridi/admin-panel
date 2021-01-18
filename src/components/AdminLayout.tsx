@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Layout } from 'react-admin';
 import Snackbar from '../common/Snackbar';
 import AdminAppBar from './AdminAppBar';

@@ -15,6 +15,7 @@ function MainContainer(props) {
           padding: `10px ${isSmall ? '15px' : '40px'}`,
           borderRadius: '10px',
           backgroundColor: 'white',
+          marginTop: '8px',
         }}
       >
         {props.children}
