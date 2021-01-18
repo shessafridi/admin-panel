@@ -9,7 +9,7 @@ import {
 } from 'react-admin';
 import { GridShowLayout, RaGrid } from 'ra-compact-ui';
 import DialogToolBar from '../../common/Dialog/DialogToolbar';
-import { validateTitle } from '../../common/validators';
+import { validateBirthday } from '../../common/validators';
 
 interface CreateBirthdayProps {}
 
@@ -17,7 +17,7 @@ const CreateBirthday: React.FC<CreateBirthdayProps> = props => {
   return (
     <Create title='Add a new birthday' {...props}>
       <SimpleForm
-        validate={validateTitle}
+        validate={validateBirthday}
         toolbar={<DialogToolBar />}
         margin='normal'
         redirect='list'

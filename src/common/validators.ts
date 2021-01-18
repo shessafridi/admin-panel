@@ -12,7 +12,7 @@ export const validateBirthday = values => {
     errors.name = ['Name is required'];
   }
   if (!values.reg) {
-    errors.title = ['Regestration number is required'];
+    errors.reg = ['Regestration number is required'];
   }
   return errors;
 };
