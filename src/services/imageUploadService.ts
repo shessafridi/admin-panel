@@ -1,6 +1,7 @@
 import { fetchUtils } from 'ra-core';
 import { fileUploadUrl } from '../config';
 import objectPath from 'object-path';
+import loggerService from './loggerService';
 class ImageService {
   private _uploadAllFiles = (files: File[]) => {
     return Promise.all(
@@ -18,7 +19,14 @@ class ImageService {
       })
       .then(res => ({
         body: res.json.url.replace(/"/g, '').replace(/http/g, 'https'),
-      }));
+      }))
+      .catch(e => {
+        loggerService.logError(e);
+        return {
+          body: null,
+          error: e,
+        };
+      });
   };
 
   private _setCustomProperty = (data: any, fieldName: string, value: any) => {

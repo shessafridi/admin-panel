@@ -5,6 +5,7 @@ import { ResourceData } from '../models/ResourceData';
 import authService from './authService';
 import { uploadImagesIfExist } from '../middleware/uploadImages';
 import { addYouTubeUrlIfExist } from '../middleware/addYouTubeUrl';
+import loggerService from './loggerService';
 
 class SegmentService {
   segmentsObj: any = {};
@@ -62,6 +63,7 @@ class SegmentService {
         data: { ...data, id: data.id },
       }));
     } catch (e) {
+      loggerService.logError(e);
       return Promise.reject(e);
     }
   };
@@ -81,6 +83,7 @@ class SegmentService {
         data: { ...data, id: data.id },
       }));
     } catch (e) {
+      loggerService.logError(e);
       return Promise.reject(e);
     }
   };
@@ -111,6 +114,7 @@ class SegmentService {
         });
         console.log(this.segmentsObj);
       } catch (e) {
+        loggerService.logError(e);
         console.error(e);
       }
     }

@@ -32,6 +32,7 @@ jobs:
         env:
           PUBLIC_URL: https://shessafridi.github.io/admin-panel/
           REACT_APP_API_URL: https://api.alhamdian.pk/api/SegmentDetail
+          REACT_APP_LOG_URL: https://e32d735bc59144e4a61e13ff087bc0d0@o453848.ingest.sentry.io/5598819
         run: npm run build --if-present
 
       - name: Deploy 🚀
