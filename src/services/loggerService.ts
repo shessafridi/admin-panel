@@ -18,6 +18,7 @@ class Logger {
       Sentry.init({
         dsn: process.env.REACT_APP_LOG_URL,
         autoSessionTracking: true,
+        environment: process.env.NODE_ENV || 'development',
         integrations: [new Integrations.BrowserTracing()],
         tracesSampleRate: 1.0,
       });
