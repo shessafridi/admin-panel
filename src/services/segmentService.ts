@@ -13,7 +13,7 @@ class SegmentService {
   private _arrangeId = (slice: ResourceSlice) =>
     slice.data.forEach((val, i) => (val.id = i + 1));
 
-  private _updateDb = (slice: ResourceSlice) => {
+  private _updateDb = async (slice: ResourceSlice) => {
     this._arrangeId(slice);
     return fetchUtils.fetchJson(`${apiUrl}/${slice.id}`, {
       method: 'PUT',
@@ -89,7 +89,7 @@ class SegmentService {
   };
 
   // Delete
-  delete = (id: number, resource: string) => {
+  delete = async (id: number, resource: string) => {
     const slice = this.getSlice(resource);
     const index = slice.data.findIndex(val => val.id === id);
     const removed = slice.data.splice(index, 1);
@@ -97,6 +97,22 @@ class SegmentService {
     return this._updateDb(slice).then(() => ({
       data: removed[0],
     }));
+  };
+
+  deleteMany = async (recordsIds: number[], resource: string) => {
+    const slice = this.getSlice(resource);
+    const deletedRecords: any[] = [];
+    for (let record of recordsIds) {
+      const index = slice.data.findIndex(
+        (val: { id: number }) => val.id === record
+      );
+      const [removed] = slice.data.splice(index, 1);
+      deletedRecords.push(removed);
+    }
+    await this._updateDb(slice);
+    return {
+      data: deletedRecords,
+    };
   };
 
   // Loading data from the server

@@ -53,10 +53,10 @@ export default (): DataProvider => ({
   },
 
   // simple-rest doesn't handle filters on DELETE route, so we fallback to calling DELETE n times instead
-  deleteMany: (resource, params) =>
-    Promise.all(
-      params.ids.map(id =>
-        segmentService.delete(parseInt(id as string), resource)
-      )
-    ).then(responses => ({ data: responses.map(res => res.data) })),
+  deleteMany: async (resource, params) => {
+    return await segmentService.deleteMany(
+      params.ids.map(id => parseInt(id as string)),
+      resource
+    );
+  },
 });
