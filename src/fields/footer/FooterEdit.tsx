@@ -11,7 +11,7 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import { TabsActions } from '@material-ui/core';
+import { TabsActions } from '@material-ui/core/Tabs';
 import { useSelector } from 'react-redux';
 import SaveToolbar from '../../common/SaveToolbar';
 import MainContainer from '../../common/MainContainer';

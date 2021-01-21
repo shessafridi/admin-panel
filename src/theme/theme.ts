@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { amber, orange } from '@material-ui/core/colors';
 
 export const drawerActive = {

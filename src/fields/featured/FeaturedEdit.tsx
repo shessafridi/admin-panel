@@ -11,7 +11,8 @@ import {
   useRefresh,
 } from 'react-admin';
 import SaveToolbar from '../../common/SaveToolbar';
-import { makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MainContainer from '../../common/MainContainer';
 
 const useStyles = makeStyles({

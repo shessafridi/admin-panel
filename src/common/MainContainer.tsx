@@ -1,4 +1,5 @@
-import { useMediaQuery, useTheme } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 import React from 'react';
 
 function MainContainer(props) {

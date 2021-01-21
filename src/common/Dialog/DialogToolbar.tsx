@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { DeleteButton, SaveButton, Toolbar, ToolbarProps } from 'react-admin';
 import { DialogContext } from './Dialog';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   toolbar: {

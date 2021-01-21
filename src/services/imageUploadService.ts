@@ -1,4 +1,3 @@
-import { fetchUtils } from 'ra-core';
 import { fileUploadUrl } from '../config';
 import objectPath from 'object-path';
 import loggerService from './loggerService';
@@ -12,13 +11,13 @@ class ImageService {
     const form = new FormData();
     form.append('upload_preset', 'alhamd');
     form.append('file', file);
-    return fetchUtils
-      .fetchJson(fileUploadUrl, {
-        method: 'POST',
-        body: form,
-      })
+    return fetch(fileUploadUrl, {
+      method: 'POST',
+      body: form,
+    })
+      .then(res => res.json())
       .then(res => ({
-        body: res.json.url.replace(/"/g, '').replace(/http/g, 'https'),
+        body: res.url.replace(/"/g, '').replace(/http/g, 'https'),
       }))
       .catch(e => {
         loggerService.logError(e);

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { createElement } from 'react';
 import { useSelector } from 'react-redux';
-import { makeStyles, Theme, useMediaQuery } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { MenuItemLink, getResources } from 'react-admin';
 import { withRouter } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';

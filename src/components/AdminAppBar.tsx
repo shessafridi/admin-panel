@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { AppBar } from 'react-admin';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { useMediaQuery, useTheme } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { title } from '../config';
 
 const useStyles = makeStyles({

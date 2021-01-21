@@ -1,4 +1,3 @@
-import { fetchUtils } from 'ra-core';
 import { apiUrl } from '../config';
 import { ResourceSlice } from '../models/Slice';
 import { ResourceData } from '../models/ResourceData';
@@ -15,7 +14,7 @@ class SegmentService {
 
   private _updateDb = async (slice: ResourceSlice) => {
     this._arrangeId(slice);
-    return fetchUtils.fetchJson(`${apiUrl}/${slice.id}`, {
+    return fetch(`${apiUrl}/${slice.id}`, {
       method: 'PUT',
       headers: this._getHttpHeaders(),
       body: this._getSegmentBody(slice),
@@ -119,7 +118,7 @@ class SegmentService {
   getSegments = async () => {
     if (Object.keys(this.segmentsObj).length === 0) {
       try {
-        const response: any[] = await (await fetchUtils.fetchJson(apiUrl)).json;
+        const response: any[] = await (await fetch(apiUrl)).json();
         response.forEach(val => {
           const title: string = val.Title.toLowerCase().replace(' ', '');
           this.segmentsObj[title] = {

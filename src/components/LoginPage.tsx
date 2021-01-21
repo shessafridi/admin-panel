@@ -1,16 +1,15 @@
-import {
-  Button,
-  CircularProgress,
-  makeStyles,
-  TextField,
-  ThemeProvider,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
-import React, { FormEvent, useState } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { useTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { useLogin } from 'react-admin';
 import theme from '../theme/theme';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 interface LoginPageProps {}
 
@@ -23,8 +22,9 @@ const useStyles = makeStyles({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center right',
-    backgroundImage:
-      "url('https://api.nisafoundation.org/appassets/51cfef8f-80cd-45b7-9a2c-f4e2e256fa02.jpg')",
+    backgroundImage: `url('${
+      process.env.PUBLIC_URL + '/images/login-min.jpg'
+    }')`,
   },
   label: {
     color: '#666',
@@ -61,8 +61,12 @@ const LoginPage: React.FC<LoginPageProps> = props => {
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [hiddenPassword, setHiddenPassword] = useState(true);
   const [error, setError] = useState(false);
   const isSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
+  const togglePassword = useCallback(() => {
+    setHiddenPassword(!hiddenPassword);
+  }, [hiddenPassword]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -97,7 +101,18 @@ const LoginPage: React.FC<LoginPageProps> = props => {
             fullWidth
             onChange={e => setPassword(e.target.value)}
             label='Enter your password'
-            type='password'
+            type={hiddenPassword ? 'password' : 'text'}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end'>
+                  {hiddenPassword ? (
+                    <VisibilityOffIcon onClick={togglePassword} />
+                  ) : (
+                    <VisibilityIcon onClick={togglePassword} />
+                  )}
+                </InputAdornment>
+              ),
+            }}
             variant='outlined'
           />
           <Typography
