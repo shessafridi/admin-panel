@@ -15,6 +15,7 @@ export interface ListViewProps {
   setShowModal: (arg: boolean | string) => void;
   record: any;
   title?: string;
+  showActions?: boolean;
 }
 
 const ListView: React.FC<ListViewProps> = ({
@@ -24,6 +25,7 @@ const ListView: React.FC<ListViewProps> = ({
   editDialogView,
   desc,
   setShowModal,
+  showActions,
   showModal,
   title,
   ...rest
@@ -41,7 +43,13 @@ const ListView: React.FC<ListViewProps> = ({
         pagination={false}
         component='div'
         bulkActionButtons={isSmall ? false : undefined}
-        actions={<ListActions createAction={() => setShowModal('create')} />}
+        actions={
+          !!showActions ? (
+            <ListActions createAction={() => setShowModal('create')} />
+          ) : (
+            false
+          )
+        }
         {...rest}
       >
         <Datagrid

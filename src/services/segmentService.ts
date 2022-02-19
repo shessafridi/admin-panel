@@ -95,27 +95,59 @@ class SegmentService {
   delete = async (id: number, resource: string) => {
     const slice = this.getSlice(resource);
     const index = slice.data.findIndex(val => val.id === id);
-    const removed = slice.data.splice(index, 1);
-
-    return this._updateDb(slice).then(() => ({
-      data: removed[0],
-    }));
+    if (slice.title === 'Admissions') {
+      await this.deleteAdmission(id);
+      slice.data = slice.data.filter(data => data.id !== id);
+      return {
+        data: slice.data[index],
+      };
+    } else {
+      const removed = slice.data.splice(index, 1);
+      return this._updateDb(slice).then(() => ({
+        data: removed[0],
+      }));
+    }
   };
 
   deleteMany = async (recordsIds: number[], resource: string) => {
     const slice = this.getSlice(resource);
-    const deletedRecords: any[] = [];
-    for (let record of recordsIds) {
-      const index = slice.data.findIndex(
-        (val: { id: number }) => val.id === record
+
+    if (slice.title === 'Admissions') {
+      const deletedAdmission = recordsIds.map(
+        id => slice.data.find(d => d.id === id)!
       );
-      const [removed] = slice.data.splice(index, 1);
-      deletedRecords.push(removed);
+
+      await Promise.all(
+        deletedAdmission.map(ad => this.deleteAdmission(ad.id))
+      );
+
+      slice.data = slice.data.filter(data => !recordsIds.includes(data.id));
+
+      return {
+        data: deletedAdmission,
+      };
+    } else {
+      const deletedRecords: any[] = [];
+      for (let record of recordsIds) {
+        const index = slice.data.findIndex(
+          (val: { id: number }) => val.id === record
+        );
+        const [removed] = slice.data.splice(index, 1);
+        deletedRecords.push(removed);
+      }
+      await this._updateDb(slice);
+      return {
+        data: deletedRecords,
+      };
     }
-    await this._updateDb(slice);
-    return {
-      data: deletedRecords,
-    };
+  };
+
+  deleteAdmission = async (id: number) => {
+    return await (
+      await fetch(admissionUrl + '/' + id, {
+        method: 'DELETE',
+      })
+    ).json();
   };
 
   // Loading data from the server
@@ -127,9 +159,17 @@ class SegmentService {
           await fetch(admissionUrl)
         ).json();
 
-        const appAdmissions: AppAdmission[] = admissions.map(a =>
-          toAppAdmission(a)
-        );
+        const appAdmissions: AppAdmission[] = admissions
+          .map(a => toAppAdmission(a))
+          .sort((a, b) => {
+            const aDate = new Date(a.submissionDate).valueOf();
+            const bDate = new Date(b.submissionDate).valueOf();
+
+            if (aDate > bDate) return -1;
+            if (aDate < bDate) return 1;
+
+            return 0;
+          });
 
         response.forEach(val => {
           const title: string = val.Title.toLowerCase().replace(' ', '');

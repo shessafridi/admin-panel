@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 export interface Admission {
   Id: number;
   Name: string;
@@ -15,6 +17,7 @@ export interface AppAdmission {
   id: number;
   name: string;
   submissionDate: Date;
+  submissionFormatedDate: string;
   fatherName: string;
   contactNo: string;
   city: string;
@@ -29,6 +32,10 @@ export function toAppAdmission(admission: Admission): AppAdmission {
     id: admission.Id,
     name: admission.Name,
     submissionDate: new Date(admission.SubmissionDate),
+    submissionFormatedDate: format(
+      new Date(admission.SubmissionDate),
+      'MMM dd, yyyy'
+    ),
     fatherName: admission.FatherName,
     contactNo: admission.ContactNo,
     city: admission.City,
