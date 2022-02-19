@@ -8,8 +8,8 @@ import MainContainer from './MainContainer';
 
 export interface ListViewProps {
   [x: string]: any;
-  createDialogView: React.FC;
-  editDialogView: React.FC;
+  createDialogView?: React.FC;
+  editDialogView?: React.FC;
   desc: string;
   showModal: string | boolean;
   setShowModal: (arg: boolean | string) => void;
@@ -51,14 +51,16 @@ const ListView: React.FC<ListViewProps> = ({
           {children}
         </Datagrid>
       </List>
-      <Dialog
-        type='create'
-        renderChild={createDialogView}
-        visable={showModal}
-        setVisable={setShowModal}
-        {...rest}
-      />
-      {record && (
+      {createDialogView && (
+        <Dialog
+          type='create'
+          renderChild={createDialogView}
+          visable={showModal}
+          setVisable={setShowModal}
+          {...rest}
+        />
+      )}
+      {record && editDialogView && (
         <Dialog
           id={record.id}
           type='edit'
