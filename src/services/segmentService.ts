@@ -5,6 +5,10 @@ import authService from './authService';
 import { uploadImagesIfExist } from '../middleware/uploadImages';
 import { addYouTubeUrlIfExist } from '../middleware/addYouTubeUrl';
 import loggerService from './loggerService';
+import { Admission, AppAdmission, toAppAdmission } from './../models/Admission';
+
+const segmentUrl = apiUrl + '/SegmentDetail';
+const admissionUrl = apiUrl + '/Admissions';
 
 class SegmentService {
   segmentsObj: any = {};
@@ -14,7 +18,7 @@ class SegmentService {
 
   private _updateDb = async (slice: ResourceSlice) => {
     this._arrangeId(slice);
-    return fetch(`${apiUrl}/${slice.id}`, {
+    return fetch(`${segmentUrl}/${slice.id}`, {
       method: 'PUT',
       headers: this._getHttpHeaders(),
       body: this._getSegmentBody(slice),
@@ -118,7 +122,15 @@ class SegmentService {
   getSegments = async () => {
     if (Object.keys(this.segmentsObj).length === 0) {
       try {
-        const response: any[] = await (await fetch(apiUrl)).json();
+        const response: any[] = await (await fetch(segmentUrl)).json();
+        const admissions: Admission[] = await (
+          await fetch(admissionUrl)
+        ).json();
+
+        const appAdmissions: AppAdmission[] = admissions.map(a =>
+          toAppAdmission(a)
+        );
+
         response.forEach(val => {
           const title: string = val.Title.toLowerCase().replace(' ', '');
           this.segmentsObj[title] = {
@@ -127,6 +139,11 @@ class SegmentService {
             data: JSON.parse(val.Details),
           };
         });
+        this.segmentsObj['admissions'] = {
+          id: 4887645,
+          title: 'Admissions',
+          data: [...appAdmissions],
+        };
         console.log(this.segmentsObj);
       } catch (e) {
         loggerService.logError(e);

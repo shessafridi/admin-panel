@@ -46,6 +46,7 @@ import CreateMedia from '../fields/media-center/MediaCreate';
 import PermMediaOutlinedIcon from '@material-ui/icons/PermMediaOutlined';
 import LoginPage from './LoginPage';
 import loadFa from '../services/loadFa';
+import AdmissionList from '../fields/admission/AdmissionList';
 
 function AdminPanel() {
   loadFa();
@@ -67,6 +68,14 @@ function AdminPanel() {
         list={HeadersList}
         create={CreateHeader}
         edit={EditHeader}
+      ></Resource>
+      <Resource
+        icon={CallToActionOutlinedIcon}
+        options={{ label: 'Admissions' }}
+        name={'admissions'}
+        list={AdmissionList}
+        // create={CreateHeader}
+        // edit={EditHeader}
       ></Resource>
 
       <Resource
