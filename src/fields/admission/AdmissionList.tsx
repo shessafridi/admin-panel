@@ -1,17 +1,15 @@
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+// import { useTheme } from '@material-ui/core/styles';
 import * as React from 'react';
-import { DeleteButton, TextField } from 'react-admin';
-import GridViewButton from '../../common/GridViewButton';
+import { TextField } from 'react-admin';
 import ListView from '../../common/ListView';
 
 export interface AdmissionListProps {}
 const AdmissionList: React.FC<AdmissionListProps> = props => {
-  const theme = useTheme();
-  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+  // const theme = useTheme();
+  // const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [showModal, setShowModal] = React.useState<string | boolean>(false);
-  const [record, setRecord] = React.useState<any>();
+  const [record] = React.useState<any>();
 
   console.log(props);
 
