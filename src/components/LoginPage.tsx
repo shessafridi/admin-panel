@@ -138,6 +138,19 @@ const LoginPage: React.FC<LoginPageProps> = props => {
             Login
           </Button>
         </form>
+        {!isSmall && (
+          <div
+            style={{
+              flexGrow: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            className='img-container'
+          >
+            <img width={300} src='images/logo-big.png' alt='' />
+          </div>
+        )}
       </section>
     </ThemeProvider>
   );
