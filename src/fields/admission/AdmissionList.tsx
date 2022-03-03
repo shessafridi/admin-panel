@@ -15,7 +15,7 @@ const AdmissionList: React.FC<AdmissionListProps> = props => {
 
   return (
     <ListView
-      showActions={false}
+      hideActions={true}
       showModal={showModal}
       setShowModal={setShowModal}
       record={record}

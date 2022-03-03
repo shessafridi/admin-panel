@@ -57,10 +57,14 @@ class SegmentService {
   // Create
   create = async (data: any, resource: string) => {
     const slice = this.getSlice(resource);
+    if (!slice.data) {
+      slice.data = [];
+    }
     data.id = slice.data.length + 1;
 
     try {
       await this._callMiddleWare(data);
+
       slice.data.push(data);
       return this._updateDb(slice).then(() => ({
         data: { ...data, id: data.id },

@@ -13,7 +13,7 @@ export default (): DataProvider => ({
     await segmentService.getSegments();
     return {
       total: 10,
-      data: segmentService.getSliceData(resource),
+      data: segmentService.getSliceData(resource) || [],
     };
   },
 

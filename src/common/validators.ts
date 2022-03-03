@@ -16,3 +16,14 @@ export const validateBirthday = values => {
   }
   return errors;
 };
+
+export const validateReview = values => {
+  const errors: any = {};
+  if (!values.name) {
+    errors.name = ['Name is required'];
+  }
+  if (!values.review) {
+    errors.review = ['Review is required'];
+  }
+  return errors;
+};

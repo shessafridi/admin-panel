@@ -15,7 +15,7 @@ export interface ListViewProps {
   setShowModal: (arg: boolean | string) => void;
   record: any;
   title?: string;
-  showActions?: boolean;
+  hideActions?: boolean;
 }
 
 const ListView: React.FC<ListViewProps> = ({
@@ -25,7 +25,7 @@ const ListView: React.FC<ListViewProps> = ({
   editDialogView,
   desc,
   setShowModal,
-  showActions,
+  hideActions,
   showModal,
   title,
   ...rest
@@ -44,7 +44,7 @@ const ListView: React.FC<ListViewProps> = ({
         component='div'
         bulkActionButtons={isSmall ? false : undefined}
         actions={
-          !!showActions ? (
+          !hideActions ? (
             <ListActions createAction={() => setShowModal('create')} />
           ) : (
             false

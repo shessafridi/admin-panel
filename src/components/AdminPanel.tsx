@@ -44,9 +44,18 @@ import MediaList from '../fields/media-center/MediaList';
 import EditMedia from '../fields/media-center/MediaEdit';
 import CreateMedia from '../fields/media-center/MediaCreate';
 import PermMediaOutlinedIcon from '@material-ui/icons/PermMediaOutlined';
+
+//Admission
+import AdmissionList from '../fields/admission/AdmissionList';
+import SchoolIcon from '@material-ui/icons/School';
+//Review
+import ReviewList from '../fields/reviews/ReviewsList';
+import EditReview from './../fields/reviews/ReviewsEdit';
+import CreateReview from './../fields/reviews/ReviewsCreate';
+import RateReviewIcon from '@material-ui/icons/RateReview';
+
 import LoginPage from './LoginPage';
 import loadFa from '../services/loadFa';
-import AdmissionList from '../fields/admission/AdmissionList';
 
 function AdminPanel() {
   loadFa();
@@ -70,12 +79,21 @@ function AdminPanel() {
         edit={EditHeader}
       ></Resource>
       <Resource
-        icon={CallToActionOutlinedIcon}
+        icon={SchoolIcon}
         options={{ label: 'Admissions' }}
         name={'admissions'}
         list={AdmissionList}
         // create={CreateHeader}
         // edit={EditHeader}
+      ></Resource>
+
+      <Resource
+        icon={RateReviewIcon}
+        options={{ label: 'Reviews' }}
+        name={'reviews'}
+        list={ReviewList}
+        edit={EditReview}
+        create={CreateReview}
       ></Resource>
 
       <Resource
